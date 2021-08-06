@@ -1,9 +1,11 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Redirect, Route } from 'react-router-dom';
+import { showLoading } from '../../redux/actions';
 
-const PrivateRoute = ({ component: Component, ...rest }) => {
+const PublicRoute = ({ component: Component, ...rest }) => {
   const [isLogin, setIsLogin] = useState({ check: false, passed: false });
+  // const userState = useSelector((state) => state.userReducer);
   const token = localStorage.getItem('token');
   const dispatch = useDispatch();
 
@@ -14,9 +16,9 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
           {...rest}
           render={(props) => {
             return isLogin.passed ? (
-              <Component {...props} />
+              <Redirect to="/" />
             ) : (
-              <Redirect to="/customer-login" />
+              <Component {...props} />
             );
           }}
         />
@@ -25,4 +27,4 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
   );
 };
 
-export default PrivateRoute;
+export default PublicRoute;
