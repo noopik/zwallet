@@ -1,0 +1,45 @@
+{
+  "userProfile": {
+    "username": "Novi Dwi Cahya",
+    "email": "novidwicahya@gmail.com",
+    "avatar": "https://upload.wikimedia.org/wikipedia/id/d/d5/Aang_.jpg",
+    "phoneNumber": "08965365426",
+    "amount": "1500000"
+  },
+  "allUsers": {
+    "meta": {
+      "totalPage": "10",
+      "currentPage": "2",
+      "totalData": "120"
+    },
+    "data": [{
+        "username": "Novi Dwi Cahya",
+        "email": "novidwicahya@gmail.com",
+        "avatar": "https://upload.wikimedia.org/wikipedia/id/d/d5/Aang_.jpg",
+        "phoneNumber": "08965365426",
+        "amount": "1500000"
+      },
+      {
+        "username": "Mohammad Usman",
+        "email": "mohammadusman@gmail.com",
+        "avatar": "https://cdn.shopify.com/s/files/1/1658/5363/articles/Ingredients_in_the_Best_Men_s_Face_Cream_for_Anti-Aging_That_Work_Like_Magic.jpg",
+        "phoneNumber": "08965365426",
+        "amount": "1500000"
+      },
+      {
+        "username": "Thomas Alfa",
+        "email": "thomasalfa@gmail.com",
+        "avatar": "https://cdn.shopify.com/s/files/1/1658/5363/articles/Ingredients_in_the_Best_Men_s_Face_Cream_for_Anti-Aging_That_Work_Like_Magic.jpg",
+        "phoneNumber": "08965365426",
+        "amount": "1500000"
+      },
+      {
+        "username": "Jakson Bras",
+        "email": "jaksonbrash@gmail.com",
+        "avatar": "https://cdn.shopify.com/s/files/1/1658/5363/articles/Ingredients_in_the_Best_Men_s_Face_Cream_for_Anti-Aging_That_Work_Like_Magic.jpg",
+        "phoneNumber": "08965365426",
+        "amount": "1500000"
+      }
+    ]
+  }
+}
