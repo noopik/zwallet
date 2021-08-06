@@ -18,6 +18,7 @@ const UserLogin = () => {
             trends. 5000+ users registered in Zwallet everyday with worldwide
             users coverage.
           </p>
+          <p>Teeees</p>
         </div>
       </div>
       <div className="left-aside">Kiri</div>
