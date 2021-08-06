@@ -1,3 +1,3 @@
-import Homepage from './Homepage';
+import Landingpage from './Landingpage';
 
-export { Homepage };
+export { Landingpage };

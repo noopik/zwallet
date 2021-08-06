@@ -1,10 +1,10 @@
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import { Homepage } from '../../page';
+import { Landingpage } from '../../page';
 const Routes = () => {
   return (
     <Router>
       <Switch>
-        <Route exact path="/" component={Homepage} />
+        <Route exact path="/" component={Landingpage} />
       </Switch>
     </Router>
   );

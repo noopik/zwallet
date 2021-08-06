@@ -17,7 +17,7 @@ import {
   IMMicrosoft,
 } from '../../assets';
 import { LandingPageStyles } from './Styled';
-const Homepage = () => {
+const Landingpage = () => {
   useEffect(() => {}, []);
   return (
     <LandingPageStyles>
@@ -240,4 +240,4 @@ const Homepage = () => {
   );
 };
 
-export default Homepage;
+export default Landingpage;
