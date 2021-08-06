@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import {
   AVAJessicaMera,
   AVARobert,
@@ -10,7 +10,6 @@ import {
   IMAirBnB,
   IMApp1,
   IMapp2,
-  IMApp3,
   IMCanon,
   IMDell,
   IMDropbox,
@@ -19,13 +18,10 @@ import {
 } from '../../assets';
 import { LandingPageStyles } from './Styled';
 const Homepage = () => {
-  const [showNavbar, setShowNavbar] = useState();
-
   useEffect(() => {}, []);
-  // console.log(showNavbar);
   return (
     <LandingPageStyles>
-      <img className="bg-layer" src={ICBackgroundLandingPage} />
+      <img className="bg-layer" src={ICBackgroundLandingPage} alt="ng" />
       <div className="heading-section">
         <nav>
           <div className="custom-container">
@@ -46,7 +42,7 @@ const Homepage = () => {
           </div>
           <aside>
             <div className="image-wrapper">
-              <img src={IMApp1} about="zwallet1" />
+              <img src={IMApp1} about="zwallet1" alt="app" />
             </div>
           </aside>
         </header>
