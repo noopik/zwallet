@@ -10,9 +10,8 @@ export const LandingPageStyles = styled.body`
     position: absolute;
     right: 0;
     width: 40%;
-    ${customMedia.lessThan('1208px')` 
+    ${customMedia.lessThan('desktop')` 
     width: 60%;
-    /* for screen sizes less than 1280px */
   `}
   }
   /* END = BG LAYER  */
@@ -28,6 +27,9 @@ export const LandingPageStyles = styled.body`
     font-size: 60px;
     line-height: 93px;
     color: #3a3d42;
+    ${customMedia.lessThan('668px')` 
+    width: 60%;
+  `}
     .heading.primary {
       color: ${colors.primary};
     }
