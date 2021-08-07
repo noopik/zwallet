@@ -2,12 +2,17 @@ import React from 'react'
 import styled from 'styled-components'
 // import PropTypes from 'prop-types'
 
-const FieldWithIcon = ({className, placeholder, icon, type}) => {
+const FieldWithIcon = ({className, placeholder, icon, type, onChange}) => {
     return (
         <Styles>
                 <div className="input-box">
                     <i class={icon} aria-hidden="true"></i>
-                    <input  type={type} className={className} id="username" placeholder={placeholder}/>
+                    <input
+                    type={type} 
+                    className={className} 
+                    id="username" 
+                    placeholder={placeholder}
+                    onChange={onChange}/>
                 </div>
         </Styles>
     )
