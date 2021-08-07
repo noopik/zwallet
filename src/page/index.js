@@ -1,7 +1,16 @@
 import About from './About';
+import CreatePinPage from './CreatePinPage';
 import Homepage from './Homepage';
-import Pagecoba from './Pagecoba';
-import UserLogin from './UserLogin';
+import LoginPage from './LoginPage';
+import SignupPage from './SignupPage';
+import SuccessPinPage from './SuccessPinPage';
 
 
-export { Homepage, About, UserLogin, Pagecoba };
+
+
+
+// import UserLogin from './UserLogin';
+
+
+
+export { Homepage, About, LoginPage, SignupPage, CreatePinPage, SuccessPinPage};
