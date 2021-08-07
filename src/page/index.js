@@ -1,6 +1,4 @@
-import About from './About';
 import CreatePinPage from './CreatePinPage';
-import Homepage from './Homepage';
 import LoginPage from './LoginPage';
 import SignupPage from './SignupPage';
 import SuccessPinPage from './SuccessPinPage';
@@ -13,4 +11,4 @@ import SuccessPinPage from './SuccessPinPage';
 
 
 
-export { Homepage, About, LoginPage, SignupPage, CreatePinPage, SuccessPinPage};
+export {LoginPage, SignupPage, CreatePinPage, SuccessPinPage};

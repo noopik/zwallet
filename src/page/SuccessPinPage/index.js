@@ -24,7 +24,7 @@ const SuccessPinPage = () => {
                     all the features in Zwallet. Login to your new account and <br/>
                     start exploring!
                     </h6>
-                    <Button name="Login" className="button-login"/>
+                    <Button children="Login" className="button-login"/>
                 </div>
             </div>
         </Styles>

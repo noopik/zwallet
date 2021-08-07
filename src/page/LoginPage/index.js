@@ -1,11 +1,11 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
-import { SidebarAuth, FieldWithIcon, Button, TextTitleAuth } from '../../components'
+import { Button, FieldWithIcon, SidebarAuth } from '../../components'
 const LoginPage = () => {
     return (
         <Styles>
-
+        <>
             <div className="wrapper">
                 <div className="row-side">
                 <SidebarAuth className="sidebar"/>
@@ -39,12 +39,13 @@ const LoginPage = () => {
                     <div className="forgot-pass">
                         <Link to="" style={{ textDecoration: 'none', color: '#3A3D42' }}>Forgot password?</Link>
                     </div>
-                    <Button name="Login" className="button-login"/>
+                    <Button children="Login" className="button-login"/>
                     <div className="register-link">
                         Don't have an account ? Let's<Link to="/signup"  classname="link" style={{ textDecoration: 'none' }}> Sign Up </Link>
                     </div>
                 </div>
             </div>
+            </>
         </Styles>
     )
 }

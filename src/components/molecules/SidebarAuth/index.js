@@ -1,7 +1,6 @@
 import React from 'react'
-import PropTypes from 'prop-types'
-import { SplashBackground, ZwalletApp, SplashLine } from '../../../assets'
 import styled from 'styled-components'
+import { SplashBackground, SplashLine, ZwalletApp } from '../../../assets'
 
 const SidebarAuth = ({className}) => {
     return (

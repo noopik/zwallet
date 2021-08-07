@@ -1,7 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { FieldToken } from '../../components'
-import { SidebarAuth, FieldWithIcon, Button, TextTitleAuth } from '../../components'
+import { Button, FieldToken, SidebarAuth } from '../../components'
 const CreatePinPage = () => {
     return (
         <Styles>
@@ -30,7 +29,7 @@ const CreatePinPage = () => {
                          <FieldToken className="pin"/>
                          <FieldToken className="pin"/>
                     </div>
-                    <Button name="Confirm" className="button-login"/>
+                    <Button children="Confirm" className="button-login"/>
                 </div>
             </div>
         </Styles>

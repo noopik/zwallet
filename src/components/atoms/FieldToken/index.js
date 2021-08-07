@@ -1,15 +1,15 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
-const FieldToken = ({className, type, value, name}) => {
+const FieldToken = ({className, type, value, name, change}) => {
     return (
         <Styles className={className}>
             <input 
             type={type}
             value={value}
             className="input-token"
-            name={name}/>
+            name={name}
+            onChange={change}/>
         </Styles>
     )
 }
@@ -25,6 +25,7 @@ const Styles = styled.div`
     box-shadow: 0px 10px 75px rgba(147, 147, 147, 0.1);
     border-radius: 10px;
     text-align: center;
+    outline:none;
 }
 
 `

@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
-import { SidebarAuth, FieldWithIcon, Button, TextTitleAuth } from '../../components'
+import { Button, FieldWithIcon, SidebarAuth } from '../../components'
 
 const SignupPage = () => {
     return (
@@ -39,7 +39,7 @@ const SignupPage = () => {
                         icon="fa fa-lock"
                         placeholder="Enter your password"
                             />
-                    <Button name="Sign Up" className="button-login"/>
+                    <Button children="Sign up" className="button-login"/>
                     <div className="register-link">
                             Already have an account ? Let's<Link to="/login"> Login </Link>
                         </div>
