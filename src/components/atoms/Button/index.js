@@ -1,4 +1,3 @@
-
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
@@ -108,4 +107,3 @@ const StyledButton = styled.button`
     opacity: 0.8;
   }
 `;
-
