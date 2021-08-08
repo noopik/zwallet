@@ -14,6 +14,9 @@ import {
   ForgotPasswordPage,
   ResetPasswordEmailPage,
   ConfirmationTransferPage,
+  ProfileUserPage,
+  TopupPage,
+  PersonalInfo,
   //  END = nisa
 } from '../../page';
 import PrivateRoute from './PrivateRoute';
@@ -49,6 +52,17 @@ const Routes = () => {
           path="/username/search-receiver/to-username/confirmation"
           component={ConfirmationTransferPage}
         />
+        <PrivateRoute
+          exact
+          path="/username/profile"
+          component={ProfileUserPage}
+        />
+        <PrivateRoute
+          exact
+          path="/username/profile/info"
+          component={PersonalInfo}
+        />
+        <PrivateRoute path="/username/topup" component={TopupPage} />
 
         {/* END = USER PAGE */}
       </Switch>

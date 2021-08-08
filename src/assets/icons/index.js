@@ -8,6 +8,7 @@ import ICLogout from './log-out.svg';
 import ICDownGreen from './arrow-down-green.png';
 import ICUpRed from './arrow-up-red.png';
 import ICPen from './search.svg';
+import ICArrowLeft from './arrow-left.svg';
 // START = NOVI
 
 // START = NISA
@@ -15,6 +16,7 @@ import SplashLine from './splash-line.png';
 import Success from './success.png';
 // END = NISA
 export {
+  ICArrowLeft,
   ICPen,
   ICBell,
   ICArrowUp,
