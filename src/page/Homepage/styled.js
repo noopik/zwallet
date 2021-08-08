@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { colors } from '../../utils';
-
+import { customMedia } from '../../components/Layouting/BreakPoints';
 export const StyledDashboard = styled.main`
   width: 100%;
   height: 100%;
@@ -12,6 +12,7 @@ export const StyledDashboard = styled.main`
     justify-content: space-between;
     padding: 30px;
     border-radius: 20px;
+ 
     .balance-wrapper {
       .text-section {
         font-family: Nunito Sans;

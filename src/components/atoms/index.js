@@ -19,5 +19,4 @@ export {
   Button,
   FieldToken,
   SmallCard,
-  SmallCard
 };
