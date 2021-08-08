@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
@@ -94,3 +95,39 @@ const StyledButton = styled.button`
     opacity: 0.8;
   }
 `;
+=======
+import React from 'react'
+import styled from 'styled-components'
+// import PropTypes from 'prop-types'
+
+const Button = ({children, className}) => {
+    return (
+        <Styles>
+            <button className={className}>{children}</button>
+        </Styles>
+    )
+}
+
+export default Button
+const Styles = styled.div`
+button{
+  
+    width: 80%;
+    background: #DADADA;
+    box-shadow: 0px 6px 75px rgba(100, 87, 87, 0.05);
+    border-radius: 12px;
+    height: 57px;
+    border: none;
+    color: #88888F;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 25px;
+}
+button:hover{
+    background:#6379F4;
+    color: white;
+}
+
+` 
+>>>>>>> bf755654d988f6cc142ab2acd454a126f155b310

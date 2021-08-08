@@ -7,6 +7,10 @@
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
+<<<<<<< HEAD
+=======
+    "mdb-react-ui-kit": "^1.2.0",
+>>>>>>> bf755654d988f6cc142ab2acd454a126f155b310
     "prop-types": "^15.7.2",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",

@@ -1,4 +1,5 @@
 import ZwalletApp from './zindex-app.png';
+<<<<<<< HEAD
 import IMCanon from './canon.png';
 import IMDell from './dell.png';
 import IMHnM from './hnm.png';
@@ -33,3 +34,9 @@ export {
   IMapp2,
   IMApp3,
 };
+=======
+import SplashBackground from './Splash-bg-loginpage.png'
+
+
+export { ZwalletApp, SplashBackground };
+>>>>>>> bf755654d988f6cc142ab2acd454a126f155b310
