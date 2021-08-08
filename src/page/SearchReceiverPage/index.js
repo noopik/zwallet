@@ -1,14 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
-import { CardProfileUser, Cardwrapper } from '../../components';
+import { CardProfileUser, Cardwrapper, HeadingContent } from '../../components';
 
 const SearchReceiverPage = () => {
   return (
     <Cardwrapper>
       <StyledSearchPage>
-        <div className="heading-section">
-          <h2 className="text-heading">Search Receiver</h2>
-        </div>
+        <HeadingContent>Search Receiver</HeadingContent>
         <div className="search-section">
           <svg
             width="24"
@@ -57,9 +55,6 @@ export default SearchReceiverPage;
 
 const StyledSearchPage = styled.div`
   padding: 30px;
-  .heading-section {
-    margin-bottom: 25px;
-  }
   .search-section {
     margin-bottom: 50px;
     background: rgba(58, 61, 66, 0.1);

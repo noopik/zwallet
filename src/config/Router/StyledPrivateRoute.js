@@ -19,6 +19,20 @@ export const StylingMainContent = styled.main`
     line-height: 19px;
     color: #6a6a6a;
   }
+  .text-regular {
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 22px;
+    color: #7a7886;
+  }
+  .text-heading-bold {
+    font-style: normal;
+    font-weight: bold;
+    font-size: 22px;
+    line-height: 30px;
+    color: #514f5b;
+  }
   .text-heading {
     font-weight: bold;
     font-size: 18px;

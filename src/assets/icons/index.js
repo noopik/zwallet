@@ -9,6 +9,7 @@ import ICDownGreen from './arrow-down-green.png';
 import ICUpRed from './arrow-up-red.png';
 
 import ICPen from './search.svg';
+import ICArrowLeft from './arrow-left.svg';
 // START = NOVI
 
 
@@ -20,6 +21,7 @@ import DownloadIcon from './download.png'
 import Failed from './Fail.png'
 // END = NISA
 export {
+  ICArrowLeft,
   ICPen,
   ICBell,
   ICArrowUp,

@@ -40,8 +40,6 @@ const Styles = styled.div`
   padding-bottom: 5px;
   display: flex;
   flex-direction: row;
-  background-color: green;
-
   .fa {
     margin-right: 5px;
     color: #adadad;

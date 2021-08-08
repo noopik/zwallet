@@ -8,9 +8,12 @@ import FieldWithIcon from './FieldWithIcon';
 import SmallCard from './SmallCard';
 
 import Input from './Input';
-
+import HeadingContent from './HeadingContent';
+import AlertValidationForm from './AlertValidationForm';
 
 export {
+  AlertValidationForm,
+  HeadingContent,
   Input,
   LogoBrand,
   CardProfileUser,
