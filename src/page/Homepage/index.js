@@ -58,7 +58,7 @@ const Homepage = () => {
         </div>
       </div>
       {/* testing */}
-      <Button></Button>
+      <h1>Hi Nisa</h1>
     </StyledDashboard>
   );
 };
