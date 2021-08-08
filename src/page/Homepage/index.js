@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { ICDownGreen, ICUpRed } from '../../assets';
 // import PropTypes from 'prop-types';
 import { CardProfileUser } from '../../components';
@@ -6,6 +6,9 @@ import Button from '../../components/atoms/Button';
 import { StyledDashboard } from './styled';
 
 const Homepage = () => {
+  useEffect(() => {
+    document.title = 'Nopik | Dashboard';
+  });
   return (
     <>
       {/* Styling for this element (Main, Header-setion) inside StylingMainContent component */}
@@ -24,22 +27,22 @@ const Homepage = () => {
         <div className="transaction-history-wrapper">
           <div className="chart card">
             <div className="header">
-              <div className="income-wrapper">
+              <div className="text-green-wrapper">
                 <img src={ICDownGreen} alt="icon down" />
-                <h4 className="text">Income</h4>
-                <h4 className="text-bold">Rp.2.120.000</h4>
+                <h4 className="text">text-green</h4>
+                <h4 className="text-heading">Rp.2.120.000</h4>
               </div>
-              <div className="income-wrapper">
+              <div className="text-green-wrapper">
                 <img src={ICUpRed} alt="icon" />
                 <h4 className="text">Expense</h4>
-                <h4 className="text-bold">Rp.2.120.000</h4>
+                <h4 className="text-heading">Rp.2.120.000</h4>
               </div>
               <div className="body"></div>
             </div>
           </div>
           <div className="history-wrapper card">
             <div className="heading">
-              <h2 className="text-bold">Transaction History</h2>
+              <h2 className="text-heading">Transaction History</h2>
               <p className="text-link">See all</p>
             </div>
             <div className="body">

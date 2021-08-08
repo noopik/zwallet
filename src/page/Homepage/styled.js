@@ -64,29 +64,7 @@ export const StyledDashboard = styled.main`
       border-radius: 25px;
       padding: 30px;
     }
-    .text {
-      font-size: 14px;
-      line-height: 19px;
-      color: #6a6a6a;
-    }
-    .text-bold {
-      font-weight: bold;
-      font-size: 18px;
-      line-height: 25px;
-      color: #3a3d42;
-    }
-    .text-link {
-      font-weight: 600;
-      font-size: 14px;
-      line-height: 19px;
-      color: #6379f4;
-    }
-    .income {
-      color: #1ec15f;
-    }
-    .outcome {
-      color: #ff5b37;
-    }
+
     /* END = GLOBAL STYLING ONLY THIS SCOPE */
     .chart {
       width: 60%;
@@ -94,7 +72,7 @@ export const StyledDashboard = styled.main`
         display: flex;
         justify-content: space-between;
         /* background-color: yellow; */
-        .income-wrapper {
+        .text-green-wrapper {
           /* background-color: pink; */
           h4 {
             margin: 0;

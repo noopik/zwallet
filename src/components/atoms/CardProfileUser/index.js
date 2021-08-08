@@ -16,7 +16,7 @@ const CardProfileUser = ({ avatar, username, typeTransaction, amount }) => {
         </div>
       </div>
       <div className="amount-wrapper">
-        <h4 className="text-bold income">{amount}</h4>
+        <h4 className="text-heading text-green">{amount}</h4>
       </div>
     </StyledHistoryItem>
   );

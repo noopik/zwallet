@@ -1,4 +1,4 @@
+import HistoryPage from './HistoryPage';
 import Homepage from './Homepage';
 import Landingpage from './Landingpage';
-
-export { Landingpage, Homepage };
+export { Landingpage, HistoryPage, Homepage };
