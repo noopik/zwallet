@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Redirect, Route } from 'react-router-dom';
-import { showLoading } from '../../redux/actions';
 
 const PublicRoute = ({ component: Component, ...rest }) => {
   const [isLogin, setIsLogin] = useState({ check: false, passed: false });

@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
 import { Redirect, Route } from 'react-router-dom';
+import { Footer, MenuAsideLeft, Navbar } from '../../components';
+import { StylingMainContent } from './StyledPrivateRoute';
 
 const PrivateRoute = ({ component: Component, ...rest }) => {
-  const [isLogin, setIsLogin] = useState({ check: false, passed: false });
-  const token = localStorage.getItem('token');
-  const dispatch = useDispatch();
+  const [isLogin, setIsLogin] = useState({ check: true, passed: true });
+  console.log(setIsLogin);
+  // const token = localStorage.getItem('token');
+  // const dispatch = useDispatch();
 
   return (
     <>
@@ -14,9 +16,19 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
           {...rest}
           render={(props) => {
             return isLogin.passed ? (
-              <Component {...props} />
+              <>
+                <Navbar />
+                <StylingMainContent>
+                  <MenuAsideLeft />
+                  {/* Styling for this element (Main, Header-setion) inside StylingMainContent component */}
+                  <div className="main">
+                    <Component {...props} />
+                  </div>
+                </StylingMainContent>
+                <Footer />
+              </>
             ) : (
-              <Redirect to="/customer-login" />
+              <Redirect to="/" />
             );
           }}
         />
