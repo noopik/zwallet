@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import PropTypes from 'prop-types'
+// import PropTypes from 'prop-types'
 
 const FieldWithIcon = ({className, placeholder, icon, type, onChange, value, name}) => {
     return (
@@ -10,8 +10,7 @@ const FieldWithIcon = ({className, placeholder, icon, type, onChange, value, nam
                     <input
                     type={type} 
                     className={className} 
-                    value={value}
-                    name={name}
+                    
                     placeholder={placeholder}
                     onChange={onChange}/>
                 </div>
@@ -20,9 +19,6 @@ const FieldWithIcon = ({className, placeholder, icon, type, onChange, value, nam
 }
 
 export default FieldWithIcon
-FieldWithIcon.propTypes={
-    value: PropTypes.string.isRequired
-}
 const Styles = styled.div`
 .fa{
     margin-right: 5px;
