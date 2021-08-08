@@ -1,63 +1,52 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 import { Button, FieldWithIcon, SidebarAuth } from '../../components'
 
-const SignupPage = () => {
+const ResetPasswordEmailPage = () => {
     return (
-        <Styles>
-            <div className="wrapper">
-                <div className="row-side">
-                    <SidebarAuth className="sidebar"/>
-                </div>
-                <div className="form-side">
+        <div>
+              <Styles>
+        
+        <div className="wrapper">
+            <div className="row-side">
+            <SidebarAuth className="sidebar"/>
+            </div>
+
+
+            <div className="form-side">
                     <h5>
-                        Start Accessing Banking Needs<br/>
-                        With All Devices and All Platforms<br/>
-                        With 30.000+ Users<br/>
+                    Did You Forgot Your Password? <br />
+                    Don’t Worry, You Can Reset Your <br />
+                    Password In a Minutes. <br />
                     </h5>
                     <h6>
-                        Transfering money is eassier than ever, you can access <br/>
-                        Zwallet wherever you are. Desktop, laptop, mobile phone?<br/>
-                        we cover all of that for you!
-                            </h6>
-                    <FieldWithIcon
-                            type="text" 
-                            className="field"
-                            name=""
-                            value=""
-                            icon="fa fa-user-o"
-                            placeholder="Enter your username"
-                                />
+                    To reset your password, you must type your e-mail and we <br />
+                    will send a link to your email <br />
+                    and you will be directed to the reset password screens. <br />
+                    </h6>
+
                     <FieldWithIcon 
                         type="text"
                         className="field"
                         name=""
                         value=""
-                        icon="fa fa-envelope-o"
+                        icon="fa fa-envelope"
                         placeholder="Enter your e-mail"
-                            />
-                    <FieldWithIcon 
-                        type="password"
-                        className="field"
-                        name=""
-                        value=""
-                        icon="fa fa-lock"
-                        placeholder="Enter your password"
-                            />
-                    <Button children="Sign up" className="button-login"/>
-                    <div className="register-link">
-                            Already have an account ? Let's<Link to="/login"> Login </Link>
-                        </div>
-                 </div>
+                    />
+            
+                <Button children="Confirm" className="button-login"/>
+    
             </div>
-        </Styles>
+        </div>
+        
+    </Styles>
+        </div>
     )
 }
 
-export default SignupPage
+export default ResetPasswordEmailPage
 const Styles = styled.div`
-  .wrapper{
+.wrapper{
         display: flex;
         /* background: orange; */
         
@@ -95,6 +84,16 @@ const Styles = styled.div`
                 margin-top: 30px;
                 width: 100%;
             }
+            .forgot-pass{
+                margin-top: 20px;
+                /* text-align-last: right; */
+                font-style: normal;
+                font-weight: 600;
+                font-size: 14px;
+                line-height: 24px;
+                margin-left: 53%;
+                
+            }
             .link:hover{
                 color: coral;
                 
@@ -114,4 +113,6 @@ const Styles = styled.div`
             }
         }
     }
+
+
 `

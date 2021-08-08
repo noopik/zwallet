@@ -1,63 +1,57 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 import { Button, FieldWithIcon, SidebarAuth } from '../../components'
 
-const SignupPage = () => {
+const ForgotPasswordPage = () => {
     return (
         <Styles>
-            <div className="wrapper">
-                <div className="row-side">
-                    <SidebarAuth className="sidebar"/>
-                </div>
-                <div className="form-side">
+        
+        <div className="wrapper">
+            <div className="row-side">
+            <SidebarAuth className="sidebar"/>
+            </div>
+
+
+            <div className="form-side">
                     <h5>
-                        Start Accessing Banking Needs<br/>
-                        With All Devices and All Platforms<br/>
-                        With 30.000+ Users<br/>
+                    Did You Forgot Your Password? <br />
+                    Don’t Worry, You Can Reset Your <br />
+                    Password In a Minutes. <br />
                     </h5>
                     <h6>
-                        Transfering money is eassier than ever, you can access <br/>
-                        Zwallet wherever you are. Desktop, laptop, mobile phone?<br/>
-                        we cover all of that for you!
-                            </h6>
-                    <FieldWithIcon
-                            type="text" 
-                            className="field"
-                            name=""
-                            value=""
-                            icon="fa fa-user-o"
-                            placeholder="Enter your username"
-                                />
-                    <FieldWithIcon 
-                        type="text"
-                        className="field"
-                        name=""
-                        value=""
-                        icon="fa fa-envelope-o"
-                        placeholder="Enter your e-mail"
-                            />
+                    Now you can create a new password for your Zwallet <br />
+                    account. Type your password twice so we can confirm your <br />
+                    new passsword.
+                    </h6>
+
                     <FieldWithIcon 
                         type="password"
                         className="field"
-                        name=""
+                        name="password"
                         value=""
                         icon="fa fa-lock"
-                        placeholder="Enter your password"
-                            />
-                    <Button children="Sign up" className="button-login"/>
-                    <div className="register-link">
-                            Already have an account ? Let's<Link to="/login"> Login </Link>
-                        </div>
-                 </div>
+                        placeholder="Create new password"
+                    />
+                     <FieldWithIcon 
+                        type="password"
+                        className="field"
+                        name="password"
+                        value=""
+                        icon="fa fa-lock"
+                        placeholder="Create new password"
+                    />
+                <Button children="Reset password" className="button-login"/>
+    
             </div>
-        </Styles>
+        </div>
+        
+    </Styles>
     )
 }
 
-export default SignupPage
+export default ForgotPasswordPage
 const Styles = styled.div`
-  .wrapper{
+.wrapper{
         display: flex;
         /* background: orange; */
         
@@ -95,6 +89,16 @@ const Styles = styled.div`
                 margin-top: 30px;
                 width: 100%;
             }
+            .forgot-pass{
+                margin-top: 20px;
+                /* text-align-last: right; */
+                font-style: normal;
+                font-weight: 600;
+                font-size: 14px;
+                line-height: 24px;
+                margin-left: 53%;
+                
+            }
             .link:hover{
                 color: coral;
                 
@@ -114,4 +118,6 @@ const Styles = styled.div`
             }
         }
     }
+
+
 `

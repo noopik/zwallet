@@ -2,10 +2,11 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 import { Button, FieldWithIcon, SidebarAuth } from '../../components'
+
 const LoginPage = () => {
     return (
         <Styles>
-        <>
+        
             <div className="wrapper">
                 <div className="row-side">
                 <SidebarAuth className="sidebar"/>
@@ -27,12 +28,16 @@ const LoginPage = () => {
                         <FieldWithIcon
                             type="text" 
                             className="field"
+                            name=""
+                            value=""
                             icon="fa fa-envelope-o"
                             placeholder="Enter your e-mail"
                         />
                          <FieldWithIcon 
                             type="password"
                             className="field"
+                            name=""
+                            value=""
                             icon="fa fa-lock"
                             placeholder="Enter your password"
                         />
@@ -45,7 +50,7 @@ const LoginPage = () => {
                     </div>
                 </div>
             </div>
-            </>
+            
         </Styles>
     )
 }

@@ -22,12 +22,14 @@ const CreatePinPage = () => {
                           we cover all of that for you!
                         </h6>
                     <div className="token-field">
-                         <FieldToken/>
-                         <FieldToken className="pin"/>
-                         <FieldToken className="pin" />
-                         <FieldToken className="pin"/>
-                         <FieldToken className="pin"/>
-                         <FieldToken className="pin"/>
+                        
+                         <FieldToken className="pin" name="pin" value=""/>
+                         <FieldToken className="pin" name="pin" value=""/>
+                         <FieldToken className="pin"name="pin"value=""/>
+                         <FieldToken className="pin"name="pin"value=""/>
+                         <FieldToken className="pin"name="pin"value=""/>
+                          
+                    
                     </div>
                     <Button children="Confirm" className="button-login"/>
                 </div>

@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import { SplashBackground, SplashLine, ZwalletApp } from '../../../assets'
 
+
 const SidebarAuth = ({className}) => {
     return (
         <Styles>

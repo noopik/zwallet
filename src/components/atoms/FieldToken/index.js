@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types'
 import React from 'react'
 import styled from 'styled-components'
 
@@ -7,13 +8,16 @@ const FieldToken = ({className, type, value, name, change}) => {
             <input 
             type={type}
             value={value}
-            className="input-token"
             name={name}
+            className="input-token"
             onChange={change}/>
         </Styles>
     )
 }
 export default FieldToken
+FieldToken.propTypes={
+    value : PropTypes.string.isRequired
+}
 const Styles = styled.div`
 
 .input-token{

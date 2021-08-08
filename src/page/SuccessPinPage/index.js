@@ -57,7 +57,7 @@ const Styles = styled.div`
                 font-size: 24px;
                 line-height: 33px;
                 color: #3A3D42;
-                margin-top: 76px;
+                margin-top: 50px;
             }
             h6{
                 font-style: normal;
