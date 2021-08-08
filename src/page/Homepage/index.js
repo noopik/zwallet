@@ -59,7 +59,7 @@ const Homepage = () => {
         </div>
       </div>
       {/* testing */}
-      <h1>Hi Nisa</h1>
+    
     </StyledDashboard>
 
   );
