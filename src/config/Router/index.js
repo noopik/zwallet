@@ -22,10 +22,10 @@ const Routes = () => {
       <Switch>
         <Route exact path="/" component={Landingpage} />
         {/* START = AUTHENTICATION PAGE */}
-        <Route path="/login" component={LoginPage} />
-        <Route path="/createpin" component={CreatePinPage} />
-        <Route path="/signup" component={SignupPage} />
-        <Route path="/successpin" component={SuccessPinPage} />
+        <Route exact path="/login" component={LoginPage} />
+        <Route path="/create-pin" component={CreatePinPage} />
+        <Route path="/sign-up" component={SignupPage} />
+        <Route path="/success-pin" component={SuccessPinPage} />
         <Route path="/new-password" component={ForgotPasswordPage} />
         <Route path="/reset-password" component={ResetPasswordEmailPage} />
         {/* END = AUTHENTICATION PAGE */}

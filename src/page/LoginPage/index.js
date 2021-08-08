@@ -1,18 +1,18 @@
-import React from 'react';
-import { useEffect } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { Button, FieldWithIcon, SidebarAuth } from '../../components';
 
 const LoginPage = () => {
-  const history = useHistory();
+  // const history = useHistory();
   useEffect(() => {
     document.title = 'Zwallet | Login';
   });
 
-  const actionButton = () => {
-    history.push('/createpin');
-  };
+  // const actionButton = () => {
+  //   history.push('/createpin');
+  // };
+
   return (
     <Styles>
       <div className="wrapper">
@@ -57,7 +57,7 @@ const LoginPage = () => {
               Forgot password?
             </Link>
           </div>
-          <Button primary className="button-login" onClick={actionButton}>
+          <Button primary className="button-login">
             LOGIN
           </Button>
           <div className="register-link">
