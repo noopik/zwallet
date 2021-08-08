@@ -48,5 +48,12 @@ export const StylingMainContent = styled.main`
   .text-red {
     color: #ff5b37;
   }
+  .anchor {
+    text-decoration: none;
+    &:hover {
+      opacity: 0.5;
+      cursor: pointer;
+    }
+  }
   /* END = TYPHOGRAPHY STYLING */
 `;

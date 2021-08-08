@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { ICDownGreen, ICUpRed } from '../../assets';
 // import PropTypes from 'prop-types';
 import { CardProfileUser } from '../../components';
@@ -43,7 +44,9 @@ const Homepage = () => {
           <div className="history-wrapper card">
             <div className="heading">
               <h2 className="text-heading">Transaction History</h2>
-              <p className="text-link">See all</p>
+              <Link className="anchor" to="/username/history">
+                <p className="text-link">See all</p>
+              </Link>
             </div>
             <div className="body">
               <CardProfileUser />

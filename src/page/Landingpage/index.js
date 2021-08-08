@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 import {
   AVAJessicaMera,
   AVARobert,
@@ -18,7 +19,10 @@ import {
 } from '../../assets';
 import { LandingPageStyles } from './Styled';
 const Landingpage = () => {
-  useEffect(() => {}, []);
+  const history = useHistory();
+  const actionLogin = () => {
+    history.push('/username/dashboard');
+  };
   return (
     <LandingPageStyles>
       <img className="bg-layer" src={ICBackgroundLandingPage} alt="ng" />
@@ -27,7 +31,9 @@ const Landingpage = () => {
           <div className="custom-container">
             <h1 className="logo">Zwallet</h1>
             <div className="btn-wrapper">
-              <button className="button default">Login</button>
+              <button className="button default" onClick={actionLogin}>
+                Login
+              </button>
               <button className="button filled">Sign Up</button>
             </div>
           </div>
