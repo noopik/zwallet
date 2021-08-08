@@ -13,6 +13,7 @@ import {
   SuccessPinPage,
   ForgotPasswordPage,
   ResetPasswordEmailPage,
+  ConfirmationTransferPage,
   //  END = nisa
 } from '../../page';
 import PrivateRoute from './PrivateRoute';
@@ -21,7 +22,6 @@ const Routes = () => {
   return (
     <Router>
       <Switch>
-
         <Route exact path="/" component={Landingpage} />
         {/* START = AUTHENTICATION PAGE */}
         <Route exact path="/login" component={LoginPage} />
@@ -41,12 +41,16 @@ const Routes = () => {
           component={SearchReceiverPage}
         />
         <PrivateRoute
+          exact
           path="/username/search-receiver/to-username"
           component={UserReceiverPage}
         />
+        <PrivateRoute
+          path="/username/search-receiver/to-username/confirmation"
+          component={ConfirmationTransferPage}
+        />
 
-        {/* START = USER PAGE */}
-
+        {/* END = USER PAGE */}
       </Switch>
     </Router>
   );
