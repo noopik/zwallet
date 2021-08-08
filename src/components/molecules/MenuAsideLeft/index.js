@@ -1,16 +1,25 @@
 import React from 'react';
+import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
 import { Cardwrapper } from '../../atoms';
 // import PropTypes from 'prop-types'
 
-const MenuAsideLeft = () => {
+const MenuAsideLeft = ({ active }) => {
+  const history = useHistory();
+
+  const actionMenu = (menu) => {
+    history.push(`/username/${menu}`);
+  };
   return (
     <StyleMenuAsideLeft>
       <div>
         <Cardwrapper>
           <div className="contain">
             <div className="menu-wrapper">
-              <div className="menu-item active">
+              <div
+                className="menu-item active"
+                onClick={() => actionMenu('dashboard')}
+              >
                 <div className="blox"></div>
                 <div className="menu">
                   <svg
@@ -53,7 +62,10 @@ const MenuAsideLeft = () => {
                   <h2 className="title-menu">Dashboard</h2>
                 </div>
               </div>
-              <div className="menu-item ">
+              <div
+                className="menu-item "
+                onClick={() => actionMenu('search-receiver')}
+              >
                 <div className="blox"></div>
                 <div className="menu">
                   <svg
@@ -81,11 +93,10 @@ const MenuAsideLeft = () => {
                       stroke-linejoin="round"
                     />
                   </svg>
-
                   <h2 className="title-menu">Transfer</h2>
                 </div>
               </div>
-              <div className="menu-item ">
+              <div className="menu-item " onClick={() => actionMenu('top-up')}>
                 <div className="blox"></div>
                 <div className="menu">
                   <svg
@@ -117,7 +128,7 @@ const MenuAsideLeft = () => {
                   <h2 className="title-menu">Top up</h2>
                 </div>
               </div>
-              <div className="menu-item ">
+              <div className="menu-item " onClick={() => actionMenu('profile')}>
                 <div className="blox"></div>
                 <div className="menu">
                   <svg
@@ -206,9 +217,9 @@ const StyleMenuAsideLeft = styled.div`
   flex-direction: column;
   justify-content: space-between;
   top: 20px;
-  height: 80vh;
+  height: 70vh;
   .contain {
-    height: 80vh;
+    height: 70vh;
     /* background-color: pink; */
   }
   .menu-wrapper {

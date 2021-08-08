@@ -2,10 +2,25 @@ import React from 'react';
 import styled from 'styled-components';
 import { AVAJessicaMera } from '../../../assets';
 import PropTypes from 'prop-types';
+import { useHistory } from 'react-router-dom';
 
-const CardProfileUser = ({ avatar, username, typeTransaction, amount }) => {
+const CardProfileUser = ({
+  avatar,
+  username,
+  typeTransaction,
+  amount,
+  link,
+}) => {
+  const history = useHistory();
+  const actionRedirect = (link) => {
+    history.push(link);
+  };
   return (
-    <StyledHistoryItem className="history-item">
+    <StyledHistoryItem
+      className="history-item"
+      onClick={() => actionRedirect(link)}
+      link={link}
+    >
       <div className="left">
         <div className="avatar-wrapper">
           <img src={avatar} alt="User 1" />
@@ -15,9 +30,11 @@ const CardProfileUser = ({ avatar, username, typeTransaction, amount }) => {
           <p className="text">{typeTransaction}</p>
         </div>
       </div>
-      <div className="amount-wrapper">
-        <h4 className="text-heading text-green">{amount}</h4>
-      </div>
+      {amount && (
+        <div className="amount-wrapper">
+          <h4 className="text-heading text-green">{amount}</h4>
+        </div>
+      )}
     </StyledHistoryItem>
   );
 };
@@ -27,18 +44,22 @@ CardProfileUser.propTypes = {
   username: PropTypes.string.isRequired,
   typeTransaction: PropTypes.string.isRequired,
   amount: PropTypes.string.isRequired,
+  link: PropTypes.string,
 };
 
 CardProfileUser.defaultProps = {
   avatar: AVAJessicaMera,
   username: 'Samuel Eto',
   typeTransaction: 'Transfer',
-  amount: '+Rp.50.000',
 };
 
 export default CardProfileUser;
 
 const StyledHistoryItem = styled.div`
+  &:hover {
+    opacity: ${({ link }) => link && 0.5};
+    cursor: ${({ link }) => link && 'pointer'};
+  }
   display: flex;
   .left {
     display: flex;

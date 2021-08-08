@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { colors } from '../../utils';
 
 export const StylingMainContent = styled.main`
   width: 80%;
@@ -25,6 +24,7 @@ export const StylingMainContent = styled.main`
     font-size: 18px;
     line-height: 25px;
     color: #3a3d42;
+    margin: 0;
   }
   .text-subheading {
     margin: 0;
