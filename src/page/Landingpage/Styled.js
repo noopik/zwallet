@@ -10,10 +10,6 @@ export const LandingPageStyles = styled.body`
     position: absolute;
     right: 0;
     width: 40%;
-    ${customMedia.lessThan('1208px')` 
-    width: 60%;
-    /* for screen sizes less than 1280px */
-  `}
   }
   /* END = BG LAYER  */
 
@@ -34,6 +30,23 @@ export const LandingPageStyles = styled.body`
     &.center {
       text-align: center;
     }
+
+    ${customMedia.lessThan("laptop")` 
+     font-size: 55px;
+     line-height: 60px;
+  `}
+    ${customMedia.lessThan("tablet")` 
+      font-size: 40px;
+      line-height: 45px;
+  `}
+         ${customMedia.lessThan("mobile")` 
+      font-size: 25px;
+      line-height: 30px;
+  `}
+         ${customMedia.lessThan("minimobile")` 
+      font-size: 20px;
+      line-height: 25px;
+  `}
   }
   .paragraph {
     font-style: normal;
@@ -62,7 +75,7 @@ export const LandingPageStyles = styled.body`
     position: fixed;
     width: 100vw;
     top: 0;
-    background-color: ${({ active }) => active && 'red'};
+    background-color: ${({ active }) => active && "red"};
     background-color: white;
     box-shadow: 0px 6px 40px rgba(173, 173, 173, 0.25);
     z-index: 9;
@@ -70,12 +83,24 @@ export const LandingPageStyles = styled.body`
       padding: 25px;
       display: flex;
       justify-content: space-between;
+      ${customMedia.lessThan("mobile")` 
+     padding-left: 5px;
+     padding-right: 5px;
+  `}
+
       .logo {
         font-style: normal;
         font-weight: bold;
         font-size: 29px;
         line-height: 40px;
         color: ${colors.primary};
+        ${customMedia.lessThan("mobile")` 
+    font-size: 25px;
+     padding-right: 10px;
+  `}
+        ${customMedia.lessThan("minimobile")` 
+    font-size: 20px;
+  `}
       }
       .btn-wrapper {
         display: flex;
@@ -86,6 +111,13 @@ export const LandingPageStyles = styled.body`
           height: 48px;
           border: 15px;
           border-radius: 15px;
+          ${customMedia.lessThan("mobile")` 
+      width: 70px;
+  `}
+          ${customMedia.lessThan("minimobile")` 
+      width: 50px;
+      height: 30px;
+  `}
           &.default {
             background-color: transparent;
             border: 1px solid ${colors.primary};
@@ -113,6 +145,18 @@ export const LandingPageStyles = styled.body`
       /* justify-content: center; */
       padding-top: 5rem;
       gap: 3rem;
+      ${customMedia.lessThan("laptop")` 
+    padding-top: 5rem;
+  `}
+      ${customMedia.lessThan("tablet")` 
+    padding-top: 2.5rem;
+  `}
+         ${customMedia.lessThan("mobile")` 
+  padding-top: 2rem;
+  `}
+         ${customMedia.lessThan("minimobile")` 
+  padding-top: 1rem;
+  `}
       .title-section {
         margin-bottom: 160px;
       }
@@ -123,20 +167,34 @@ export const LandingPageStyles = styled.body`
         color: white;
         background-color: ${colors.primary};
         border: 0;
+
         border-radius: 12px;
       }
     }
     aside {
       /* background-color: pink; */
       width: 60%;
-      .image-wrapper {
-        /* background-color: gray; */
-        display: flex;
-        justify-content: center;
-        img {
-          z-index: 0;
-          margin-left: 20rem;
-        }
+    }
+    .image-wrapper {
+      /* background-color: gray; */
+      display: flex;
+      justify-content: center;
+
+      img {
+        z-index: 0;
+        margin-left: 20rem;
+
+        ${customMedia.lessThan("laptop")` 
+     width: 80%;
+  `}
+        ${customMedia.lessThan("tablet")` 
+      margin-left: 10rem;
+  `}
+         ${customMedia.lessThan("mobile")` 
+     margin-left: 5rem;
+  `}
+         ${customMedia.lessThan("minimobile")` 
+  `}
       }
     }
   }
@@ -151,11 +209,15 @@ export const LandingPageStyles = styled.body`
         display: flex;
         gap: 2rem;
         justify-content: center;
+        ${customMedia.lessThan("tablet")` 
+     flex-direction:column;
+  `}
       }
       .service-wrapper {
         .item-service {
           padding: 40px 20px;
           max-width: 344px;
+
           h2 {
             font-style: normal;
             font-weight: bold;
@@ -188,14 +250,21 @@ export const LandingPageStyles = styled.body`
   section {
     &.partners-section {
       padding: 120px 0;
+
       .custom-container {
         display: flex;
         .left {
           width: 30%;
+          ${customMedia.lessThan("tablet")` 
+     width: 100%;
+  `}
           p {
             text-align: left;
           }
         }
+        ${customMedia.lessThan("tablet")` 
+     flex-direction:column;
+  `}
         .right {
           width: 70%;
           display: flex;
@@ -203,17 +272,24 @@ export const LandingPageStyles = styled.body`
           justify-content: center;
           align-items: center;
           gap: 1rem;
+          ${customMedia.lessThan("tablet")` 
+     width: 100%;
+  `}
           .row {
             display: flex;
             margin-left: 0;
             gap: 1rem;
             width: max-content;
+            ${customMedia.lessThan("tablet")` 
+  flex-direction: column;
+  `}
             .image-wrapper {
               width: 150px;
               height: 150px;
               display: flex;
               justify-content: center;
               align-self: center;
+
               img {
                 width: 100%;
                 height: 100%;
@@ -227,6 +303,7 @@ export const LandingPageStyles = styled.body`
       }
     }
   }
+
   /* END = PARTNERS  SECTION */
 
   /* START = PARTNERS  SECTION */
@@ -235,8 +312,21 @@ export const LandingPageStyles = styled.body`
       background: rgba(71, 58, 209, 0.06);
       .custom-container {
         display: flex;
+        ${customMedia.lessThan("tablet")` 
+     flex-direction:column;
+  `}
         .left {
           margin-left: 30px;
+          ${customMedia.lessThan("tablet")` 
+   margin-left: 0px;
+  `}
+          .image-wrapper {
+            img {
+              ${customMedia.lessThan("tablet")` 
+  width: 100%;
+  `}
+            }
+          }
         }
         .right {
           padding-top: 70px;
@@ -274,11 +364,17 @@ export const LandingPageStyles = styled.body`
   section {
     &.users-section {
       padding: 120px;
+      ${customMedia.lessThan("tablet")` 
+      padding: 10px;
+  `}
       .card-users-wrapper {
         margin-top: 40px;
         display: flex;
         gap: 1rem;
         justify-content: center;
+        ${customMedia.lessThan("tablet")` 
+     flex-direction:column;
+  `}
         .user {
           padding: 40px 30px;
           max-width: 367px;
