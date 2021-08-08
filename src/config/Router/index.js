@@ -4,6 +4,7 @@ import {
   Homepage,
   Landingpage,
   SearchReceiverPage,
+  UserReceiverPage,
 } from '../../page';
 import PrivateRoute from './PrivateRoute';
 const Routes = () => {
@@ -11,12 +12,16 @@ const Routes = () => {
     <Router>
       <Switch>
         <Route exact path="/" component={Landingpage} />
-        <PrivateRoute exact path="/username/dashboard" component={Homepage} />
-        <PrivateRoute exact path="/username/history" component={HistoryPage} />
+        <PrivateRoute path="/username/dashboard" component={Homepage} />
+        <PrivateRoute path="/username/history" component={HistoryPage} />
         <PrivateRoute
           exact
           path="/username/search-receiver"
           component={SearchReceiverPage}
+        />
+        <PrivateRoute
+          path="/username/search-receiver/to-username"
+          component={UserReceiverPage}
         />
       </Switch>
     </Router>

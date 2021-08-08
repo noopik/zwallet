@@ -17,7 +17,7 @@ const MenuAsideLeft = ({ active }) => {
           <div className="contain">
             <div className="menu-wrapper">
               <div
-                className="menu-item active"
+                className="menu-item "
                 onClick={() => actionMenu('dashboard')}
               >
                 <div className="blox"></div>
