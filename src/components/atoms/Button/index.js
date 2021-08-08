@@ -104,6 +104,6 @@ const StyledButton = styled.button`
     margin-right: 1rem;
   }
   &:hover {
-    opacity: 0.8;
+    opacity: ${({ disabled }) => (disabled ? '' : 0.8)};
   }
 `;

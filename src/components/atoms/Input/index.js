@@ -12,6 +12,8 @@ const Input = ({
   icon,
   className,
   active,
+  name,
+  ...props
 }) => {
   const conditionalIcon = {
     pen: (
@@ -32,6 +34,58 @@ const Input = ({
         />
       </svg>
     ),
+    mail: (
+      <svg
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M22 5H2V19H22V5Z"
+          stroke="#A9A9A9"
+          stroke-opacity="0.6"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+        <path
+          d="M3 6L12 13L21 6"
+          stroke="#A9A9A9"
+          stroke-opacity="0.6"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      </svg>
+    ),
+    lock: (
+      <svg
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M19 11H5V21H19V11Z"
+          stroke="#A9A9A9"
+          stroke-opacity="0.6"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+        <path
+          d="M17 9V8C17 5.23858 14.7614 3 12 3C9.23858 3 7 5.23858 7 8V9"
+          stroke="#A9A9A9"
+          stroke-opacity="0.6"
+          stroke-width="2"
+          stroke-linecap="square"
+          stroke-linejoin="round"
+        />
+      </svg>
+    ),
   };
   return (
     <StyledInput className={className} active={active}>
@@ -39,6 +93,7 @@ const Input = ({
       <input
         id={id}
         type={type}
+        name={name}
         value={value}
         onChange={onChange}
         placeholder={placeholder}

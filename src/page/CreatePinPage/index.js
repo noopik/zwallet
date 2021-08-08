@@ -1,19 +1,40 @@
-import React from 'react';
-import { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useForm } from 'react-hook-form';
 import styled from 'styled-components';
 import { Button, FieldToken, SidebarAuth } from '../../components';
+
 const CreatePinPage = () => {
+  const [handleDisabledButton, setHandleDisabledButton] = useState(true);
+
+  const {
+    // register,
+    // handleSubmit,
+    watch,
+    getValues,
+    // formState: { errors },
+  } = useForm();
+
   useEffect(() => {
     document.title = 'Zwallet | Create Pin';
   }, []);
+
+  useEffect(() => {
+    const value = getValues();
+    if (value.pin) {
+      setHandleDisabledButton(false);
+    } else {
+      setHandleDisabledButton(true);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [watch('pin')]);
+
   return (
     <Styles>
-      <div className="wrapper">
-        <div className="row-side">
-          <SidebarAuth className="sidebar" />
-        </div>
-
-        <div className="form-side">
+      <div className="row-side">
+        <SidebarAuth className="sidebar" />
+      </div>
+      <div className="form-side">
+        <div className="content">
           <h5>
             Secure Your Account, Your Wallet,
             <br />
@@ -34,7 +55,13 @@ const CreatePinPage = () => {
             <FieldToken className="pin" name="pin" value="" />
             <FieldToken className="pin" name="pin" value="" />
           </div>
-          <Button children="Confirm" className="button-login" />
+          <Button
+            primary
+            className="button-login"
+            disabled={handleDisabledButton}
+          >
+            Confirm
+          </Button>
         </div>
       </div>
     </Styles>
@@ -43,31 +70,32 @@ const CreatePinPage = () => {
 
 export default CreatePinPage;
 const Styles = styled.div`
-  .wrapper {
+  display: flex;
+  /* background: orange; */
+
+  .row-side {
+    height: 100%;
+    width: 69%;
+    /* background-color: black; */
+  }
+  .sidebar {
+    width: 100%;
+  }
+
+  .form-side {
+    width: 50%;
     display: flex;
-    /* background: orange; */
-
-    .row-side {
-      height: 100%;
-      width: 69%;
-      /* background-color: black; */
-    }
-    .sidebar {
-      width: 100%;
-    }
-
-    .form-side {
+    justify-content: center;
+    align-items: center;
+    .content {
       height: 69%;
-      width: 50%;
-      /* background-color: red; */
       h5 {
-        font-family: Nunito Sans;
         font-style: normal;
         font-weight: bold;
         font-size: 24px;
         line-height: 33px;
         color: #3a3d42;
-        margin-top: 120px;
+        margin-bottom: 0;
       }
       h6 {
         font-style: normal;
