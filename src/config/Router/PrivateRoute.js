@@ -8,6 +8,7 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
   console.log(setIsLogin);
   // const token = localStorage.getItem('token');
   // const dispatch = useDispatch();
+  // action user dari db ke redux
 
   return (
     <>

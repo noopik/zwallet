@@ -1,4 +1,11 @@
-<<<<<<< HEAD
+
+import HistoryPage from './HistoryPage';
+import Homepage from './Homepage';
+import Landingpage from './Landingpage';
+import SearchReceiverPage from './SearchReceiverPage';
+import UserReceiverPage from './UserReceiverPage';
+// START = NISA
+
 import CreatePinPage from './CreatePinPage';
 import LoginPage from './LoginPage';
 import SignupPage from './SignupPage';
@@ -8,17 +15,13 @@ import ResetPasswordEmailPage from './ResetPasswordEmailPage';
 
 
 
+
 // import UserLogin from './UserLogin';
 
 
 
-export {LoginPage, SignupPage, CreatePinPage, SuccessPinPage, ForgotPasswordPage, ResetPasswordEmailPage};
-=======
-import HistoryPage from './HistoryPage';
-import Homepage from './Homepage';
-import Landingpage from './Landingpage';
-import SearchReceiverPage from './SearchReceiverPage';
-import UserReceiverPage from './UserReceiverPage';
+// END = NISA
+
 
 export {
   Landingpage,
@@ -26,5 +29,11 @@ export {
   Homepage,
   SearchReceiverPage,
   UserReceiverPage,
+  LoginPage,
+  SignupPage,
+  CreatePinPage,
+  SuccessPinPage,
+  ForgotPasswordPage,
+  ResetPasswordEmailPage,
 };
->>>>>>> 17804fa3fdb61216cba354b4203822b3a0ec45a8
+

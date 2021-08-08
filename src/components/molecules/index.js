@@ -1,11 +1,14 @@
-<<<<<<< HEAD
-import SidebarAuth from "./SidebarAuth";
-
-export {SidebarAuth}
-=======
 import Navbar from './Navbar';
 import MenuAsideLeft from './MenuAsideLeft';
 import Footer from './Footer';
+// START = NISA
+import SidebarAuth from "./SidebarAuth";
 
-export { Navbar, MenuAsideLeft, Footer };
->>>>>>> 17804fa3fdb61216cba354b4203822b3a0ec45a8
+// END = NISA
+
+
+export { Navbar, MenuAsideLeft, Footer, SidebarAuth };
+
+
+
+

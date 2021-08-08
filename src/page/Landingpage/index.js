@@ -21,7 +21,7 @@ import { LandingPageStyles } from './Styled';
 const Landingpage = () => {
   const history = useHistory();
   const actionLogin = () => {
-    history.push('/username/dashboard');
+    history.push('/login');
   };
   return (
     <LandingPageStyles>
