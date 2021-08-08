@@ -1,5 +1,3 @@
-import ZwalletApp from './zindex-app.png';
-<<<<<<< HEAD
 import IMCanon from './canon.png';
 import IMDell from './dell.png';
 import IMHnM from './hnm.png';
@@ -14,10 +12,13 @@ import AVASherina from './SherinaChaw.png';
 import IMAirBnB from './logo 1.png';
 import IMApp1 from './png-phone1.png';
 import IMapp2 from './png-phone2.png';
-import IMApp3 from './zindex-app.png';
+// START  = NISA
+import SplashBackground from './Splash-bg-loginpage.png';
+import ZwalletApp from './zindex-app.png';
+
+// END  = NISA
 
 export {
-  ZwalletApp,
   IMCanon,
   IMDell,
   IMHnM,
@@ -32,11 +33,6 @@ export {
   IMAirBnB,
   IMApp1,
   IMapp2,
-  IMApp3,
+  ZwalletApp,
+  SplashBackground,
 };
-=======
-import SplashBackground from './Splash-bg-loginpage.png'
-
-
-export { ZwalletApp, SplashBackground };
->>>>>>> bf755654d988f6cc142ab2acd454a126f155b310

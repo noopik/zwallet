@@ -1,7 +1,7 @@
-<<<<<<< HEAD
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import { colors } from '../../../utils';
 
 // ICON CONDITIONAL
 const IconArrowUp = (
@@ -57,37 +57,49 @@ const IconPlus = (
   </svg>
 );
 
-const Button = ({ buttonName, icon, onClick }) => {
+const Button = ({ children, icon, onClick, className, primary, disabled }) => {
   return (
-    <StyledButton className="button-action" onClick={onClick}>
+    <StyledButton
+      disabled={disabled}
+      className={className}
+      onClick={onClick}
+      primary={primary}
+    >
       {icon === 'top-up' && IconPlus}
       {icon === 'transfer' && IconArrowUp}
-      {buttonName}
+      {children}
     </StyledButton>
   );
 };
 
 Button.propTypes = {
-  buttonName: PropTypes.string.isRequired,
+  children: PropTypes.string.isRequired,
   icon: PropTypes.string,
   onClick: PropTypes.func.isRequired,
+  className: PropTypes.string,
+  disabled: PropTypes.checkPropTypes,
 };
 
 Button.defaultProps = {
-  buttonName: 'Type of button',
+  children: 'Type of button',
   // icon: IconArrowUp,
 };
 
 export default Button;
 
 const StyledButton = styled.button`
-  background: rgba(255, 255, 255, 0.2);
+  /* background: rgba(255, 255, 255, 0.2); */
+  width: 100%;
   border: 1px solid #ffffff;
   box-sizing: border-box;
   border-radius: 10px;
   padding: 14px 27px;
   color: white;
   font: inherit;
+  /* background-color: yellow; */
+  background-color: ${({ primary }) => (primary ? colors.primary : '#ffffff')};
+  background-color: ${({ disabled }) => disabled && '#DADADA'};
+  color: ${({ disabled }) => disabled && '#88888F'};
   svg {
     margin-right: 1rem;
   }
@@ -95,39 +107,3 @@ const StyledButton = styled.button`
     opacity: 0.8;
   }
 `;
-=======
-import React from 'react'
-import styled from 'styled-components'
-// import PropTypes from 'prop-types'
-
-const Button = ({children, className}) => {
-    return (
-        <Styles>
-            <button className={className}>{children}</button>
-        </Styles>
-    )
-}
-
-export default Button
-const Styles = styled.div`
-button{
-  
-    width: 80%;
-    background: #DADADA;
-    box-shadow: 0px 6px 75px rgba(100, 87, 87, 0.05);
-    border-radius: 12px;
-    height: 57px;
-    border: none;
-    color: #88888F;
-    font-style: normal;
-    font-weight: bold;
-    font-size: 18px;
-    line-height: 25px;
-}
-button:hover{
-    background:#6379F4;
-    color: white;
-}
-
-` 
->>>>>>> bf755654d988f6cc142ab2acd454a126f155b310
