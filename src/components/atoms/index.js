@@ -4,6 +4,9 @@ import Cardwrapper from './CardWrapper';
 import Button from './Button';
 import FieldToken from './FieldToken';
 import FieldWithIcon from './FieldWithIcon';
+
+import SmallCard from './SmallCard';
+
 import Input from './Input';
 import HeadingContent from './HeadingContent';
 
@@ -16,4 +19,5 @@ export {
   FieldWithIcon,
   Button,
   FieldToken,
+  SmallCard,
 };

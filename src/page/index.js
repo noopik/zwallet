@@ -14,6 +14,7 @@ import ConfirmationTransferPage from './ConfirmationTransferPage';
 import ProfileUserPage from './ProfileUserPage';
 import TopupPage from './TopupPage';
 import PersonalInfo from './PersonalInfo';
+import StatusTransferPage from './StatusTransferPage';
 
 // import UserLogin from './UserLogin';
 
@@ -35,4 +36,5 @@ export {
   SuccessPinPage,
   ForgotPasswordPage,
   ResetPasswordEmailPage,
+  StatusTransferPage,
 };

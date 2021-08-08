@@ -7,13 +7,18 @@ import ICUser from './user.svg';
 import ICLogout from './log-out.svg';
 import ICDownGreen from './arrow-down-green.png';
 import ICUpRed from './arrow-up-red.png';
+
 import ICPen from './search.svg';
 import ICArrowLeft from './arrow-left.svg';
 // START = NOVI
 
+
 // START = NISA
 import SplashLine from './splash-line.png';
 import Success from './success.png';
+import ShareIcon from './share.png';
+import DownloadIcon from './download.png'
+import Failed from './Fail.png'
 // END = NISA
 export {
   ICArrowLeft,
@@ -28,4 +33,7 @@ export {
   ICUpRed,
   SplashLine,
   Success,
+  ShareIcon,
+  DownloadIcon,
+  Failed
 };
