@@ -12,6 +12,7 @@ import SignupPage from './SignupPage';
 import SuccessPinPage from './SuccessPinPage';
 import ForgotPasswordPage from './ForgotPasswordPage';
 import ResetPasswordEmailPage from './ResetPasswordEmailPage';
+import StatusTransferPage from './StatusTransferPage';
 
 
 
@@ -35,5 +36,6 @@ export {
   SuccessPinPage,
   ForgotPasswordPage,
   ResetPasswordEmailPage,
+  StatusTransferPage
 };
 

@@ -2,12 +2,13 @@ import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
-const Cardwrapper = ({ children }) => {
-  return <StyledCardWrapper>{children}</StyledCardWrapper>;
+const Cardwrapper = ({ children,className }) => {
+  return <StyledCardWrapper className={className}>{children}</StyledCardWrapper>;
 };
 
 Cardwrapper.propTypes = {
   children: PropTypes.element.isRequired,
+  className: PropTypes.string
 };
 
 export default Cardwrapper;
