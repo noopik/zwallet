@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 
 import PinInput from 'react-pin-input';
 import styled from 'styled-components';
-import { Button, FieldToken, SidebarAuth } from '../../components';
+import { Button, SidebarAuth } from '../../components';
 
 const CreatePinPage = () => {
   const [handleDisabledButton, setHandleDisabledButton] = useState(true);
