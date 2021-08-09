@@ -15,6 +15,8 @@ import ProfileUserPage from './ProfileUserPage';
 import TopupPage from './TopupPage';
 import PersonalInfo from './PersonalInfo';
 import StatusTransferPage from './StatusTransferPage';
+import ChangePasswordPage from './ChangePasswordPage';
+import ManagePhoneNumber from './ManagePhoneNumber';
 
 // import UserLogin from './UserLogin';
 
@@ -37,4 +39,6 @@ export {
   ForgotPasswordPage,
   ResetPasswordEmailPage,
   StatusTransferPage,
+  ChangePasswordPage,
+  ManagePhoneNumber
 };

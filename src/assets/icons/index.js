@@ -18,8 +18,10 @@ import ICEyeOpen from './eye-open.svg';
 import SplashLine from './splash-line.png';
 import Success from './success.png';
 import ShareIcon from './share.png';
+
 import DownloadIcon from './download.png';
 import Failed from './Fail.png';
+import TrashIcon from './trash.png';
 // END = NISA
 export {
   ICArrowLeft,
@@ -39,4 +41,5 @@ export {
   Failed,
   ICEyeClose,
   ICEyeOpen,
+  TrashIcon,
 };
