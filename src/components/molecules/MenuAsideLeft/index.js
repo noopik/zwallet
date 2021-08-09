@@ -2,7 +2,7 @@ import React from 'react';
 import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
 import { Cardwrapper } from '../../atoms';
-// import PropTypes from 'prop-types'
+import PropTypes from 'prop-types';
 
 const MenuAsideLeft = ({ active }) => {
   const history = useHistory();
@@ -10,6 +10,17 @@ const MenuAsideLeft = ({ active }) => {
   const actionMenu = (menu) => {
     history.push(`/username/${menu}`);
   };
+
+  // START = LIST OF MENU
+  const listMenu = {
+    dashboard: true,
+    transfer: true,
+    topup: true,
+    profile: true,
+    logout: true,
+  };
+  // END = LIST OF MENU
+
   return (
     <StyleMenuAsideLeft>
       <div>
@@ -17,7 +28,9 @@ const MenuAsideLeft = ({ active }) => {
           <div className="contain">
             <div className="menu-wrapper">
               <div
-                className="menu-item "
+                className={`menu-item ${
+                  listMenu[active] === listMenu.dashboard && 'active'
+                }`}
                 onClick={() => actionMenu('dashboard')}
               >
                 <div className="blox"></div>
@@ -63,7 +76,9 @@ const MenuAsideLeft = ({ active }) => {
                 </div>
               </div>
               <div
-                className="menu-item "
+                className={`menu-item ${
+                  listMenu[active] === listMenu.transfer && 'active'
+                }`}
                 onClick={() => actionMenu('search-receiver')}
               >
                 <div className="blox"></div>
@@ -96,7 +111,12 @@ const MenuAsideLeft = ({ active }) => {
                   <h2 className="title-menu">Transfer</h2>
                 </div>
               </div>
-              <div className="menu-item " onClick={() => actionMenu('top-up')}>
+              <div
+                className={`menu-item ${
+                  listMenu[active] === listMenu.topup && 'active'
+                }`}
+                onClick={() => actionMenu('top-up')}
+              >
                 <div className="blox"></div>
                 <div className="menu">
                   <svg
@@ -128,7 +148,12 @@ const MenuAsideLeft = ({ active }) => {
                   <h2 className="title-menu">Top up</h2>
                 </div>
               </div>
-              <div className="menu-item " onClick={() => actionMenu('profile')}>
+              <div
+                className={`menu-item ${
+                  listMenu[active] === listMenu.profile && 'active'
+                }`}
+                onClick={() => actionMenu('profile')}
+              >
                 <div className="blox"></div>
                 <div className="menu">
                   <svg
@@ -161,7 +186,11 @@ const MenuAsideLeft = ({ active }) => {
                 </div>
               </div>
             </div>
-            <div className="menu-item">
+            <div
+              className={`menu-item ${
+                listMenu[active] === listMenu.logout && 'active'
+              }`}
+            >
               <div className="blox"></div>
 
               <svg
@@ -207,7 +236,9 @@ const MenuAsideLeft = ({ active }) => {
   );
 };
 
-MenuAsideLeft.propTypes = {};
+MenuAsideLeft.propTypes = {
+  active: PropTypes.string,
+};
 
 export default MenuAsideLeft;
 

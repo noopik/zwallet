@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { AVARobert, ICBell } from '../../../assets';
 import { LogoBrand } from '../../atoms';
 import NotificationPopup from '../NotificationPopup';
+import PropTypes from 'prop-types';
 
 const Navbar = ({ className }) => {
   const [setNotification, setShowNotification] = useState(false);
@@ -37,6 +38,10 @@ const Navbar = ({ className }) => {
       </NavbarStyling>
     </>
   );
+};
+
+Navbar.propTypes = {
+  className: PropTypes.string,
 };
 
 export default Navbar;
