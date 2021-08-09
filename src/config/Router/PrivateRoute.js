@@ -11,7 +11,6 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
   // action user dari db ke redux
   const location = useLocation();
 
-  console.log(location);
   // START = LOGIC FOR ASIDE MENU ACTIVE
   const pathNow = location.pathname;
   const listMenu = {
@@ -20,7 +19,6 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
     '/username/topup': 'topup',
     '/username/profile': 'profile',
   };
-  console.log(listMenu[pathNow]);
   // END = LOGIC FOR ASIDE MENU ACTIVE
 
   return (

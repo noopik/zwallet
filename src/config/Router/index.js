@@ -64,6 +64,10 @@ const Routes = () => {
           component={ConfirmationTransferPage}
         />
         <PrivateRoute
+          path="/username/status-transfer"
+          component={StatusTransferPage}
+        />
+        <PrivateRoute
           exact
           path="/username/profile"
           component={ProfileUserPage}
@@ -87,10 +91,7 @@ const Routes = () => {
           component={AddPhoneNumberPage}
         />
         <PrivateRoute path="/username/topup" component={TopupPage} />
-        <PrivateRoute
-          path="/username/status-transfer"
-          component={StatusTransferPage}
-        />
+
         {/* START = USER PAGE */}
       </Switch>
     </Router>

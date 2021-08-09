@@ -1,9 +1,10 @@
 import styled from 'styled-components';
+import { customMedia } from '../../components/Layouting/BreakPoints';
 export const StyleStatus = styled.div`
   padding: 30px;
   .status-header {
     height: 100px;
-    width: 500px;
+    /* width: 500px; */
     margin-left: auto;
     margin-right: auto;
   }
@@ -110,7 +111,7 @@ export const StyleStatus = styled.div`
     padding-top: 10px;
     margin-left: 20px;
     height: 69px;
-    width: 200px;
+    /* width: 200px; */
   }
   .text-name {
     font-style: normal;
@@ -122,54 +123,51 @@ export const StyleStatus = styled.div`
   .button-wrap {
     margin-top: 90px;
     display: flex;
+    gap: 20px;
     justify-content: flex-end;
-  }
-
-  .share-button {
-    background: rgba(99, 121, 244, 0.15);
-    box-shadow: 0px 6px 75px rgba(100, 87, 87, 0.05);
-    border-radius: 12px;
-    width: 57px;
-    height: 57px;
-    border: none;
-    outline: none;
-  }
-  .download-button {
-    margin-left: 30px;
-    background: rgba(99, 121, 244, 0.15);
-    box-shadow: 0px 6px 75px rgba(100, 87, 87, 0.05);
-    border-radius: 12px;
-    width: 243px;
-    height: 57px;
-    padding-left: 30px;
-    cursor: pointer;
-  }
-  .download-button button {
-    border: none;
-    outline: none;
-    background: none;
-    font-style: normal;
-    font-weight: bold;
-    font-size: 18px;
-    line-height: 25px;
-    color: #6379f4;
-    padding-top: 16px;
-    padding-left: 15px;
-  }
-  .download-icon {
-    width: 22px;
-    height: 22px;
-  }
-  .button-back {
-    margin-left: 20px;
-    width: 197px;
-    height: 57px;
-    font-weight: bold;
-    font-size: 18px;
-    line-height: 25px;
-  }
-  .download-button:hover,
-  .share-button:hover {
-    background: #d0d6fc;
+    flex-flow: wrap;
+    ${customMedia.lessThan('1115px')` 
+    `}
+    .share-button {
+      background: rgba(99, 121, 244, 0.15);
+      box-shadow: 0px 6px 75px rgba(100, 87, 87, 0.05);
+      border-radius: 12px;
+      width: 57px;
+      height: 57px;
+      border: none;
+      outline: none;
+    }
+    .download-button {
+      background: rgba(99, 121, 244, 0.15);
+      box-shadow: 0px 6px 75px rgba(100, 87, 87, 0.05);
+      border-radius: 12px;
+      height: 57px;
+      display: flex;
+      cursor: pointer;
+      border: none;
+      outline: none;
+      font-weight: bold;
+      font-size: 18px;
+      color: #6379f4;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 0 1rem;
+      .download-icon {
+        width: 22px;
+        height: 22px;
+      }
+    }
+    .button-back {
+      width: 200px;
+      height: 57px;
+      font-weight: bold;
+      font-size: 18px;
+      line-height: 25px;
+    }
+    .download-button:hover,
+    .share-button:hover {
+      background: #d0d6fc;
+    }
   }
 `;
