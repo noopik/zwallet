@@ -1,123 +1,185 @@
-import React from 'react'
-import styled from 'styled-components'
-import { Button, FieldWithIcon, SidebarAuth } from '../../components'
+import React, { useEffect, useState } from 'react';
+import { useForm } from 'react-hook-form';
+import styled from 'styled-components';
+import {
+  AlertValidationForm,
+  Button,
+  Input,
+  SidebarAuth,
+} from '../../components';
 
 const ForgotPasswordPage = () => {
-    return (
-        <Styles>
-        
-        <div className="wrapper">
-            <div className="row-side">
-            <SidebarAuth className="sidebar"/>
-            </div>
+  const [handleDisabledButton, setHandleDisabledButton] = useState(true);
+  const [isShowNewPassword, setIsShowNewPassword] = useState(false);
+  const [isShowVerifyPassword, setIsShowVerifyPassword] = useState(false);
 
+  const {
+    register,
+    handleSubmit,
+    watch,
+    getValues,
+    formState: { errors },
+  } = useForm();
 
-            <div className="form-side">
-                    <h5>
-                    Did You Forgot Your Password? <br />
-                    Don’t Worry, You Can Reset Your <br />
-                    Password In a Minutes. <br />
-                    </h5>
-                    <h6>
-                    Now you can create a new password for your Zwallet <br />
-                    account. Type your password twice so we can confirm your <br />
-                    new passsword.
-                    </h6>
+  useEffect(() => {
+    document.title = 'Zwallet | Create New Password';
+  });
 
-                    <FieldWithIcon 
-                        type="password"
-                        className="field"
-                        name="password"
-                        value=""
-                        icon="fa fa-lock"
-                        placeholder="Create new password"
-                    />
-                     <FieldWithIcon 
-                        type="password"
-                        className="field"
-                        name="password"
-                        value=""
-                        icon="fa fa-lock"
-                        placeholder="Create new password"
-                    />
-                <Button children="Reset password" className="button-login"/>
-    
-            </div>
-        </div>
-        
-    </Styles>
-    )
-}
-
-export default ForgotPasswordPage
-const Styles = styled.div`
-.wrapper{
-        display: flex;
-        /* background: orange; */
-        
-        .row-side{
-            height: 100%;
-            width: 69%;
-            /* background-color: black; */
-        }
-        .sidebar{
-            width: 100%;
-        }
-        
-        .form-side{
-            height: 69%;
-            width: 50%;
-            /* background-color: red; */
-            h5{
-                font-family: Nunito Sans;
-                font-style: normal;
-                font-weight: bold;
-                font-size: 24px;
-                line-height: 33px;
-                color: #3A3D42;
-                margin-top: 120px;
-            }
-            h6{
-                font-style: normal;
-                margin-top: 30px;
-                font-weight: normal;
-                font-size: 16px;
-                line-height: 30px;
-                color: rgba(58, 61, 66, 0.6);
-            }
-            .field{
-                margin-top: 30px;
-                width: 100%;
-            }
-            .forgot-pass{
-                margin-top: 20px;
-                /* text-align-last: right; */
-                font-style: normal;
-                font-weight: 600;
-                font-size: 14px;
-                line-height: 24px;
-                margin-left: 53%;
-                
-            }
-            .link:hover{
-                color: coral;
-                
-            }
-            .button-login{
-                margin-top: 80px;
-                /* margin: 0 auto; */
-            }
-            .register-link{
-                margin-top: 40px;
-                font-style: normal;
-                font-weight: normal;
-                font-size: 16px;
-                line-height: 23px;
-                margin-left: 9.5%;
-                color: rgba(58, 61, 66, 0.8);
-            }
-        }
+  useEffect(() => {
+    const value = getValues();
+    if (value.password && value.verifyPassword) {
+      setHandleDisabledButton(false);
+    } else {
+      setHandleDisabledButton(true);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [watch('password'), watch('verifyPassword')]);
 
+  //   BUTTON ACTION HANDLING
+  const onSubmit = (data) => {
+    // CHECKING PASSWORD MUST BE SAME
+    if (data.password !== data.verifyPassword) {
+      console.log('Tidak sama');
+      return;
+    }
+    console.log('sama');
+    return;
+  };
 
-`
+  // ACTION SHOW PASSWORD
+  const actionNewPassword = () => {
+    isShowNewPassword
+      ? setIsShowNewPassword(false)
+      : setIsShowNewPassword(true);
+  };
+  const actionVerifyPassword = () => {
+    isShowVerifyPassword
+      ? setIsShowVerifyPassword(false)
+      : setIsShowVerifyPassword(true);
+  };
+
+  return (
+    <Styles>
+      <div className="row-side">
+        <SidebarAuth />
+      </div>
+      <div className="form-side">
+        <div className="content">
+          <h5>
+            Did You Forgot Your Password? <br />
+            Don’t Worry, You Can Reset Your <br />
+            Password In a Minutes. <br />
+          </h5>
+          <h6>
+            Now you can create a new password for your Zwallet <br />
+            account. Type your password twice so we can confirm your <br />
+            new passsword.
+          </h6>
+          <form onSubmit={handleSubmit(onSubmit)}>
+            <div className="form-input">
+              <Input
+                icon="lock"
+                name="password"
+                id="password"
+                placeholder="Create new password"
+                type={isShowNewPassword ? 'text' : 'password'}
+                showPassword={isShowNewPassword}
+                actionShowPassword={actionNewPassword}
+                {...register('password', {
+                  required: true,
+                })}
+              />
+              {errors.password && (
+                <AlertValidationForm message="Required Password" />
+              )}
+            </div>
+            <div className="form-input">
+              <Input
+                icon="lock"
+                type={isShowVerifyPassword ? 'text' : 'password'}
+                showPassword={isShowVerifyPassword}
+                actionShowPassword={actionVerifyPassword}
+                name="verifyPassword"
+                placeholder="Create new password"
+                {...register('verifyPassword', {
+                  required: true,
+                })}
+              />
+              {errors.password && (
+                <AlertValidationForm message="Email invalid" />
+              )}
+            </div>
+            <Button
+              type="submit"
+              primary
+              disabled={handleDisabledButton}
+              className="button-login"
+            >
+              Reset password
+            </Button>
+          </form>
+        </div>
+      </div>
+    </Styles>
+  );
+};
+
+export default ForgotPasswordPage;
+
+const Styles = styled.div`
+  height: 100vh;
+  display: flex;
+  .row-side {
+    width: 55%;
+  }
+  .sidebar {
+    width: 100%;
+  }
+  .form-side {
+    /* width: 50%; */
+    width: 45%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .content {
+      width: 80%;
+      h5 {
+        font-family: Nunito Sans;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 24px;
+        line-height: 33px;
+        color: #3a3d42;
+      }
+      h6 {
+        font-style: normal;
+        margin-bottom: 0;
+        margin-top: 30px;
+        font-weight: normal;
+        font-size: 16px;
+        line-height: 30px;
+        color: rgba(58, 61, 66, 0.6);
+      }
+      form {
+        margin-top: 60px;
+        .form-input {
+          width: 100%;
+          margin-bottom: 40px;
+        }
+        .forgot-pass {
+          margin-top: 20px;
+          font-style: normal;
+          font-weight: 600;
+          font-size: 14px;
+          text-align: right;
+          &:hover {
+            opacity: 0.5;
+          }
+        }
+        .button-login {
+          margin-top: 80px;
+        }
+      }
+    }
+  }
+`;

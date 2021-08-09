@@ -1,117 +1,236 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
-import styled from 'styled-components'
-import { Button, FieldWithIcon, SidebarAuth } from '../../components'
+import React, { useEffect, useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { Link } from 'react-router-dom';
+import styled from 'styled-components';
+import {
+  AlertValidationForm,
+  Button,
+  Input,
+  SidebarAuth,
+} from '../../components';
+import { patternEmail } from '../../utils';
 
 const SignupPage = () => {
-    return (
-        <Styles>
-            <div className="wrapper">
-                <div className="row-side">
-                    <SidebarAuth className="sidebar"/>
-                </div>
-                <div className="form-side">
-                    <h5>
-                        Start Accessing Banking Needs<br/>
-                        With All Devices and All Platforms<br/>
-                        With 30.000+ Users<br/>
-                    </h5>
-                    <h6>
-                        Transfering money is eassier than ever, you can access <br/>
-                        Zwallet wherever you are. Desktop, laptop, mobile phone?<br/>
-                        we cover all of that for you!
-                            </h6>
-                    <FieldWithIcon
-                            type="text" 
-                            className="field"
-                            name=""
-                            value=""
-                            icon="fa fa-user-o"
-                            placeholder="Enter your username"
-                                />
-                    <FieldWithIcon 
-                        type="text"
-                        className="field"
-                        name=""
-                        value=""
-                        icon="fa fa-envelope-o"
-                        placeholder="Enter your e-mail"
-                            />
-                    <FieldWithIcon 
-                        type="password"
-                        className="field"
-                        name=""
-                        value=""
-                        icon="fa fa-lock"
-                        placeholder="Enter your password"
-                            />
-                    <Button children="Sign up" className="button-login"/>
-                    <div className="register-link">
-                            Already have an account ? Let's<Link to="/login"> Login </Link>
-                        </div>
-                 </div>
-            </div>
-        </Styles>
-    )
-}
+  const [handleDisabledButton, setHandleDisabledButton] = useState(true);
 
-export default SignupPage
-const Styles = styled.div`
-  .wrapper{
-        display: flex;
-        /* background: orange; */
-        
-        .row-side{
-            height: 100%;
-            width: 69%;
-            /* background-color: black; */
-        }
-        .sidebar{
-            width: 100%;
-        }
-        
-        .form-side{
-            height: 69%;
-            width: 50%;
-            /* background-color: red; */
-            h5{
-                font-family: Nunito Sans;
-                font-style: normal;
-                font-weight: bold;
-                font-size: 24px;
-                line-height: 33px;
-                color: #3A3D42;
-                margin-top: 120px;
-            }
-            h6{
-                font-style: normal;
-                margin-top: 30px;
-                font-weight: normal;
-                font-size: 16px;
-                line-height: 30px;
-                color: rgba(58, 61, 66, 0.6);
-            }
-            .field{
-                margin-top: 30px;
-                width: 100%;
-            }
-            .link:hover{
-                color: coral;
-                
-            }
-            .button-login{
-                margin-top: 80px;
-                /* margin: 0 auto; */
-            }
-            .register-link{
-                margin-top: 40px;
-                font-style: normal;
-                font-weight: normal;
-                font-size: 16px;
-                line-height: 23px;
-                margin-left: 9.5%;
-                color: rgba(58, 61, 66, 0.8);
-            }
-        }
+  //   START = TITLE DOCUMENT
+  useEffect(() => {
+    document.title = 'Zwallet | Sign Up';
+  });
+  //   END = TITLE DOCUMENT
+  // START = HANDLE FORM
+  const {
+    register,
+    handleSubmit,
+    watch,
+    getValues,
+    formState: { errors },
+  } = useForm();
+
+  const onSubmit = (data) => {
+    console.log(data);
+    // history.push('/createpin');
+    return;
+  };
+  // END = HANDLE FORM
+
+  //   START = HANDLE INPUT ACTIVE
+  const [inputActive, setInputActive] = useState(false);
+  //   END = HANDLE INPUT ACTIVE
+
+  //   START = HANDLE BUTTON DISABLE AND INPUT ACTIVE
+  useEffect(() => {
+    const value = getValues();
+    // Button Active
+    if (value.email && value.password && value.username) {
+      setHandleDisabledButton(false);
+    } else {
+      setHandleDisabledButton(true);
     }
-`
+    // INPUT ACTIVE
+    if (value.email || value.password || value.username) {
+      setInputActive(true);
+    } else {
+      setInputActive(false);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [watch('username'), watch('email'), watch('password')]);
+  //   END =HANDLE BUTTON DISABLE
+
+  // START = ACTION SHOW PASSWORD
+  const [isShowPassword, setIsShowPassword] = useState(false);
+
+  const actionShowPassword = () => {
+    isShowPassword ? setIsShowPassword(false) : setIsShowPassword(true);
+  };
+  // END = ACTION SHOW PASSWORD
+
+  return (
+    <Styles>
+      <div className="row-side">
+        <SidebarAuth />
+      </div>
+      <div className="form-side">
+        <div className="content">
+          <h5>
+            Start Accessing Banking Needs
+            <br />
+            With All Devices and All Platforms
+            <br />
+            With 30.000+ Users
+            <br />
+          </h5>
+          <h6>
+            Transfering money is eassier than ever, you can access <br />
+            Zwallet wherever you are. Desktop, laptop, mobile phone?
+            <br />
+            we cover all of that for you!
+          </h6>
+          <form onSubmit={handleSubmit(onSubmit)}>
+            <div className="form-input">
+              <Input
+                icon="person"
+                type="text"
+                id="username"
+                name="username"
+                placeholder="Enter your username"
+                className={inputActive && 'active'}
+                {...register('username', {
+                  required: true,
+                })}
+              />
+              {errors.username && (
+                <AlertValidationForm message="Required Username" />
+              )}
+            </div>
+            <div className="form-input">
+              <Input
+                icon="mail"
+                type="text"
+                id="mail"
+                name="email"
+                placeholder="Enter your e-mail"
+                className={inputActive && 'active'}
+                {...register('email', {
+                  required: true,
+                  pattern: patternEmail,
+                })}
+              />
+              {errors.email && <AlertValidationForm message="Email invalid" />}
+            </div>
+            <div className="form-input">
+              <Input
+                icon="lock"
+                type={isShowPassword ? 'text' : 'password'}
+                showPassword={isShowPassword}
+                actionShowPassword={actionShowPassword}
+                id="pass"
+                name="password"
+                placeholder="Create your password"
+                className={inputActive && 'active'}
+                {...register('password', {
+                  required: true,
+                  pattern: patternEmail,
+                })}
+              />
+              {errors.password && (
+                <AlertValidationForm message="Required Password" />
+              )}
+            </div>
+            <Button
+              primary
+              disabled={handleDisabledButton}
+              className="button-login"
+            >
+              Sign up
+            </Button>
+          </form>
+          <div className="register-link">
+            Already have an account ? Let's{' '}
+            <Link
+              to="/login"
+              classname="link"
+              style={{ textDecoration: 'none' }}
+            >
+              {' '}
+              Login{' '}
+            </Link>
+          </div>
+        </div>
+      </div>
+    </Styles>
+  );
+};
+
+export default SignupPage;
+const Styles = styled.div`
+  height: 100vh;
+  display: flex;
+  display: flex;
+  /* background: orange; */
+
+  .row-side {
+    /* height: 100%; */
+    width: 55%;
+  }
+  .sidebar {
+    width: 100%;
+  }
+
+  .form-side {
+    /* width: 50%; */
+    width: 45%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .content {
+      width: 80%;
+      h5 {
+        font-family: Nunito Sans;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 24px;
+        line-height: 33px;
+        color: #3a3d42;
+      }
+      h6 {
+        font-style: normal;
+        margin-bottom: 0;
+        margin-top: 30px;
+        font-weight: normal;
+        font-size: 16px;
+        line-height: 30px;
+        color: rgba(58, 61, 66, 0.6);
+      }
+      form {
+        margin-top: 60px;
+        .form-input {
+          width: 100%;
+          margin-bottom: 40px;
+        }
+        .forgot-pass {
+          margin-top: 20px;
+          font-style: normal;
+          font-weight: 600;
+          font-size: 14px;
+          text-align: right;
+          &:hover {
+            opacity: 0.5;
+          }
+        }
+        .button-login {
+          margin-top: 80px;
+        }
+      }
+    }
+  }
+  .register-link {
+    margin-top: 40px;
+    display: flex;
+    gap: 5px;
+    justify-content: center;
+    p {
+      margin-bottom: 0;
+    }
+  }
+`;

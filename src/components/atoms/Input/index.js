@@ -1,6 +1,7 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import styled from 'styled-components';
-import PropTypes from 'prop-types';
+import { ICEyeClose, ICEyeOpen } from '../../../assets';
 import { colors } from '../../../utils';
 
 const Input = ({
@@ -13,6 +14,8 @@ const Input = ({
   className,
   active,
   name,
+  showPassword,
+  actionShowPassword,
   ...props
 }) => {
   const conditionalIcon = {
@@ -86,7 +89,26 @@ const Input = ({
         />
       </svg>
     ),
+    person: (
+      <svg
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M4 20C4 17 8 17 10 15C11 14 8 14 8 9C8 5.667 9.333 4 12 4C14.667 4 16 5.667 16 9C16 14 13 14 14 15C16 17 20 17 20 20"
+          stroke="#A9A9A9"
+          stroke-opacity="0.6"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      </svg>
+    ),
   };
+
   return (
     <StyledInput className={className} active={active}>
       <label for={id}>{conditionalIcon[icon]}</label>
@@ -98,6 +120,12 @@ const Input = ({
         onChange={onChange}
         placeholder={placeholder}
       />
+      {actionShowPassword && (
+        <div className="icon-wrapper" onClick={actionShowPassword}>
+          {showPassword && <img src={ICEyeOpen} alt="ic open" />}
+          {!showPassword && <img src={ICEyeClose} alt="ic open" />}
+        </div>
+      )}
     </StyledInput>
   );
 };
@@ -141,9 +169,21 @@ const StyledInput = styled.div`
     height: 23px;
     border: none;
     outline: none;
-    background: transparent;
-    color: ${({ active }) => active && '#3A3D42'};
+    /* color: ${({ active }) => active && '#3A3D42'}; */
     font-weight: ${({ active }) => active && '700'};
     /* background-color: red; */
+  }
+  .icon-wrapper {
+    &:hover {
+      opacity: 0.5;
+      cursor: pointer;
+    }
+  }
+
+  &.active {
+    border-bottom: 1.5px solid ${colors.primary} input {
+      /* color: #3a3d42; */
+      font-weight: 700;
+    }
   }
 `;

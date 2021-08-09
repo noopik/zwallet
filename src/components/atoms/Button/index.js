@@ -57,7 +57,15 @@ const IconPlus = (
   </svg>
 );
 
-const Button = ({ children, icon, onClick, className, primary, disabled }) => {
+const Button = ({
+  children,
+  icon,
+  onClick,
+  className,
+  primary,
+  disabled,
+  type,
+}) => {
   return (
     <StyledButton
       disabled={disabled}
@@ -78,6 +86,7 @@ Button.propTypes = {
   onClick: PropTypes.func.isRequired,
   className: PropTypes.string,
   disabled: PropTypes.checkPropTypes,
+  type: PropTypes.string,
 };
 
 Button.defaultProps = {
