@@ -31,19 +31,19 @@ export const LandingPageStyles = styled.body`
       text-align: center;
     }
 
-    ${customMedia.lessThan("laptop")` 
+    ${customMedia.lessThan('laptop')` 
      font-size: 55px;
      line-height: 60px;
   `}
-    ${customMedia.lessThan("tablet")` 
+    ${customMedia.lessThan('tablet')` 
       font-size: 40px;
       line-height: 45px;
   `}
-         ${customMedia.lessThan("mobile")` 
+         ${customMedia.lessThan('mobile')` 
       font-size: 25px;
       line-height: 30px;
   `}
-         ${customMedia.lessThan("minimobile")` 
+         ${customMedia.lessThan('minimobile')` 
       font-size: 20px;
       line-height: 25px;
   `}
@@ -75,7 +75,7 @@ export const LandingPageStyles = styled.body`
     position: fixed;
     width: 100vw;
     top: 0;
-    background-color: ${({ active }) => active && "red"};
+    background-color: ${({ active }) => active && 'red'};
     background-color: white;
     box-shadow: 0px 6px 40px rgba(173, 173, 173, 0.25);
     z-index: 9;
@@ -83,7 +83,7 @@ export const LandingPageStyles = styled.body`
       padding: 25px;
       display: flex;
       justify-content: space-between;
-      ${customMedia.lessThan("mobile")` 
+      ${customMedia.lessThan('mobile')` 
      padding-left: 5px;
      padding-right: 5px;
   `}
@@ -94,11 +94,11 @@ export const LandingPageStyles = styled.body`
         font-size: 29px;
         line-height: 40px;
         color: ${colors.primary};
-        ${customMedia.lessThan("mobile")` 
+        ${customMedia.lessThan('mobile')` 
     font-size: 25px;
      padding-right: 10px;
   `}
-        ${customMedia.lessThan("minimobile")` 
+        ${customMedia.lessThan('minimobile')` 
     font-size: 20px;
   `}
       }
@@ -111,10 +111,10 @@ export const LandingPageStyles = styled.body`
           height: 48px;
           border: 15px;
           border-radius: 15px;
-          ${customMedia.lessThan("mobile")` 
+          ${customMedia.lessThan('mobile')` 
       width: 70px;
   `}
-          ${customMedia.lessThan("minimobile")` 
+          ${customMedia.lessThan('minimobile')` 
       width: 50px;
       height: 30px;
   `}
@@ -145,16 +145,16 @@ export const LandingPageStyles = styled.body`
       /* justify-content: center; */
       padding-top: 5rem;
       gap: 3rem;
-      ${customMedia.lessThan("laptop")` 
+      ${customMedia.lessThan('laptop')` 
     padding-top: 5rem;
   `}
-      ${customMedia.lessThan("tablet")` 
+      ${customMedia.lessThan('tablet')` 
     padding-top: 2.5rem;
   `}
-         ${customMedia.lessThan("mobile")` 
+         ${customMedia.lessThan('mobile')` 
   padding-top: 2rem;
   `}
-         ${customMedia.lessThan("minimobile")` 
+         ${customMedia.lessThan('minimobile')` 
   padding-top: 1rem;
   `}
       .title-section {
@@ -184,16 +184,16 @@ export const LandingPageStyles = styled.body`
         z-index: 0;
         margin-left: 20rem;
 
-        ${customMedia.lessThan("laptop")` 
+        ${customMedia.lessThan('laptop')` 
      width: 80%;
   `}
-        ${customMedia.lessThan("tablet")` 
+        ${customMedia.lessThan('tablet')` 
       margin-left: 10rem;
   `}
-         ${customMedia.lessThan("mobile")` 
+         ${customMedia.lessThan('mobile')` 
      margin-left: 5rem;
   `}
-         ${customMedia.lessThan("minimobile")` 
+         ${customMedia.lessThan('minimobile')` 
   `}
       }
     }
@@ -209,7 +209,7 @@ export const LandingPageStyles = styled.body`
         display: flex;
         gap: 2rem;
         justify-content: center;
-        ${customMedia.lessThan("tablet")` 
+        ${customMedia.lessThan('tablet')` 
      flex-direction:column;
   `}
       }
@@ -255,14 +255,14 @@ export const LandingPageStyles = styled.body`
         display: flex;
         .left {
           width: 30%;
-          ${customMedia.lessThan("tablet")` 
+          ${customMedia.lessThan('tablet')` 
      width: 100%;
   `}
           p {
             text-align: left;
           }
         }
-        ${customMedia.lessThan("tablet")` 
+        ${customMedia.lessThan('tablet')` 
      flex-direction:column;
   `}
         .right {
@@ -272,7 +272,7 @@ export const LandingPageStyles = styled.body`
           justify-content: center;
           align-items: center;
           gap: 1rem;
-          ${customMedia.lessThan("tablet")` 
+          ${customMedia.lessThan('tablet')` 
      width: 100%;
   `}
           .row {
@@ -280,7 +280,7 @@ export const LandingPageStyles = styled.body`
             margin-left: 0;
             gap: 1rem;
             width: max-content;
-            ${customMedia.lessThan("tablet")` 
+            ${customMedia.lessThan('tablet')` 
   flex-direction: column;
   `}
             .image-wrapper {
@@ -312,17 +312,17 @@ export const LandingPageStyles = styled.body`
       background: rgba(71, 58, 209, 0.06);
       .custom-container {
         display: flex;
-        ${customMedia.lessThan("tablet")` 
+        ${customMedia.lessThan('tablet')` 
      flex-direction:column;
   `}
         .left {
           margin-left: 30px;
-          ${customMedia.lessThan("tablet")` 
+          ${customMedia.lessThan('tablet')` 
    margin-left: 0px;
   `}
           .image-wrapper {
             img {
-              ${customMedia.lessThan("tablet")` 
+              ${customMedia.lessThan('tablet')` 
   width: 100%;
   `}
             }
@@ -364,7 +364,7 @@ export const LandingPageStyles = styled.body`
   section {
     &.users-section {
       padding: 120px;
-      ${customMedia.lessThan("tablet")` 
+      ${customMedia.lessThan('tablet')` 
       padding: 10px;
   `}
       .card-users-wrapper {
@@ -372,7 +372,7 @@ export const LandingPageStyles = styled.body`
         display: flex;
         gap: 1rem;
         justify-content: center;
-        ${customMedia.lessThan("tablet")` 
+        ${customMedia.lessThan('tablet')` 
      flex-direction:column;
   `}
         .user {
