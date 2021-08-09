@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import { colors } from '../../utils';
-import { customMedia } from '../../components/Layouting/BreakPoints';
 export const StyledDashboard = styled.main`
   width: 100%;
   height: 100%;

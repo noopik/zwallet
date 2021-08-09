@@ -19,6 +19,7 @@ import Success from './success.png';
 import ShareIcon from './share.png';
 import DownloadIcon from './download.png'
 import Failed from './Fail.png'
+import TrashIcon from './trash.png'
 // END = NISA
 export {
   ICArrowLeft,
@@ -35,5 +36,6 @@ export {
   Success,
   ShareIcon,
   DownloadIcon,
-  Failed
+  Failed,
+  TrashIcon
 };
