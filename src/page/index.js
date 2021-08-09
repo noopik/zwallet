@@ -17,8 +17,9 @@ import PersonalInfo from './PersonalInfo';
 import StatusTransferPage from './StatusTransferPage';
 import ChangePasswordPage from './ChangePasswordPage';
 import ManagePhoneNumber from './ManagePhoneNumber';
-
-// import UserLogin from './UserLogin';
+import ChangePinPage from './ChangePinPage';
+import AddPhoneNumberPage from './AddPhoneNumberPage';
+import NewPinPage from './NewPinPage';
 
 // END = NISA
 
@@ -40,5 +41,8 @@ export {
   ResetPasswordEmailPage,
   StatusTransferPage,
   ChangePasswordPage,
-  ManagePhoneNumber
+  ManagePhoneNumber,
+  ChangePinPage,
+  AddPhoneNumberPage,
+  NewPinPage
 };

@@ -20,6 +20,9 @@ import {
   StatusTransferPage,
   ChangePasswordPage,
   ManagePhoneNumber,
+  ChangePinPage,
+  AddPhoneNumberPage,
+  NewPinPage,
   //  END = nisa
 } from '../../page';
 import PrivateRoute from './PrivateRoute';
@@ -73,6 +76,15 @@ const Routes = () => {
         <PrivateRoute
           path="/username/profile/phone-number"
           component={ManagePhoneNumber}
+        />
+        <PrivateRoute
+          path="/username/profile/change-pin"
+          component={ChangePinPage}
+        />
+        <PrivateRoute path="/username/profile/new-pin" component={NewPinPage} />
+        <PrivateRoute
+          path="/username/profile/add-phone-number"
+          component={AddPhoneNumberPage}
         />
         <PrivateRoute path="/username/topup" component={TopupPage} />
         <PrivateRoute

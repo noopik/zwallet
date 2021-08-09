@@ -16,7 +16,7 @@ const FieldToken = ({className, type, value, name, change}) => {
 }
 export default FieldToken
 FieldToken.propTypes={
-    value : PropTypes.string.isRequired
+    value : PropTypes.number.isRequired
 }
 const Styles = styled.div`
 
