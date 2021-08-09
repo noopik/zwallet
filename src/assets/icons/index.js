@@ -10,16 +10,18 @@ import ICUpRed from './arrow-up-red.png';
 
 import ICPen from './search.svg';
 import ICArrowLeft from './arrow-left.svg';
+import ICEyeClose from './eye-close.svg';
+import ICEyeOpen from './eye-open.svg';
 // START = NOVI
-
 
 // START = NISA
 import SplashLine from './splash-line.png';
 import Success from './success.png';
 import ShareIcon from './share.png';
-import DownloadIcon from './download.png'
-import Failed from './Fail.png'
-import TrashIcon from './trash.png'
+
+import DownloadIcon from './download.png';
+import Failed from './Fail.png';
+import TrashIcon from './trash.png';
 // END = NISA
 export {
   ICArrowLeft,
@@ -37,5 +39,7 @@ export {
   ShareIcon,
   DownloadIcon,
   Failed,
-  TrashIcon
+  ICEyeClose,
+  ICEyeOpen,
+  TrashIcon,
 };

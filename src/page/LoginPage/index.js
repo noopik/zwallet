@@ -15,6 +15,8 @@ import { patternEmail } from '../../utils';
 const LoginPage = () => {
   // const history = useHistory();
   const [handleDisabledButton, setHandleDisabledButton] = useState(true);
+
+  // START = HANDLE FORM
   const {
     register,
     handleSubmit,
@@ -23,9 +25,17 @@ const LoginPage = () => {
     formState: { errors },
   } = useForm();
 
+  const onSubmit = (data) => {
+    console.log(data);
+    // history.push('/createpin');
+    return;
+  };
+  // END = HANDLE FORM
+
   useEffect(() => {
     document.title = 'Zwallet | Login';
   });
+
   useEffect(() => {
     const value = getValues();
     if (value.email && value.password) {
@@ -36,12 +46,14 @@ const LoginPage = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [watch('email'), watch('password')]);
 
-  const onSubmit = (data) => {
-    console.log(data);
-    // history.push('/createpin');
-    return;
+  // START = ACTION SHOW PASSWORD
+  const [isShowPassword, setIsShowPassword] = useState(false);
+
+  const actionShowPassword = () => {
+    isShowPassword ? setIsShowPassword(false) : setIsShowPassword(true);
   };
-  console.log('handleDisabledButton', handleDisabledButton);
+  // END = ACTION SHOW PASSWORD
+
   return (
     <Styles>
       <div className="row-side">
@@ -81,7 +93,9 @@ const LoginPage = () => {
             <div className="form-input">
               <Input
                 icon="lock"
-                type="password"
+                type={isShowPassword ? 'text' : 'password'}
+                showPassword={isShowPassword}
+                actionShowPassword={actionShowPassword}
                 id="mail"
                 name="password"
                 placeholder="Enter your password"
@@ -95,7 +109,10 @@ const LoginPage = () => {
               )}
             </div>
             <div className="forgot-pass">
-              <Link to="" style={{ textDecoration: 'none', color: '#3A3D42' }}>
+              <Link
+                to="/reset-password"
+                style={{ textDecoration: 'none', color: '#3A3D42' }}
+              >
                 Forgot password?
               </Link>
             </div>
