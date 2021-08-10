@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { SuccessLogo } from '../../assets'
-import { Button, Cardwrapper } from '../../components'
+
 
 const VerifiedEmailSuccess = () => {
     return (

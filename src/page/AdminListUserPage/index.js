@@ -1,7 +1,6 @@
 import React from 'react'
 import { StylesAdmin,  } from './StylesAdmin'
-import { Cardwrapper, HeadingContent, SmallCard, CardProfileUser } from '../../components';
-import { AVAJessicaMera } from '../../assets';
+import { Cardwrapper, HeadingContent, CardProfileUser } from '../../components';
 const AdminListUserPage = () => {
     return (
         <StylesAdmin>
