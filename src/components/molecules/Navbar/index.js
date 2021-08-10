@@ -3,6 +3,8 @@ import styled from 'styled-components';
 import { AVARobert, ICBell } from '../../../assets';
 import { LogoBrand } from '../../atoms';
 import NotificationPopup from '../NotificationPopup';
+import PropTypes from 'prop-types';
+import { customMedia } from '../../Layouting/BreakPoints';
 
 const Navbar = ({ className }) => {
   const [setNotification, setShowNotification] = useState(false);
@@ -39,6 +41,10 @@ const Navbar = ({ className }) => {
   );
 };
 
+Navbar.propTypes = {
+  className: PropTypes.string,
+};
+
 export default Navbar;
 
 const NavbarStyling = styled.nav`
@@ -48,6 +54,9 @@ const NavbarStyling = styled.nav`
   padding: 42px 0;
   .custom-container {
     position: relative;
+    ${customMedia.lessThan('1000px')`
+      width: 90%; 
+  `}
     width: 80%;
     margin: 0 auto;
     display: flex;
@@ -74,6 +83,9 @@ const NavbarStyling = styled.nav`
         }
       }
       .profile-identity {
+        ${customMedia.lessThan('430px')`
+            display: none; 
+        `}
         .username {
           font-family: Nunito Sans;
           font-style: normal;

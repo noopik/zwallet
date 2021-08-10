@@ -145,8 +145,11 @@ export default LoginPage;
 const Styles = styled.div`
   height: 100vh;
   display: flex;
-  ${customMedia.lessThan('1340px')`
-  
+  ${customMedia.lessThan('777px')` 
+    // flex-direction: column;
+  `}
+  ${customMedia.lessThan('320px')` 
+  // background-color: yellow;
   `}
   .row-side {
     /* height: 100%; */

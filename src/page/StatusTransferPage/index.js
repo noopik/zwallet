@@ -1,4 +1,5 @@
 import React from 'react';
+import { useState } from 'react';
 import {
   AVAJessicaMera,
   DownloadIcon,
@@ -10,18 +11,24 @@ import { Button, Cardwrapper, SmallCard } from '../../components';
 import { StyleStatus } from './StyleStatus';
 
 const StatusTransferPage = () => {
-  const status = false;
-
+  const [statusTransfer, setStatusTransfer] = useState(false);
+  console.log(setStatusTransfer);
   return (
     <Cardwrapper>
       <StyleStatus>
         <div className="status-header">
-          {status && <img src={Success} alt="" className="success-img" />}
-          {!status && <img src={Failed} alt="" className="fail-img" />}
+          {statusTransfer && (
+            <img src={Success} alt="" className="success-img" />
+          )}
+          {!statusTransfer && <img src={Failed} alt="" className="fail-img" />}
           <div className="status-name">
-            {status && <h3 className="success-stat">Transfer Success</h3>}
-            {!status && <h3 className="failed-stat">Transfer Failed</h3>}
-            {!status && (
+            {statusTransfer && (
+              <h3 className="success-stat">Transfer Success</h3>
+            )}
+            {!statusTransfer && (
+              <h3 className="failed-stat">Transfer Failed</h3>
+            )}
+            {!statusTransfer && (
               <p className="fail-message">
                 We can’t transfer your money at the moment, we recommend you to
                 check your internet connection and try again.
@@ -65,10 +72,10 @@ const StatusTransferPage = () => {
             <img src={ShareIcon} alt="" />
           </button>
 
-          <div className="download-button">
+          <button className="download-button">
             <img className="download-icon" src={DownloadIcon} alt="" />
-            <button>Download PDF</button>
-          </div>
+            Download PDF
+          </button>
 
           <Button
             className="button-back"

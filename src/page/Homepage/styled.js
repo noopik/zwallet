@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { customMedia } from '../../components/Layouting/BreakPoints';
 import { colors } from '../../utils';
 export const StyledDashboard = styled.main`
   width: 100%;
@@ -8,10 +9,14 @@ export const StyledDashboard = styled.main`
     background-color: ${colors.primary};
     width: 100%;
     display: flex;
+    ${customMedia.lessThan('1000px')` 
+    flex-direction: column;
+    `}
+    margin-top: 2rem;
     justify-content: space-between;
     padding: 30px;
     border-radius: 20px;
- 
+
     .balance-wrapper {
       .text-section {
         font-family: Nunito Sans;
@@ -33,6 +38,9 @@ export const StyledDashboard = styled.main`
     }
     .button-action-wrapper {
       display: flex;
+      ${customMedia.lessThan('1000px')` 
+          margin-top: 1rem;
+      `}
       gap: 1rem;
       flex-direction: column;
       .button-action {
@@ -55,6 +63,9 @@ export const StyledDashboard = styled.main`
   /* STYLING FOR TRANSACTION, CHART, IN HOMEPAGE */
   .transaction-history-wrapper {
     display: flex;
+    ${customMedia.lessThan('1162px')`
+      flex-direction: column; 
+    `}
     gap: 1rem;
     margin-top: 1rem;
     /* START = GLOBAL STYLING ONLY THIS SCOPE */
@@ -68,6 +79,9 @@ export const StyledDashboard = styled.main`
     /* END = GLOBAL STYLING ONLY THIS SCOPE */
     .chart {
       width: 60%;
+      ${customMedia.lessThan('1162px')` 
+        width: 100%;
+      `}
       .header {
         display: flex;
         justify-content: space-between;
@@ -85,8 +99,17 @@ export const StyledDashboard = styled.main`
     }
     .history-wrapper {
       width: 40%;
+      ${customMedia.lessThan('1162px')` 
+        width: 100%;
+      `}
       .heading {
         display: flex;
+        ${customMedia.lessThan('1265px')`
+          flex-direction: column; 
+          `}
+        ${customMedia.lessThan('1162px')` 
+           flex-direction: row;
+      `}
         justify-content: space-between;
         margin-bottom: 1rem;
         h2 {

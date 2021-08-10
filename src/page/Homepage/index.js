@@ -59,7 +59,6 @@ useEffect(() => {
 
 
   return (
-
     <StyledDashboard>
       <div className="header-section">
         <div className="balance-wrapper">
@@ -68,8 +67,8 @@ useEffect(() => {
           <p className="text-section">+62 813-987-7890</p>
         </div>
         <div className="button-action-wrapper">
-          <Button icon="transfer" />
-          <Button icon="top-up" />
+          <Button primary icon="transfer" />
+          <Button primary icon="top-up" />
         </div>
       </div>
       <div className="transaction-history-wrapper">
@@ -114,9 +113,7 @@ useEffect(() => {
         </div>
       </div>
       {/* testing */}
-    
     </StyledDashboard>
-
   );
 };
 

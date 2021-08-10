@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { AVAJessicaMera } from '../../assets';
 import { Cardwrapper, Input } from '../../components';
 import Button from '../../components/atoms/Button';
+import { customMedia } from '../../components/Layouting/BreakPoints';
 
 const UserReceiverPage = () => {
   useEffect(() => {
@@ -134,6 +135,9 @@ const StyledUserReceiverPage = styled.div`
         justify-content: flex-end;
         .btn-action {
           width: 170px;
+          ${customMedia.lessThan('620px')`
+            width: 100%; 
+          `}
         }
       }
     }
