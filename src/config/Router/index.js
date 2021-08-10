@@ -1,3 +1,4 @@
+import { Public } from '@material-ui/icons';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 import {
@@ -23,7 +24,9 @@ import {
   ChangePinPage,
   AddPhoneNumberPage,
   NewPinPage,
-  AdminHomePage
+  AdminHomePage,
+  AdminListUserPage,
+  VerifiedEmailSuccess
 
 
   //  END = nisa
@@ -40,7 +43,10 @@ const Routes = () => {
     
 
         {/* Admin Page */}
-        <PrivateRoute path="/admin" component={AdminHomePage} />
+        <PrivateRoute exact path="/admin/dashboard" component={AdminHomePage} />
+        <PrivateRoute path="/admin/user" component={AdminListUserPage} />
+
+        <PublicRoute path="/email-success" component={VerifiedEmailSuccess} />
 
 
 

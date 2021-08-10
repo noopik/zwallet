@@ -22,6 +22,7 @@ import ShareIcon from './share.png';
 import DownloadIcon from './download.png';
 import Failed from './Fail.png';
 import TrashIcon from './trash.png';
+import SuccessLogo from './Success Image.png'
 // END = NISA
 export {
   ICArrowLeft,
@@ -42,4 +43,5 @@ export {
   ICEyeClose,
   ICEyeOpen,
   TrashIcon,
+  SuccessLogo
 };

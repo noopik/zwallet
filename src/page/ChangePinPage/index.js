@@ -1,16 +1,16 @@
-import React from 'react';
+import React from "react";
 import {
   Button,
   Cardwrapper,
   FieldToken,
   HeadingContent,
-} from '../../components';
+} from "../../components";
 
-import { StylesPinChange } from './StylesPinChange';
+import { StylesPinChange } from "./StylesPinChange";
 
 const ChangePinPage = () => {
   const handleSubmit = () => {
-    window.open('/username/profile/new-pin');
+    window.open("/username/profile/new-pin");
   };
   return (
     <Cardwrapper>
@@ -33,8 +33,8 @@ const ChangePinPage = () => {
               <FieldToken className="field-token" />
             </div>
             <Button primary="primary" className="btn" onClick={handleSubmit}>
-              {' '}
-              Continue{' '}
+              {" "}
+              Continue{" "}
             </Button>
           </form>
         </div>

@@ -1,20 +1,20 @@
-import React, { useEffect, useState } from 'react';
-import PinInput from 'react-pin-input';
-import styled from 'styled-components';
+import React, { useEffect, useState } from "react";
+import PinInput from "react-pin-input";
+import styled from "styled-components";
 import {
   Button,
   CardProfileUser,
   Cardwrapper,
   HeadingContent,
   Modal,
-} from '../../components';
-import ItemDetail from '../../components/atoms/ItemDetail';
+} from "../../components";
+import ItemDetail from "../../components/atoms/ItemDetail";
 
 const ConfirmationTransferPage = () => {
   const [showModal, setShowModal] = useState(true);
 
   useEffect(() => {
-    document.title = 'Transfer Confirmation';
+    document.title = "Transfer Confirmation";
   });
 
   // const hanleShowContinue = () => {
