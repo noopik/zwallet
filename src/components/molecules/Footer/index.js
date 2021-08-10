@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { colors } from '../../../utils';
+import { customMedia } from '../../Layouting/BreakPoints';
 
 const Footer = () => {
   return (
@@ -42,10 +43,17 @@ const StyledFooter = styled.footer`
     margin: 0 auto;
     display: flex;
     justify-content: space-between;
+    ${customMedia.lessThan('744px')`
+      flex-direction: column; 
+    `}
     .left {
     }
     .right {
       display: flex;
+      ${customMedia.lessThan('447px')`
+      flex-direction: column; 
+      gap: 16px;
+    `}
       gap: 40px;
     }
   }

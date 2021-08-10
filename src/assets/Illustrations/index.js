@@ -1,3 +1,4 @@
 import ICBackgroundLandingPage from './ICBacklandingpagge.svg';
-
-export { ICBackgroundLandingPage };
+import BGSideAuth from './bg-auth-side.svg';
+import ILLoading from './loading.gif';
+export { ICBackgroundLandingPage, BGSideAuth, ILLoading };

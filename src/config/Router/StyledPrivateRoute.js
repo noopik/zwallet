@@ -1,7 +1,11 @@
 import styled from 'styled-components';
+import { customMedia } from '../../components/Layouting/BreakPoints';
 
 export const StylingMainContent = styled.main`
   width: 80%;
+  ${customMedia.lessThan('1000px')`
+      width: 90%; 
+  `}
   margin: 0 auto;
   margin-top: 40px;
   display: flex;
@@ -18,6 +22,20 @@ export const StylingMainContent = styled.main`
     font-size: 14px;
     line-height: 19px;
     color: #6a6a6a;
+  }
+  .text-regular {
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 22px;
+    color: #7a7886;
+  }
+  .text-heading-bold {
+    font-style: normal;
+    font-weight: bold;
+    font-size: 22px;
+    line-height: 30px;
+    color: #514f5b;
   }
   .text-heading {
     font-weight: bold;

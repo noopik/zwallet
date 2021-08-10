@@ -1,15 +1,34 @@
 import React from 'react';
 import styled from 'styled-components';
-import { CardProfileUser, Cardwrapper } from '../../components';
+import { CardProfileUser, Cardwrapper, HeadingContent } from '../../components';
+import { useForm } from 'react-hook-form';
+import { useEffect } from 'react';
 
 const SearchReceiverPage = () => {
+  // START = SEARCHING FEATURE
+  const {
+    register,
+    handleSubmit,
+    // watch,
+    // getValues,
+    // formState: { errors },
+  } = useForm();
+
+  const onSubmit = (data) => {
+    console.log(data);
+    return;
+  };
+  // END = SEARCHING FEATURE
+  useEffect(() => {
+    document.title = 'Zwallet | Create New Password';
+  });
+
+  const actionSearch = () => {};
   return (
     <Cardwrapper>
       <StyledSearchPage>
-        <div className="heading-section">
-          <h2 className="text-heading">Search Receiver</h2>
-        </div>
-        <div className="search-section">
+        <HeadingContent>Search Receiver</HeadingContent>
+        <div className="search-section" onClick={actionSearch}>
           <svg
             width="24"
             height="24"
@@ -33,11 +52,14 @@ const SearchReceiverPage = () => {
               stroke-linejoin="round"
             />
           </svg>
-          <form>
+          <form onSubmit={handleSubmit(onSubmit)}>
             <input
               className="input-search"
               placeholder="Mencari saya?"
               type="text"
+              {...register('searching', {
+                minLength: 1,
+              })}
             />
           </form>
         </div>
@@ -57,9 +79,6 @@ export default SearchReceiverPage;
 
 const StyledSearchPage = styled.div`
   padding: 30px;
-  .heading-section {
-    margin-bottom: 25px;
-  }
   .search-section {
     margin-bottom: 50px;
     background: rgba(58, 61, 66, 0.1);
@@ -68,6 +87,10 @@ const StyledSearchPage = styled.div`
     padding: 15px;
     display: flex;
     gap: 1rem;
+    &:hover {
+      cursor: pointer;
+      opacity: 0.7;
+    }
     .icon {
     }
     form {

@@ -1,30 +1,48 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { AVARobert, ICBell } from '../../../assets';
 import { LogoBrand } from '../../atoms';
+import NotificationPopup from '../NotificationPopup';
+import PropTypes from 'prop-types';
+import { customMedia } from '../../Layouting/BreakPoints';
 
 const Navbar = ({ className }) => {
+  const [setNotification, setShowNotification] = useState(false);
+
   return (
-    <NavbarStyling>
-      <div className="custom-container">
-        <LogoBrand />
-        <div className="navigation-user-right">
-          <div className="user-profile">
-            <div className="image-wrapper">
-              <img src={AVARobert} alt="user" />
+    <>
+      <NavbarStyling>
+        <div className="custom-container">
+          <LogoBrand />
+          <div className="navigation-user-right">
+            <div className="user-profile">
+              <div className="image-wrapper">
+                <img src={AVARobert} alt="user" />
+              </div>
+              <div className="profile-identity">
+                <h3 className="username">Robert Alfrido</h3>
+                <p className="phone-number">+62 8139 3877 7946</p>
+              </div>
             </div>
-            <div className="profile-identity">
-              <h3 className="username">Robert Alfrido</h3>
-              <p className="phone-number">+62 8139 3877 7946</p>
+            <div
+              className="icon-wrapper"
+              onClick={() => setShowNotification(true)}
+            >
+              <img src={ICBell} alt="Icon bell" />
             </div>
-          </div>
-          <div className="icon-wrapper">
-            <img src={ICBell} alt="Icon bell" />
+            <NotificationPopup
+              showPopup={setNotification}
+              closePopup={() => setShowNotification(false)}
+            />
           </div>
         </div>
-      </div>
-    </NavbarStyling>
+      </NavbarStyling>
+    </>
   );
+};
+
+Navbar.propTypes = {
+  className: PropTypes.string,
 };
 
 export default Navbar;
@@ -35,6 +53,10 @@ const NavbarStyling = styled.nav`
   border-radius: 25px;
   padding: 42px 0;
   .custom-container {
+    position: relative;
+    ${customMedia.lessThan('1000px')`
+      width: 90%; 
+  `}
     width: 80%;
     margin: 0 auto;
     display: flex;
@@ -61,6 +83,9 @@ const NavbarStyling = styled.nav`
         }
       }
       .profile-identity {
+        ${customMedia.lessThan('430px')`
+            display: none; 
+        `}
         .username {
           font-family: Nunito Sans;
           font-style: normal;
