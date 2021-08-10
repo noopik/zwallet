@@ -147,12 +147,13 @@ const Styles = styled.div`
   display: flex;
   ${customMedia.lessThan("tablet")`
   flex-direction: column
-  `}
+`}
+ 
   .row-side {
     /* height: 100%; */
     width: 55%;
     ${customMedia.lessThan("tablet")`
- width: 100%;
+ width: 100%
   `}
   }
   .form-side {
@@ -214,4 +215,4 @@ const Styles = styled.div`
       margin-bottom: 0;
     }
   }
-`;
+`

@@ -10,6 +10,7 @@ import SmallCard from './SmallCard';
 import Input from './Input';
 import HeadingContent from './HeadingContent';
 import AlertValidationForm from './AlertValidationForm';
+import LoadingProgress from './LoadingProgress';
 
 export {
   AlertValidationForm,
@@ -22,4 +23,5 @@ export {
   Button,
   FieldToken,
   SmallCard,
+  LoadingProgress,
 };

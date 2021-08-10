@@ -20,6 +20,8 @@ import ManagePhoneNumber from './ManagePhoneNumber';
 import ChangePinPage from './ChangePinPage';
 import AddPhoneNumberPage from './AddPhoneNumberPage';
 import NewPinPage from './NewPinPage';
+import ChartaBar from './ChartBar';
+
 
 // END = NISA
 
@@ -44,5 +46,7 @@ export {
   ManagePhoneNumber,
   ChangePinPage,
   AddPhoneNumberPage,
-  NewPinPage
+  NewPinPage,
+  ChartaBar
+
 };

@@ -1,3 +1,4 @@
+
 import React from 'react'
 import styled from 'styled-components'
 import { SidebarAuth, Button, } from '../../components'
@@ -7,8 +8,6 @@ import { customMedia } from "../../components/Layouting/BreakPoints";
 const SuccessPinPage = () => {
     return (
         <Styles>
-               
-                
                 <div className="row-side">
                   <SidebarAuth />
                 </div>
@@ -53,6 +52,7 @@ const Styles = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
+
     flex-direction: column;
     ${customMedia.lessThan("tablet")`
  width: 100%;
@@ -88,6 +88,47 @@ const Styles = styled.div`
     }
     .image {
       margin-top: 121px;
+
+    .content {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      .image {
+        margin-bottom: 50px;
+      }
+      h5 {
+        font-style: normal;
+        font-weight: bold;
+        font-size: 24px;
+        line-height: 33px;
+        color: #3a3d42;
+        margin-bottom: 0;
+      }
+      h6 {
+        font-style: normal;
+        margin-top: 30px;
+        font-weight: normal;
+        font-size: 16px;
+        line-height: 30px;
+        color: rgba(58, 61, 66, 0.6);
+      }
+      .field {
+        margin-top: 30px;
+        width: 100%;
+      }
+      .link:hover {
+        color: coral;
+      }
+      .button-login {
+        margin-top: 80px;
+        /* margin: 0 auto; */
+      }
+
+      .pin {
+        padding-left: 20px;
+      }
+
     }
   }
-`;
+  }
+`

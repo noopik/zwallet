@@ -22,10 +22,13 @@ import {
   ManagePhoneNumber,
   ChangePinPage,
   AddPhoneNumberPage,
-  NewPinPage
+  NewPinPage,
+
+
   //  END = nisa
 } from '../../page';
 import PrivateRoute from './PrivateRoute';
+import PublicRoute from './PublicRoute';
 
 const Routes = () => {
   return (
@@ -33,18 +36,25 @@ const Routes = () => {
       <Switch>
         <Route exact path="/" component={Landingpage} />
         {/* START = AUTHENTICATION PAGE */}
-        <Route exact path="/login" component={LoginPage} />
-        <Route path="/create-pin" component={CreatePinPage} />
-        <Route path="/sign-up" component={SignupPage} />
-        <Route path="/success-pin" component={SuccessPinPage} />
-        <Route path="/new-password" component={ForgotPasswordPage} />
-        <Route path="/reset-password" component={ResetPasswordEmailPage} />
-        
+        <PublicRoute exact path="/login" component={LoginPage} />
+        <PublicRoute path="/create-pin" component={CreatePinPage} />
+        <PublicRoute path="/sign-up" component={SignupPage} />
+        <PublicRoute path="/success-pin" component={SuccessPinPage} />
+        <PublicRoute path="/new-password" component={ForgotPasswordPage} />
+        <PublicRoute
+          path="/reset-password"
+          component={ResetPasswordEmailPage}
+        />
+
         {/* END = AUTHENTICATION PAGE */}
         {/* START = USER PAGE */}
-
         <PrivateRoute path="/username/dashboard" component={Homepage} />
         <PrivateRoute path="/username/history" component={HistoryPage} />
+        
+        {/* ini route untuk page chart bar
+            nanti di hapus aja  */}
+        <PrivateRoute path="/chart" component={ChartaBar} />
+
         <PrivateRoute
           exact
           path="/username/search-receiver"
@@ -61,14 +71,15 @@ const Routes = () => {
           component={ConfirmationTransferPage}
         />
         <PrivateRoute
+          path="/username/status-transfer"
+          component={StatusTransferPage}
+        />
+        <PrivateRoute
           exact
           path="/username/profile"
           component={ProfileUserPage}
         />
-        <PrivateRoute
-          path="/username/profile/info"
-          component={PersonalInfo}
-        />
+        <PrivateRoute path="/username/profile/info" component={PersonalInfo} />
         <PrivateRoute
           path="/username/profile/password"
           component={ChangePasswordPage}
@@ -81,19 +92,13 @@ const Routes = () => {
           path="/username/profile/change-pin"
           component={ChangePinPage}
         />
-         <PrivateRoute
-          path="/username/profile/new-pin"
-          component={NewPinPage}
-        />
+        <PrivateRoute path="/username/profile/new-pin" component={NewPinPage} />
         <PrivateRoute
           path="/username/profile/add-phone-number"
           component={AddPhoneNumberPage}
         />
         <PrivateRoute path="/username/topup" component={TopupPage} />
-        <PrivateRoute
-          path="/username/status-transfer"
-          component={StatusTransferPage}
-        />
+
         {/* START = USER PAGE */}
       </Switch>
     </Router>
