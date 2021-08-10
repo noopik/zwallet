@@ -2,14 +2,15 @@ import React from 'react'
 import styled from 'styled-components'
 import { SidebarAuth, Button, } from '../../components'
 import { Success } from '../../assets'
+import { customMedia } from "../../components/Layouting/BreakPoints";
 
 const SuccessPinPage = () => {
     return (
         <Styles>
-                 <div className="wrapper">
+               
                 
                 <div className="row-side">
-                  <SidebarAuth className="sidebar"/>
+                  <SidebarAuth />
                 </div>
 
                 <div className="form-side">
@@ -26,62 +27,67 @@ const SuccessPinPage = () => {
                     </h6>
                     <Button children="Login" className="button-login"/>
                 </div>
-            </div>
+           
         </Styles>
     )
 }
 
 export default SuccessPinPage
 const Styles = styled.div`
-.wrapper{
-        display: flex;
-        /* background: orange; */
-        
-        .row-side{
-            height: 100%;
-            width: 69%;
-            /* background-color: black; */
-        }
-        .sidebar{
-            width: 100%;
-        }
-        
-        .form-side{
-            height: 69%;
-            width: 50%;
-            /* background-color: red; */
-            h5{
-                font-family: Nunito Sans;
-                font-style: normal;
-                font-weight: bold;
-                font-size: 24px;
-                line-height: 33px;
-                color: #3A3D42;
-                margin-top: 50px;
-            }
-            h6{
-                font-style: normal;
-                margin-top: 30px;
-                font-weight: normal;
-                font-size: 16px;
-                line-height: 30px;
-                color: rgba(58, 61, 66, 0.6);
-            }
-            .field{
-                margin-top: 30px;
-                width: 100%;
-            }
-            .link:hover{
-                color: coral;
-                
-            }
-            .button-login{
-                margin-top: 80px;
-                /* margin: 0 auto; */
-            }
-            .image{
-                margin-top: 121px;
-            }
-        }
+  height: 100vh;
+  display: flex;
+  ${customMedia.lessThan("tablet")`
+  flex-direction: column
+  `}
+  .row-side {
+    height: 100%;
+    width: 55%;
+    /* background-color: black; */
+    ${customMedia.lessThan("tablet")`
+ width: 100%;
+  `}
+  }
+
+  .form-side {
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    ${customMedia.lessThan("tablet")`
+ width: 100%;
+  `}
+    /* background-color: red; */
+    h5 {
+      font-family: Nunito Sans;
+      font-style: normal;
+      font-weight: bold;
+      font-size: 24px;
+      line-height: 33px;
+      color: #3a3d42;
+      margin-top: 50px;
     }
-`
+    h6 {
+      font-style: normal;
+      margin-top: 30px;
+      font-weight: normal;
+      font-size: 16px;
+      line-height: 30px;
+      color: rgba(58, 61, 66, 0.6);
+    }
+    .field {
+      margin-top: 30px;
+      width: 100%;
+    }
+    .link:hover {
+      color: coral;
+    }
+    .button-login {
+      margin-top: 80px;
+      /* margin: 0 auto; */
+    }
+    .image {
+      margin-top: 121px;
+    }
+  }
+`;

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 
 import PinInput from 'react-pin-input';
 import styled from 'styled-components';
+import { customMedia } from "../../components/Layouting/BreakPoints";
 import { Button, SidebarAuth } from '../../components';
 
 const CreatePinPage = () => {
@@ -69,22 +70,31 @@ const CreatePinPage = () => {
 export default CreatePinPage;
 const Styles = styled.div`
   display: flex;
+  height: 100vh;
   /* background: orange; */
-
+  ${customMedia.lessThan("tablet")`
+  flex-direction: column
+  `}
   .row-side {
     height: 100%;
-    width: 69%;
+    width: 55%;
     /* background-color: black; */
+    ${customMedia.lessThan("tablet")`
+ width: 100%;
+  `}
   }
   .sidebar {
     width: 100%;
   }
 
   .form-side {
-    width: 50%;
+    width: 45%;
     display: flex;
     justify-content: center;
     align-items: center;
+    ${customMedia.lessThan("tablet")`
+ width: 100%;
+  `}
     .content {
       height: 69%;
       h5 {

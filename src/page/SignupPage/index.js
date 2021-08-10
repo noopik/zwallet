@@ -8,6 +8,7 @@ import {
   Input,
   SidebarAuth,
 } from '../../components';
+import { customMedia } from "../../components/Layouting/BreakPoints";
 import { patternEmail } from '../../utils';
 
 const SignupPage = () => {
@@ -166,12 +167,17 @@ export default SignupPage;
 const Styles = styled.div`
   height: 100vh;
   display: flex;
-  display: flex;
+  ${customMedia.lessThan("tablet")`
+  flex-direction: column
+  `}
   /* background: orange; */
 
   .row-side {
     /* height: 100%; */
     width: 55%;
+    ${customMedia.lessThan("tablet")`
+ width: 100%;
+  `}
   }
   .sidebar {
     width: 100%;
@@ -183,6 +189,9 @@ const Styles = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
+    ${customMedia.lessThan("tablet")`
+ width: 100%;
+  `}
     .content {
       width: 80%;
       h5 {
