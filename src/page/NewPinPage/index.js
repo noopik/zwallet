@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, Cardwrapper, FieldToken, HeadingContent, SmallCard } from '../../components';
+import { Button, Cardwrapper, FieldToken, HeadingContent } from '../../components';
 import { StyleNewPin } from './StyleNewPin'
 
 const NewPinPage = () => {

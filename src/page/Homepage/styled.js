@@ -79,6 +79,9 @@ export const StyledDashboard = styled.main`
           }
         }
       }
+      .body-chart{
+        margin-top: 80px;
+      }
     }
     .history-wrapper {
       width: 40%;
@@ -98,6 +101,11 @@ export const StyledDashboard = styled.main`
         display: flex;
         flex-direction: column;
         gap: 40px;
+      }
+      .body-chart{
+        width: 100px;
+        height: 100px;
+        background: black;
       }
     }
   }

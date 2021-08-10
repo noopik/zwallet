@@ -1,7 +1,6 @@
-import React, {useEffect} from 'react'
-import { StylesPinChange } from './StylesPinChange'
-import { Button, Cardwrapper, FieldToken, HeadingContent, SmallCard } from '../../components';
-import { useForm } from 'react-hook-form';
+import React from 'react';
+import { Button, Cardwrapper, FieldToken, HeadingContent } from '../../components';
+import { StylesPinChange } from './StylesPinChange';
 
 const ChangePinPage = () => {
     const handleSubmit = () =>{

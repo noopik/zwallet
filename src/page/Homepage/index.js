@@ -1,15 +1,63 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ICDownGreen, ICUpRed } from '../../assets';
 // import PropTypes from 'prop-types';
 import { CardProfileUser } from '../../components';
 import Button from '../../components/atoms/Button';
 import { StyledDashboard } from './styled';
+import {Bar} from 'react-chartjs-2'
 
 const Homepage = () => {
+
   useEffect(() => {
     document.title = 'Nopik | Dashboard';
   });
+
+  const [chartData, setChartData] = useState({})
+  const chart = () =>{
+      setChartData({
+          labels: ['sat', 'sun', 'mon', 'tue', 'wed', 'thu', 'fri'],
+          datasets: [
+              {
+              data: [14, 5, 6, 12, 11, 5, 9],
+              backgroundColor: [
+                  'rgba(99, 121, 244, 1)',
+                  'rgba(99, 121, 244, 1)',
+                  'rgba(157, 166, 181, 1)',
+                  'rgba(157, 166, 181, 1)',
+                  'rgba(157, 166, 181, 1)',
+                  'rgba(99, 121, 244, 1)',
+                  'rgba(157, 166, 181, 1)',
+              ],
+              borderWidth: 1,
+              borderRadius: 15,
+              borderSkipped: false,
+              barPercentage: 0.5,
+              categoryPercentage: 0.5,
+              }
+      ]
+      })
+  }
+  
+  const options = {
+    scales: {
+        xAxes: [{
+            gridLines: {
+                display:false
+            }
+        }],
+        yAxes: [{
+            gridLines: {
+                display:false
+            }   
+        }]
+    }
+}
+useEffect(() => {
+  chart()
+}, [])
+
+
   return (
 
     <StyledDashboard>
@@ -37,8 +85,15 @@ const Homepage = () => {
               <h4 className="text">Expense</h4>
               <h4 className="text-heading">Rp.2.120.000</h4>
             </div>
-            <div className="body"></div>
           </div>
+          {/* Ini yang aku tambahin ya mas nopik */}
+            <div className="body-chart">
+
+              <Bar data={chartData} options={options}/>
+
+            </div>
+          {/* Kalau mau lihat kodingan yang jelasnya bisa dilihat di
+              file page/ChartBar, nanti dihapus aja mas */}
         </div>
         <div className="history-wrapper card">
           <div className="heading">

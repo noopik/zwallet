@@ -22,7 +22,9 @@ import {
   ManagePhoneNumber,
   ChangePinPage,
   AddPhoneNumberPage,
-  NewPinPage
+  NewPinPage,
+  ChartaBar
+  
   //  END = nisa
 } from '../../page';
 import PrivateRoute from './PrivateRoute';
@@ -45,6 +47,9 @@ const Routes = () => {
 
         <PrivateRoute path="/username/dashboard" component={Homepage} />
         <PrivateRoute path="/username/history" component={HistoryPage} />
+        
+        <PrivateRoute path="/chart" component={ChartaBar} />
+
         <PrivateRoute
           exact
           path="/username/search-receiver"
