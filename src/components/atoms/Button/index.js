@@ -3,60 +3,6 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { colors } from '../../../utils';
 
-// ICON CONDITIONAL
-const IconArrowUp = (
-  <svg
-    width="28"
-    height="28"
-    viewBox="0 0 28 28"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-  >
-    <path
-      d="M14 22.1663V5.83301"
-      stroke="#ffffff"
-      stroke-opacity="0.8"
-      stroke-width="2"
-      stroke-linecap="round"
-      stroke-linejoin="round"
-    />
-    <path
-      d="M5.83333 13.9997L14 5.83301L22.1667 13.9997"
-      stroke="#ffffff"
-      stroke-opacity="0.8"
-      stroke-width="2"
-      stroke-linecap="round"
-      stroke-linejoin="round"
-    />
-  </svg>
-);
-const IconPlus = (
-  <svg
-    width="28"
-    height="28"
-    viewBox="0 0 28 28"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-  >
-    <path
-      d="M14 5.83301V22.1663"
-      stroke="#ffffff"
-      stroke-opacity="0.8"
-      stroke-width="2"
-      stroke-linecap="round"
-      stroke-linejoin="round"
-    />
-    <path
-      d="M5.83333 14H22.1667"
-      stroke="#ffffff"
-      stroke-opacity="0.8"
-      stroke-width="2"
-      stroke-linecap="round"
-      stroke-linejoin="round"
-    />
-  </svg>
-);
-
 const Button = ({
   children,
   icon,
@@ -66,6 +12,62 @@ const Button = ({
   disabled,
   type,
 }) => {
+  // ICON CONDITIONAL
+  const Icon = {
+    transfer: (
+      <svg
+        width="28"
+        height="28"
+        viewBox="0 0 28 28"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M14 22.1663V5.83301"
+          stroke="#ffffff"
+          stroke-opacity="0.8"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+        <path
+          d="M5.83333 13.9997L14 5.83301L22.1667 13.9997"
+          stroke="#ffffff"
+          stroke-opacity="0.8"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      </svg>
+    ),
+    'top-up': (
+      <svg
+        width="28"
+        height="28"
+        viewBox="0 0 28 28"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M14 5.83301V22.1663"
+          stroke="#ffffff"
+          stroke-opacity="0.8"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+        <path
+          d="M5.83333 14H22.1667"
+          stroke="#ffffff"
+          stroke-opacity="0.8"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      </svg>
+    ),
+  };
+
   return (
     <StyledButton
       disabled={disabled}
@@ -73,8 +75,7 @@ const Button = ({
       onClick={onClick}
       primary={primary}
     >
-      {icon === 'top-up' && IconPlus}
-      {icon === 'transfer' && IconArrowUp}
+      {Icon[icon]}
       {children}
     </StyledButton>
   );
@@ -85,7 +86,6 @@ Button.propTypes = {
   icon: PropTypes.string,
   onClick: PropTypes.func.isRequired,
   className: PropTypes.string,
-  disabled: PropTypes.checkPropTypes,
   type: PropTypes.string,
 };
 

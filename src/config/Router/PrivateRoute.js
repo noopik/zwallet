@@ -20,7 +20,7 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
     '/username/profile': 'profile',
   };
   // END = LOGIC FOR ASIDE MENU ACTIVE
-
+  console.log(location);
   return (
     <>
       {isLogin.check && (

@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { AVAJessicaMera, ICArrowLeft } from '../../assets';
 import { Cardwrapper } from '../../components';
+import { customMedia } from '../../components/Layouting/BreakPoints';
 
 const ProfileUserPage = () => {
   return (
@@ -123,6 +124,9 @@ const StyledProfileUserPage = styled.div`
         background: #e5e8ed;
         border-radius: 10px;
         width: 50%;
+        ${customMedia.lessThan('1200px')`
+          width: 80%; 
+        `}
         justify-content: space-between;
         &:hover {
           opacity: 0.7;

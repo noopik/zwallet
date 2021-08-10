@@ -23,7 +23,7 @@ import {
   ChangePinPage,
   AddPhoneNumberPage,
   NewPinPage,
-
+  ChartaBar,
 
   //  END = nisa
 } from '../../page';
@@ -50,7 +50,7 @@ const Routes = () => {
         {/* START = USER PAGE */}
         <PrivateRoute path="/username/dashboard" component={Homepage} />
         <PrivateRoute path="/username/history" component={HistoryPage} />
-        
+
         {/* ini route untuk page chart bar
             nanti di hapus aja  */}
         <PrivateRoute path="/chart" component={ChartaBar} />
@@ -98,7 +98,6 @@ const Routes = () => {
           component={AddPhoneNumberPage}
         />
         <PrivateRoute path="/username/topup" component={TopupPage} />
-
         {/* START = USER PAGE */}
       </Switch>
     </Router>

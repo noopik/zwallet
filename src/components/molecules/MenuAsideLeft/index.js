@@ -242,7 +242,10 @@ MenuAsideLeft.propTypes = {
 export default MenuAsideLeft;
 
 const StyleMenuAsideLeft = styled.div`
-  ${customMedia.lessThan('622px')`
+  ${customMedia.lessThan('750px')`
+    width: 200px; 
+  `}
+  ${customMedia.lessThan('670px')`
     width: 65px; 
   `}
   position: sticky;
@@ -275,9 +278,10 @@ const StyleMenuAsideLeft = styled.div`
       }
     }
     .title-menu {
-      ${customMedia.lessThan('625px')`
+      ${customMedia.lessThan('670px')`
         display: none; 
       `}
+
       margin: 0;
       font-family: Nunito Sans;
       font-style: normal;
