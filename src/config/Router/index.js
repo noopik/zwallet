@@ -23,6 +23,7 @@ import {
   ChangePinPage,
   AddPhoneNumberPage,
   NewPinPage,
+  ChartaBar,
 
 
   //  END = nisa
@@ -37,7 +38,7 @@ const Routes = () => {
         <Route exact path="/" component={Landingpage} />
         {/* START = AUTHENTICATION PAGE */}
         <PublicRoute exact path="/login" component={LoginPage} />
-        <PublicRoute path="/create-pin" component={CreatePinPage} />
+        <PublicRoute path="/create-pin/:id" component={CreatePinPage} />
         <PublicRoute path="/sign-up" component={SignupPage} />
         <PublicRoute path="/success-pin" component={SuccessPinPage} />
         <PublicRoute path="/new-password" component={ForgotPasswordPage} />
@@ -48,8 +49,8 @@ const Routes = () => {
 
         {/* END = AUTHENTICATION PAGE */}
         {/* START = USER PAGE */}
-        <PrivateRoute path="/username/dashboard" component={Homepage} />
-        <PrivateRoute path="/username/history" component={HistoryPage} />
+        <PrivateRoute path="/:username/dashboard" component={Homepage} />
+        <PrivateRoute path="/:username/history" component={HistoryPage} />
         
         {/* ini route untuk page chart bar
             nanti di hapus aja  */}
