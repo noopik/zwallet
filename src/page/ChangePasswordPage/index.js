@@ -1,3 +1,4 @@
+import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import {
@@ -12,7 +13,8 @@ import { StyledChange } from './StyledChange';
 
 const ChangePasswordPage = () => {
   const [handleDisabledButton, setHandleDisabledButton] = useState(true);
-
+  const idUser = localStorage.getItem('id');
+  const token = localStorage.getItem('token');
   // START = HANDLE FORM
   const {
     register,
@@ -44,12 +46,27 @@ const ChangePasswordPage = () => {
 
   // START = SEND DATA FUNCTION
   const onSubmit = (data) => {
-    // oldPassword
-    const { newPassword, repeatNewPassword } = data;
+    const { oldPassword, newPassword, repeatNewPassword } = data;
     if (newPassword !== repeatNewPassword) {
       return toastify('Password baru tidak sama', 'error');
     } else {
-      // console.log(data);
+      const dataSend = { phone: newPassword };
+      axios
+        .patch(
+          `${process.env.REACT_APP_BACKEND_API}/users/${idUser}`,
+          dataSend,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        )
+        .then(() => {
+          toastify('Success update password', 'success');
+        })
+        .catch(() => {
+          toastify('Failed to update password', 'failed');
+        });
     }
     // history.push('/createpin');
   };

@@ -71,7 +71,7 @@ const ProfileUserPage = () => {
 
   useEffect(() => {
     if (getValues('avatar')) {
-      updateAvatar();
+      // updateAvatar();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [watch('avatar')]);

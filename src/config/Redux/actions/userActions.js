@@ -25,7 +25,7 @@ export const registerUser = (data, history) => (dispatch) => {
     })
     .catch((error) => {
       dispatch(showLoading(false));
-      if (error.response.data.status === 401) {
+      if (error.response.data.status === 404) {
         return toastify('Email alredy exists', 'error');
       }
       return toastify(error.response.data.message, 'error');
