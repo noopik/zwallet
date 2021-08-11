@@ -13,7 +13,7 @@ const ChangePinPage = () => {
   useEffect(() => {
     document.title = 'Username | Change pin';
   });
-  console.log(handleDisabledButton);
+  // console.log(handleDisabledButton);
 
   return (
     <Cardwrapper>

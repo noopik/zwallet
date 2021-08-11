@@ -60,7 +60,7 @@ const StyledModal = styled.div`
   height: 100vh;
   position: fixed;
   z-index: 1;
-  top: 0;
+  top: 150px;
   left: 0;
   display: flex;
   align-items: flex-start;

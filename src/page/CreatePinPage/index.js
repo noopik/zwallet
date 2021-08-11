@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { useForm } from "react-hook-form";
+import { useForm } from 'react-hook-form';
 import PinInput from 'react-pin-input';
 import styled from 'styled-components';
-import { customMedia } from "../../components/Layouting/BreakPoints";
+import { customMedia } from '../../components/Layouting/BreakPoints';
 import { Button, SidebarAuth } from '../../components';
-import { setPinUser } from "../../config/Redux/actions/userActions";
-import { useDispatch } from "react-redux";
-import { useHistory } from "react-router-dom";
+import { setPinUser } from '../../config/Redux/actions/userActions';
+import { useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 
 const CreatePinPage = () => {
   const dispatch = useDispatch();
@@ -15,12 +15,10 @@ const CreatePinPage = () => {
   const [inputValuePin, setInputValuePin] = useState();
 
   // START = HANDLE FORM
-  const {
-    handleSubmit,
-  } = useForm();
-const data = { pin: inputValuePin };
+  const { handleSubmit } = useForm();
+  const data = { pin: inputValuePin };
   const onSubmit = () => {
-    console.log(data);
+    // console.log(data);
     dispatch(setPinUser(data, history));
     // history.push('/createpin');
     return;
@@ -28,10 +26,8 @@ const data = { pin: inputValuePin };
   // END = HANDLE FORM
 
   useEffect(() => {
-    document.title = "Zwallet | Create Pin";
+    document.title = 'Zwallet | Create Pin';
   }, [inputValuePin]);
-
-  
 
   return (
     <Styles>
@@ -85,21 +81,21 @@ const data = { pin: inputValuePin };
       </div>
     </Styles>
   );
-};;
+};
 
 export default CreatePinPage;
 const Styles = styled.div`
   display: flex;
   height: 100vh;
   /* background: orange; */
-  ${customMedia.lessThan("tablet")`
+  ${customMedia.lessThan('tablet')`
   flex-direction: column
   `}
   .row-side {
     height: 100%;
     width: 55%;
     /* background-color: black; */
-    ${customMedia.lessThan("tablet")`
+    ${customMedia.lessThan('tablet')`
  width: 100%;
   `}
   }
@@ -112,7 +108,7 @@ const Styles = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    ${customMedia.lessThan("tablet")`
+    ${customMedia.lessThan('tablet')`
  width: 100%;
   `}
     .content {

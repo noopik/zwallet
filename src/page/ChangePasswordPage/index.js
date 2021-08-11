@@ -10,6 +10,7 @@ import { StyledChange } from './StyledChange';
 import { useForm } from 'react-hook-form';
 import { useState } from 'react';
 import { useEffect } from 'react';
+import { toastify } from '../../utils';
 
 const ChangePasswordPage = () => {
   const [handleDisabledButton, setHandleDisabledButton] = useState(true);
@@ -23,11 +24,6 @@ const ChangePasswordPage = () => {
     formState: { errors },
   } = useForm();
 
-  const onSubmit = (data) => {
-    console.log(data);
-    // history.push('/createpin');
-    return;
-  };
   useEffect(() => {
     const value = getValues();
     if (value.oldPassword && value.newPassword && value.repeatNewPassword) {
@@ -47,6 +43,18 @@ const ChangePasswordPage = () => {
   useEffect(() => {
     document.title = 'Username | Change password';
   });
+
+  // START = SEND DATA FUNCTION
+  const onSubmit = (data) => {
+    const { oldPassword, newPassword, repeatNewPassword } = data;
+    if (newPassword !== repeatNewPassword) {
+      return toastify('Password baru tidak sama', 'error');
+    } else {
+      // console.log(data);
+    }
+    // history.push('/createpin');
+  };
+  // END = SEND DATA FUNCTION
 
   return (
     <Cardwrapper>
@@ -71,7 +79,7 @@ const ChangePasswordPage = () => {
               }}
               id="mail"
               name="password"
-              placeholder="Enter your password"
+              placeholder="Current password"
               {...register('oldPassword', {
                 required: true,
                 minLength: 6,
@@ -93,7 +101,7 @@ const ChangePasswordPage = () => {
               }}
               id="mail"
               name="password"
-              placeholder="Enter your password"
+              placeholder="New password"
               {...register('newPassword', {
                 required: true,
                 minLength: 6,
@@ -115,7 +123,7 @@ const ChangePasswordPage = () => {
               }}
               id="mail"
               name="password"
-              placeholder="Enter your password"
+              placeholder="Repeat new password"
               {...register('repeatNewPassword', {
                 required: true,
                 minLength: 6,

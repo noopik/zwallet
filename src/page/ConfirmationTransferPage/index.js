@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import PinInput from 'react-pin-input';
+import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
-
+import axios from 'axios';
 import {
   Button,
   CardProfileUser,
@@ -12,34 +13,116 @@ import {
 } from '../../components';
 import ItemDetail from '../../components/atoms/ItemDetail';
 import { customMedia } from '../../components/Layouting/BreakPoints';
-import { colors } from '../../utils';
+import { colors, toastify } from '../../utils';
+import { dispatchTypes } from '../../utils/dispatchType';
 
 const ConfirmationTransferPage = () => {
+  const transferReducer = useSelector((state) => state.transferReducer);
+  // console.log(transferReducer);
   const [isShowModal, setIsShowModal] = useState(false);
   const history = useHistory();
+  const dispath = useDispatch();
+  const token = localStorage.getItem('token');
+  const username = localStorage.getItem('username');
+  const pin = localStorage.getItem('pin');
+  const [userReceiver, setUserReceiver] = useState({});
+  const [valuePinInput, setValuePinInput] = useState();
 
   useEffect(() => {
     document.title = 'Transfer Confirmation';
   });
+  useEffect(() => {
+    document.title = 'Transfer Confirmation';
+  });
 
+  // START = GET USER RECEIVER
+  useEffect(() => {
+    axios
+      .get(
+        `${process.env.REACT_APP_BACKEND_API}/users/${transferReducer.receiver}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      )
+      .then((res) => {
+        // console.log(res);
+        setUserReceiver(res.data.data[0]);
+      })
+      .catch((err) => {
+        console.log(err.response);
+      });
+  }, []);
+  // END = GET USER RECEIVER
   const actionButton = () => {
-    console.log(2);
+    // console.log(2);
     setIsShowModal(true);
   };
+
+  // VALIDATE PIN
+  const checkPinAction = () => {
+    const sendToServer = {
+      idUserTransfer: transferReducer.sender,
+      idUserTopup: transferReducer.receiver,
+      amount: transferReducer.amount,
+      description: transferReducer.notes,
+    };
+    if (valuePinInput !== pin) {
+      return toastify('Pin wrong', 'error');
+    } else {
+      axios
+        .post(
+          `${process.env.REACT_APP_BACKEND_API}/transactions`,
+          sendToServer,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        )
+        .then((res) => {
+          // console.log(res);
+          localStorage.setItem('amount', transferReducer.balanceLeft);
+          dispath({ type: dispatchTypes.setStatusTransfer, payload: true });
+          history.push(`/${username}/status-transfer`);
+        })
+        .catch((err) => {
+          console.log(err.response);
+        });
+    }
+  };
+  // VALIDATE PIN
+  if (!transferReducer) {
+    return null;
+  }
 
   return (
     <Cardwrapper>
       <StyledConfirmationPage>
         <HeadingContent>Transfer To</HeadingContent>
         <Cardwrapper className="profile-wrapper">
-          <CardProfileUser />
+          <CardProfileUser
+            avatar={userReceiver.avatar}
+            username={userReceiver.username}
+            typeTransaction="transfer"
+          />
         </Cardwrapper>
         <HeadingContent>Details</HeadingContent>
         <div className="detail-body">
-          <ItemDetail title="Amount" description="Rp. 100.000.000" />
-          <ItemDetail title="Balance Left" description="Rp. Rp20.000.000" />
-          <ItemDetail title="Date & Time" description="May 11, 2020 - 12.20" />
-          <ItemDetail title="Notes" description="For buying some socks" />
+          <ItemDetail
+            title="Amount"
+            description={`Rp. ${transferReducer.amount}`}
+          />
+          <ItemDetail
+            title="Balance Left"
+            description={`Rp. ${transferReducer.balanceLeft}`}
+          />
+          <ItemDetail
+            title="Date & Time"
+            description={`${transferReducer.date}`}
+          />
+          <ItemDetail title="Notes" description={`${transferReducer.notes}`} />
         </div>
         <div className="btn-wrapper">
           <button onClick={actionButton} className="btn-action">
@@ -56,19 +139,15 @@ const ConfirmationTransferPage = () => {
               onChange={(value, index) => {}}
               type="numeric"
               inputMode="number"
-              onComplete={(value, index) => {}}
+              onComplete={(value, index) => {
+                setValuePinInput(value);
+              }}
               autoSelect={true}
               regexCriteria={/^[ A-Za-z0-9_@./#&+-]*$/}
             />
           </div>
           <div className="btn-wrapper">
-            <Button
-              primary
-              className="btn-action"
-              onClick={() => {
-                history.push(`/username/status-transfer`);
-              }}
-            >
+            <Button primary className="btn-action" onClick={checkPinAction}>
               Continue
             </Button>
           </div>
@@ -80,7 +159,7 @@ const ConfirmationTransferPage = () => {
 
 export default ConfirmationTransferPage;
 
-const Form = styled.form`
+const Form = styled.div`
   .token-field {
     .pincode-input-container {
       display: flex;

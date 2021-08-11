@@ -5,11 +5,11 @@ import styled from 'styled-components';
 import { Cardwrapper } from '../../atoms';
 import { customMedia } from '../../Layouting/BreakPoints';
 
-const MenuAsideLeft = ({ active }) => {
+const MenuAsideLeft = ({ active, username }) => {
   const history = useHistory();
 
   const actionMenu = (menu) => {
-    history.push(`/username/${menu}`);
+    history.push(`/${username}/${menu}`);
   };
 
   // START = LIST OF MENU
@@ -21,7 +21,10 @@ const MenuAsideLeft = ({ active }) => {
     logout: 'logout',
   };
   // END = LIST OF MENU
-
+  const logoutAction = () => {
+    localStorage.removeItem('isAuth');
+    history.push('/');
+  };
   return (
     <StyleMenuAsideLeft>
       <Cardwrapper>
@@ -190,6 +193,7 @@ const MenuAsideLeft = ({ active }) => {
             className={`menu-item ${
               listMenu[active] === listMenu.logout && 'active'
             }`}
+            onClick={logoutAction}
           >
             <div className="blox"></div>
 
