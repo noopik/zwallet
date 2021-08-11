@@ -27,6 +27,7 @@ import {
   AdminHomePage,
   AdminListUserPage,
   VerifiedEmailSuccess,
+
   //  END = nisa
 } from '../../page';
 import PrivateRoute from './PrivateRoute';
@@ -39,10 +40,13 @@ const Routes = () => {
         <Route exact path="/" component={Landingpage} />
         {/* START = AUTHENTICATION PAGE */}
         <PublicRoute exact path="/login" component={LoginPage} />
-        <PublicRoute path="/create-pin" component={CreatePinPage} />
+        <PublicRoute path="/create-pin/:id" component={CreatePinPage} />
         <PublicRoute path="/sign-up" component={SignupPage} />
         <PublicRoute path="/success-pin" component={SuccessPinPage} />
-        <PublicRoute path="/new-password" component={ForgotPasswordPage} />
+        <PublicRoute
+          path="/new-password/:token"
+          component={ForgotPasswordPage}
+        />
         <PublicRoute
           path="/reset-password"
           component={ResetPasswordEmailPage}
@@ -51,12 +55,9 @@ const Routes = () => {
 
         {/* END = AUTHENTICATION PAGE */}
         {/* START = USER PAGE */}
-        <PrivateRoute path="/username/dashboard" component={Homepage} />
-        <PrivateRoute path="/username/history" component={HistoryPage} />
 
-        {/* ini route untuk page chart bar
-            nanti di hapus aja  */}
-        {/* <PrivateRoute path="/chart" component={ChartaBar} /> */}
+        <PrivateRoute path="/:username/dashboard" component={Homepage} />
+        <PrivateRoute path="/:username/history" component={HistoryPage} />
 
         <PrivateRoute
           exact

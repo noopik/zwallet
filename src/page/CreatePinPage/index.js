@@ -1,17 +1,37 @@
 import React, { useEffect, useState } from 'react';
-
+import { useForm } from "react-hook-form";
 import PinInput from 'react-pin-input';
 import styled from 'styled-components';
 import { customMedia } from "../../components/Layouting/BreakPoints";
 import { Button, SidebarAuth } from '../../components';
+import { setPinUser } from "../../config/Redux/actions/userActions";
+import { useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
 
 const CreatePinPage = () => {
+  const dispatch = useDispatch();
+  const history = useHistory();
   const [handleDisabledButton, setHandleDisabledButton] = useState(true);
   const [inputValuePin, setInputValuePin] = useState();
 
+  // START = HANDLE FORM
+  const {
+    handleSubmit,
+  } = useForm();
+const data = { pin: inputValuePin };
+  const onSubmit = () => {
+    console.log(data);
+    dispatch(setPinUser(data, history));
+    // history.push('/createpin');
+    return;
+  };
+  // END = HANDLE FORM
+
   useEffect(() => {
-    document.title = 'Zwallet | Create Pin';
+    document.title = "Zwallet | Create Pin";
   }, [inputValuePin]);
+
+  
 
   return (
     <Styles>
@@ -33,7 +53,7 @@ const CreatePinPage = () => {
             <br />
             we cover all of that for you!
           </h6>
-          <form>
+          <form onSubmit={handleSubmit(onSubmit)}>
             <div className="token-field">
               <PinInput
                 length={6}
@@ -65,7 +85,7 @@ const CreatePinPage = () => {
       </div>
     </Styles>
   );
-};
+};;
 
 export default CreatePinPage;
 const Styles = styled.div`

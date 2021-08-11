@@ -1,11 +1,19 @@
 
-import React from 'react'
+import React, { useEffect } from "react";
 import styled from 'styled-components'
 import { SidebarAuth, Button, } from '../../components'
 import { Success } from '../../assets'
 import { customMedia } from "../../components/Layouting/BreakPoints";
+import { useHistory } from "react-router-dom";
 
 const SuccessPinPage = () => {
+        const history = useHistory();
+         const username = localStorage.getItem("username");
+      setTimeout(()=>{history.push(`/${username}/dashboard`)},3000)
+         useEffect(() => {
+           document.title = "Zwallet | Create Pin Success";
+         }); 
+
     return (
         <Styles>
                 <div className="row-side">

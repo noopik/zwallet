@@ -10,8 +10,13 @@ import {
 } from '../../components';
 import { customMedia } from "../../components/Layouting/BreakPoints";
 import { patternEmail } from '../../utils';
+import { registerUser } from "../../config/Redux/actions/userActions";
+import { useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
 
 const SignupPage = () => {
+    const dispatch = useDispatch();
+    const history = useHistory();
   const [handleDisabledButton, setHandleDisabledButton] = useState(true);
 
   //   START = TITLE DOCUMENT
@@ -30,6 +35,7 @@ const SignupPage = () => {
 
   const onSubmit = (data) => {
     console.log(data);
+    dispatch(registerUser(data, history));
     // history.push('/createpin');
     return;
   };
@@ -131,7 +137,7 @@ const SignupPage = () => {
                 className={inputActive && 'active'}
                 {...register('password', {
                   required: true,
-                  pattern: patternEmail,
+                  
                 })}
               />
               {errors.password && (
@@ -142,6 +148,7 @@ const SignupPage = () => {
               primary
               disabled={handleDisabledButton}
               className="button-login"
+              type="submit"
             >
               Sign up
             </Button>

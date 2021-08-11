@@ -8,11 +8,18 @@ import {
   SidebarAuth,
 } from '../../components';
 import { customMedia } from "../../components/Layouting/BreakPoints";
+import { resetPasswordUser } from "../../config/Redux/actions/userActions";
+import { useDispatch } from "react-redux";
+import { useHistory, useParams } from "react-router-dom";
 
 const ForgotPasswordPage = () => {
+      const dispatch = useDispatch();
+      const history = useHistory();
   const [handleDisabledButton, setHandleDisabledButton] = useState(true);
   const [isShowNewPassword, setIsShowNewPassword] = useState(false);
   const [isShowVerifyPassword, setIsShowVerifyPassword] = useState(false);
+
+ let { token } = useParams()
 
   const {
     register,
@@ -40,10 +47,13 @@ const ForgotPasswordPage = () => {
   const onSubmit = (data) => {
     // CHECKING PASSWORD MUST BE SAME
     if (data.password !== data.verifyPassword) {
-      console.log('Tidak sama');
+      alert('Tidak sama');
       return;
     }
-    console.log('sama');
+    console.log("sama");
+    const setPassword={newPassword: data.password}
+   dispatch(resetPasswordUser(setPassword, token, history));
+
     return;
   };
 
