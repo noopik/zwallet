@@ -15,9 +15,16 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
   const pathNow = location.pathname;
   const listMenu = {
     '/username/dashboard': 'dashboard',
+    '/username/history': 'dashboard',
     '/username/search-receiver': 'transfer',
+    '/username/search-receiver/to-username': 'transfer',
+    '/username/status-transfer': 'transfer',
+    '/username/search-receiver/to-username/confirmation': 'transfer',
     '/username/topup': 'topup',
     '/username/profile': 'profile',
+    '/username/profile/info': 'profile',
+    '/username/profile/password': 'profile',
+    '/username/profile/change-pin': 'profile',
   };
   // END = LOGIC FOR ASIDE MENU ACTIVE
   console.log(location);

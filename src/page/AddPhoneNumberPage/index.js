@@ -71,10 +71,11 @@ const AddPhoneNumberPage = () => {
               <AlertValidationForm message="Number phone must be a number and min 11 character" />
             )}
           </div>
-
-          <Button type="submit" primary="primary">
-            Add Phone Number
-          </Button>
+          <div className="btn-wrapper">
+            <Button type="submit" primary="primary" className="btn">
+              Add Phone Number
+            </Button>
+          </div>
         </form>
       </StyledPhone>
     </Cardwrapper>

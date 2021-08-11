@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { customMedia } from '../../components/Layouting/BreakPoints';
 
 export const StyledPhone = styled.div`
   padding: 30px;
@@ -24,8 +25,15 @@ export const StyledPhone = styled.div`
     width: 100%;
     margin-top: 70px;
   }
-  .btn {
-    width: 100%;
+  .btn-wrapper {
+    display: flex;
+    justify-content: flex-end;
     margin-top: 70px;
+    .btn {
+      ${customMedia.lessThan(`653px`)`
+        width: 100%; 
+      `}
+      width: 250px;
+    }
   }
 `;

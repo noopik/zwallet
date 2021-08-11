@@ -1,10 +1,18 @@
 import React from 'react';
+import { useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
 import { AVAJessicaMera, ICArrowLeft } from '../../assets';
 import { Cardwrapper } from '../../components';
 import { customMedia } from '../../components/Layouting/BreakPoints';
 
 const ProfileUserPage = () => {
+  const history = useHistory();
+
+  useEffect(() => {
+    document.title = 'Zwallet | Novi Dwi Cahya';
+  });
+
   return (
     <Cardwrapper>
       <StyledProfileUserPage>
@@ -39,15 +47,30 @@ const ProfileUserPage = () => {
             <p className="text-regular">+62 3564 6562 12</p>
           </div>
           <div className="body">
-            <div className="item-menu">
+            <div
+              className="item-menu"
+              onClick={() => {
+                history.push('/username/profile/info');
+              }}
+            >
               <p className="text-heading">Personal Information</p>
               <img src={ICArrowLeft} alt="icon arrow" />
             </div>
-            <div className="item-menu">
+            <div
+              className="item-menu"
+              onClick={() => {
+                history.push('/username/profile/password');
+              }}
+            >
               <p className="text-heading">Change Password</p>
               <img src={ICArrowLeft} alt="icon arrow" />
             </div>
-            <div className="item-menu">
+            <div
+              className="item-menu"
+              onClick={() => {
+                history.push('/username/profile/change-pin');
+              }}
+            >
               <p className="text-heading">Change PIN</p>
               <img src={ICArrowLeft} alt="icon arrow" />
             </div>

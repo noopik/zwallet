@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { customMedia } from '../../components/Layouting/BreakPoints';
 
 export const StylingMainContent = styled.main`
+  padding-top: 120px;
   width: 80%;
   ${customMedia.lessThan('1000px')`
       width: 90%; 

@@ -52,6 +52,9 @@ const NavbarStyling = styled.nav`
   box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.05);
   border-radius: 25px;
   padding: 42px 0;
+  position: fixed;
+  width: 100vw;
+  top: 0;
   .custom-container {
     position: relative;
     ${customMedia.lessThan('1000px')`

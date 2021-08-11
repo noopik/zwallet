@@ -249,7 +249,7 @@ const StyleMenuAsideLeft = styled.div`
     width: 65px; 
   `}
   position: sticky;
-  top: 20px;
+  top: 160px;
   height: 70vh;
   .contain {
     height: 70vh;

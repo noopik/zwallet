@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import PinInput from 'react-pin-input';
+import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
 import {
   Button,
@@ -14,6 +15,7 @@ import { colors } from '../../utils';
 
 const ConfirmationTransferPage = () => {
   const [isShowModal, setIsShowModal] = useState(false);
+  const history = useHistory();
 
   useEffect(() => {
     document.title = 'Transfer Confirmation';
@@ -59,7 +61,13 @@ const ConfirmationTransferPage = () => {
             />
           </div>
           <div className="btn-wrapper">
-            <Button primary className="btn-action">
+            <Button
+              primary
+              className="btn-action"
+              onClick={() => {
+                history.push(`/username/status-transfer`);
+              }}
+            >
               Continue
             </Button>
           </div>
