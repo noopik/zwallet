@@ -1,9 +1,15 @@
 import React from 'react'
 import styled from 'styled-components'
 import { SuccessLogo } from '../../assets'
-
-
+import { useHistory } from "react-router-dom";
+   
 const VerifiedEmailSuccess = () => {
+     const history = useHistory();
+      const username = localStorage.getItem("username");
+        const onSubmit = () => {
+          history.push('/login');
+          return;
+        };
     return (
 
             <Styles>
@@ -13,7 +19,7 @@ const VerifiedEmailSuccess = () => {
                 </div>
         
                 <h1>
-                    Congratulation Nopik!  <br />  
+                    Congratulation {username}!  <br />  
                     Your account has been 
                     successfully <br /> activated             
                 </h1>
@@ -27,7 +33,7 @@ const VerifiedEmailSuccess = () => {
                 Click the button below to start the adventure
                 </div>
            
-                    <input type="button" name="" id="" value="Start Journey" class="Btn"></input>
+                    <input type="button" name="" id="" value="Start Journey" class="Btn" onClick={()=>onSubmit()}></input>
         
                 </div>
                 <div class="footer"></div>

@@ -5,12 +5,14 @@ export const registerUser = (data, history) => (dispatch) => {
   axios
     .post(`${process.env.REACT_APP_BACKEND_API}/v1/auth/register`, data)
     .then((result) => {
+            const username = result.data.data.username;
       const dataUser = {
         data: result.data.data,
         error: result.data.error,
         message: result.data.message,
         status: result.data.status,
       };
+      localStorage.setItem("username", username);
       dispatch({ type: dispatchTypes.postRegisterUser, payload: dataUser });
       history.push(`/login`);
     })
