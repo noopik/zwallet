@@ -69,7 +69,7 @@ const CreatePinPage = () => {
         }
       )
       .then((res) => {
-        console.log(res);
+        // console.log(res);
         // return;
         history.push(`/${username}/dashboard`);
       })

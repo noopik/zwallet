@@ -18,6 +18,7 @@ const ProfileUserPage = () => {
 
   useEffect(() => {
     document.title = `Zwallet | ${username}`;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [avatar]);
 
   // START = HANDLE FORM
@@ -70,8 +71,9 @@ const ProfileUserPage = () => {
   };
 
   useEffect(() => {
-    if (getValues('avatar')) {
-      // updateAvatar();
+    const avatarValue = getValues('avatar');
+    if (avatarValue) {
+      updateAvatar();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [watch('avatar')]);

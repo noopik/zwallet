@@ -47,7 +47,7 @@ const ChangePasswordPage = () => {
 
   // START = SEND DATA FUNCTION
   const onSubmit = (data) => {
-    const { oldPassword, newPassword, repeatNewPassword } = data;
+    const { newPassword, repeatNewPassword } = data;
     if (newPassword !== repeatNewPassword) {
       return toastify('Password baru tidak sama', 'error');
     } else {

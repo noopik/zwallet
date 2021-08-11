@@ -1,15 +1,37 @@
+import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import PinInput from 'react-pin-input';
 import { Button, Cardwrapper, HeadingContent } from '../../components';
 import { StylesPinChange } from './StylesPinChange';
+import { toastify } from '../../utils';
 
 const ChangePinPage = () => {
   const username = localStorage.getItem('username');
+  const token = localStorage.getItem('token');
+  const idUser = localStorage.getItem('id');
 
   const [handleDisabledButton, setHandleDisabledButton] = useState(true);
+  const [inputValuePin, setInputValuePin] = useState();
 
   const handleSubmit = () => {
-    window.open('/username/profile/new-pin');
+    // console.log(inputValuePin);
+    const sendData = {
+      pin: inputValuePin,
+    };
+    axios
+      .patch(`${process.env.REACT_APP_BACKEND_API}/${idUser}`, sendData, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then(() => {
+        return toastify('Success Change Pin', 'success');
+      })
+      .catch((err) => {
+        console.log(err.response);
+        return toastify('Success Change Pin', 'success');
+      });
+    // window.open('/username/profile/new-pin');
   };
 
   useEffect(() => {
@@ -27,7 +49,7 @@ const ChangePinPage = () => {
             continue to the next steps.
           </p>
         </div>
-        <form className="form-wrapper" action="">
+        <div className="form-wrapper">
           <div className="field-wrap">
             <PinInput
               length={6}
@@ -40,7 +62,7 @@ const ChangePinPage = () => {
               type="numeric"
               inputMode="number"
               onComplete={(value, index) => {
-                // setInputValuePin(value);
+                setInputValuePin(value);
                 setHandleDisabledButton(false);
               }}
               autoSelect={true}
@@ -55,7 +77,7 @@ const ChangePinPage = () => {
           >
             Continue
           </Button>
-        </form>
+        </div>
       </StylesPinChange>
     </Cardwrapper>
   );
