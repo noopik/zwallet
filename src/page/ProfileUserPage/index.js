@@ -17,7 +17,7 @@ const ProfileUserPage = () => {
   const token = localStorage.getItem('token');
 
   useEffect(() => {
-    document.title = 'Zwallet | Novi Dwi Cahya';
+    document.title = `Zwallet | ${username}`;
   }, [avatar]);
 
   // START = HANDLE FORM

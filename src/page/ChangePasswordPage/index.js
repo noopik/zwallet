@@ -15,6 +15,7 @@ const ChangePasswordPage = () => {
   const [handleDisabledButton, setHandleDisabledButton] = useState(true);
   const idUser = localStorage.getItem('id');
   const token = localStorage.getItem('token');
+  const username = localStorage.getItem('username');
   // START = HANDLE FORM
   const {
     register,
@@ -41,7 +42,7 @@ const ChangePasswordPage = () => {
 
   // END = ACTION SHOW PASSWORD
   useEffect(() => {
-    document.title = 'Username | Change password';
+    document.title = username | 'Change password';
   });
 
   // START = SEND DATA FUNCTION

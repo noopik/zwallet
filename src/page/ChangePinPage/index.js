@@ -4,6 +4,8 @@ import { Button, Cardwrapper, HeadingContent } from '../../components';
 import { StylesPinChange } from './StylesPinChange';
 
 const ChangePinPage = () => {
+  const username = localStorage.getItem('username');
+
   const [handleDisabledButton, setHandleDisabledButton] = useState(true);
 
   const handleSubmit = () => {
@@ -11,7 +13,7 @@ const ChangePinPage = () => {
   };
 
   useEffect(() => {
-    document.title = 'Username | Change pin';
+    document.title = username | 'Add phone number';
   });
   // console.log(handleDisabledButton);
 

@@ -8,14 +8,14 @@ import {
   SidebarAuth,
 } from '../../components';
 import { patternEmail } from '../../utils';
-import { customMedia } from "../../components/Layouting/BreakPoints";
-import { forgotPasswordUser } from "../../config/Redux/actions/userActions";
-import { useDispatch } from "react-redux";
-import { useHistory } from "react-router-dom";
+import { customMedia } from '../../components/Layouting/BreakPoints';
+import { forgotPasswordUser } from '../../config/Redux/actions/userActions';
+import { useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 
 const ResetPasswordEmailPage = () => {
-      const dispatch = useDispatch();
-      const history = useHistory();
+  const dispatch = useDispatch();
+  const history = useHistory();
   const [handleDisabledButton, setHandleDisabledButton] = useState(true);
   const {
     register,
@@ -26,7 +26,7 @@ const ResetPasswordEmailPage = () => {
   } = useForm();
 
   useEffect(() => {
-    document.title = 'Zwallet | Reset Password';
+    document.title = `Zwallet | Reset Password`;
   });
 
   useEffect(() => {
@@ -41,7 +41,7 @@ const ResetPasswordEmailPage = () => {
 
   //   BUTTON ACTION HANDLING
   const onSubmit = (data) => {
-     dispatch(forgotPasswordUser(data, history));
+    dispatch(forgotPasswordUser(data, history));
     // history.push('/createpin');
     return;
   };
@@ -95,12 +95,12 @@ export default ResetPasswordEmailPage;
 const Styles = styled.div`
   height: 100vh;
   display: flex;
-  ${customMedia.lessThan("tablet")`
+  ${customMedia.lessThan('tablet')`
   flex-direction: column
   `}
   .row-side {
     width: 55%;
-    ${customMedia.lessThan("tablet")`
+    ${customMedia.lessThan('tablet')`
  width: 100%;
   `}
   }
@@ -113,7 +113,7 @@ const Styles = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    ${customMedia.lessThan("tablet")`
+    ${customMedia.lessThan('tablet')`
  width: 100%;
   `}
     .content {
