@@ -29,10 +29,7 @@ const ConfirmationTransferPage = () => {
   const [valuePinInput, setValuePinInput] = useState();
 
   useEffect(() => {
-    document.title = 'Transfer Confirmation';
-  });
-  useEffect(() => {
-    document.title = 'Transfer Confirmation';
+    document.title = `${username} | Confirmation`;
   });
 
   // START = GET USER RECEIVER

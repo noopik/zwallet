@@ -3,8 +3,10 @@ import styled from 'styled-components';
 import { CardProfileUser, Cardwrapper } from '../../components';
 
 const HistoryPage = () => {
+  const username = localStorage.getItem('username');
+
   useEffect(() => {
-    document.title = 'Nopik | Transaction History';
+    document.title = `${username} | Transaction History`;
   });
 
   return (

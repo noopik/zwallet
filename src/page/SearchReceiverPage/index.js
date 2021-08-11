@@ -6,10 +6,13 @@ import { useEffect } from 'react';
 import { useState } from 'react';
 import axios from 'axios';
 import { AVAUserDefault } from '../../assets';
+import { makeStyles } from '@material-ui/core/styles';
+import Pagination from '@material-ui/lab/Pagination';
 // import { useHistory } from 'react-router-dom';
 
 const SearchReceiverPage = () => {
   const [searchAllResult, setSearchAllResult] = useState([]);
+  const [paginationState, setPaginationState] = useState();
   // const [searchResult, setSearchResult] = useState([]);
   const token = localStorage.getItem('token');
   // const history = useHistory();
@@ -39,14 +42,18 @@ const SearchReceiverPage = () => {
   useEffect(() => {
     const keyword = getValues('searching');
     axios
-      .get(`${process.env.REACT_APP_BACKEND_API}/users?search=${keyword}`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      })
+      .get(
+        `${process.env.REACT_APP_BACKEND_API}/users?search=${keyword}&perPage=5&page=1`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      )
       .then((result) => {
         const data = result.data.data;
-        // console.log(data);
+        const pagination = result.data.meta;
+        setPaginationState(pagination);
         setSearchAllResult(data);
       })
       .catch((err) => {
@@ -78,60 +85,102 @@ const SearchReceiverPage = () => {
   // END = SEARCHING FEATURE
   // console.log(watch('searching'));
 
+  // START = PAGINATION
+  const useStyles = makeStyles((theme) => ({
+    root: {
+      '& > *': {
+        marginTop: theme.spacing(2),
+      },
+    },
+  }));
+
+  function PaginationOutlined() {
+    const classes = useStyles();
+    const handlePagination = (event, value) => {
+      axios
+        .get(
+          `${process.env.REACT_APP_BACKEND_API}/users?perPage=5&page=${value}`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        )
+        .then((res) => {
+          setSearchAllResult(res.data.data);
+        });
+    };
+
+    return (
+      <div className={classes.root}>
+        <Pagination
+          count={paginationState?.totalPage}
+          variant="outlined"
+          onChange={handlePagination}
+        />
+      </div>
+    );
+  }
+
+  // END = PAGINATION
+
   return (
-    <Cardwrapper>
-      <StyledSearchPage>
-        <HeadingContent>Search Receiver</HeadingContent>
-        <div className="search-section" onClick={actionSearch}>
-          <svg
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-            className="icon"
-          >
-            <path
-              d="M15 16L20 21"
-              stroke="#A9A9A9"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            />
-            <path
-              d="M10 18C13.866 18 17 14.866 17 11C17 7.13401 13.866 4 10 4C6.13401 4 3 7.13401 3 11C3 14.866 6.13401 18 10 18Z"
-              stroke="#A9A9A9"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            />
-          </svg>
-          <form onSubmit={handleSubmit(onSubmit)}>
-            <input
-              className="input-search"
-              placeholder="Mencari saya?"
-              type="text"
-              {...register('searching', {
-                minLength: 1,
+    <>
+      <Cardwrapper>
+        <StyledSearchPage>
+          <HeadingContent>Search Receiver</HeadingContent>
+          <div className="search-section" onClick={actionSearch}>
+            <svg
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              className="icon"
+            >
+              <path
+                d="M15 16L20 21"
+                stroke="#A9A9A9"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+              <path
+                d="M10 18C13.866 18 17 14.866 17 11C17 7.13401 13.866 4 10 4C6.13401 4 3 7.13401 3 11C3 14.866 6.13401 18 10 18Z"
+                stroke="#A9A9A9"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+            <form onSubmit={handleSubmit(onSubmit)}>
+              <input
+                className="input-search"
+                placeholder="Mencari saya?"
+                type="text"
+                {...register('searching', {
+                  minLength: 1,
+                })}
+              />
+            </form>
+          </div>
+          <div className="body-section">
+            {searchAllResult.length > 0 &&
+              searchAllResult.map((item) => {
+                return (
+                  <CardProfileUser
+                    avatar={item.avatar ? item.avatar : AVAUserDefault}
+                    typeTransaction={item.phone}
+                    link={`search-receiver/${item.id}`}
+                    username={item.username}
+                  />
+                );
               })}
-            />
-          </form>
-        </div>
-        <div className="body-section">
-          {searchAllResult.length > 0 &&
-            searchAllResult.map((item) => {
-              return (
-                <CardProfileUser
-                  avatar={item.avatar ? item.avatar : AVAUserDefault}
-                  typeTransaction={item.phone}
-                  link={`search-receiver/${item.id}`}
-                  username={item.username}
-                />
-              );
-            })}
-        </div>
-      </StyledSearchPage>
-    </Cardwrapper>
+          </div>
+        </StyledSearchPage>
+      </Cardwrapper>
+      <PaginationOutlined />
+    </>
   );
 };
 

@@ -23,7 +23,7 @@ const UserReceiverPage = () => {
   const history = useHistory();
 
   useEffect(() => {
-    document.title = 'Tranfer to Samuel Suhu';
+    document.title = 'Tranfer';
   });
 
   // START = GET USER RECEIVER

@@ -17,7 +17,7 @@ const Homepage = () => {
   const id = localStorage.getItem('id');
 
   useEffect(() => {
-    document.title = 'Nopik | Dashboard';
+    document.title = `${username} | Dashboard`;
   });
 
   const [chartData, setChartData] = useState({});
