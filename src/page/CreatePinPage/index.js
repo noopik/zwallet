@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import PinInput from 'react-pin-input';
-import styled from 'styled-components';
+import PinInput from "react-pin-input";
+import styled from "styled-components";
 import { customMedia } from "../../components/Layouting/BreakPoints";
-import { Button, SidebarAuth } from '../../components';
+import { Button, ModalBank, SidebarAuth } from "../../components";
 import { setPinUser } from "../../config/Redux/actions/userActions";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
@@ -13,25 +13,25 @@ const CreatePinPage = () => {
   const history = useHistory();
   const [handleDisabledButton, setHandleDisabledButton] = useState(true);
   const [inputValuePin, setInputValuePin] = useState();
-
+  const [isShowModal, setIsShowModal] = useState(false);
   // START = HANDLE FORM
-  const {
-    handleSubmit,
-  } = useForm();
-const data = { pin: inputValuePin };
+  const { handleSubmit } = useForm();
+  const data = { pin: inputValuePin };
+  //Modal Handler
+
   const onSubmit = () => {
     console.log(data);
     dispatch(setPinUser(data, history));
+    setIsShowModal(true);
+  
     // history.push('/createpin');
     return;
   };
   // END = HANDLE FORM
-
+  
   useEffect(() => {
     document.title = "Zwallet | Create Pin";
   }, [inputValuePin]);
-
-  
 
   return (
     <Styles>
@@ -83,9 +83,32 @@ const data = { pin: inputValuePin };
           </form>
         </div>
       </div>
+
+      <ModalBank showModal={isShowModal} closeModal={() => setIsShowModal(false)}>
+        <form>
+            <div className="bank-choice">
+                  <select className="custom-select" name="" id="inputGroupSelect01">
+                  <option selected>Choose your bank</option>
+                  <option value="">MANDIRI</option>
+                  <option value="">BNI</option>
+                  <option value="">BRI</option>
+                  <option value="">PERMATA</option>
+                  <option value="">BCA</option>
+              </select>
+            </div>
+            <div className="btn-wrapper">
+              <Button    
+              primary
+              className="btn-action"
+              onClick="">
+                Continue
+              </Button>
+            </div>
+        </form>
+      </ModalBank>
     </Styles>
   );
-};;
+};
 
 export default CreatePinPage;
 const Styles = styled.div`
@@ -182,4 +205,21 @@ const Styles = styled.div`
       }
     }
   }
+  .bank-choice{
+    margin-top: 30px;
+    .custom-select{
+      width: 100%;
+      height: 35px;
+    }
+  }
+.btn-wrapper{
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 50px;
+  .btn-action{
+    width: 170px;
+    height: 57px;
+  }
+}
+
 `;
