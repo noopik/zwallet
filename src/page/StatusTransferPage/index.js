@@ -1,6 +1,6 @@
 import React from 'react';
-import { useState } from 'react';
-// import { useHistory } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import {
   AVAJessicaMera,
   DownloadIcon,
@@ -12,26 +12,30 @@ import { Button, Cardwrapper, SmallCard } from '../../components';
 import { StyleStatus } from './StyleStatus';
 
 const StatusTransferPage = () => {
-  // const history = useHistory();
+  const history = useHistory();
+  const transferState = useSelector((state) => state.transferReducer);
+  const username = localStorage.getItem('username');
 
-  const [statusTransfer, setStatusTransfer] = useState(false);
-  console.log(setStatusTransfer);
+  // const [statusTransfer, setStatusTransfer] = useState(true);
+  // // console.log(setStatusTransfer);
   return (
     <Cardwrapper>
       <StyleStatus>
         <div className="status-header">
-          {statusTransfer && (
+          {transferState?.status && (
             <img src={Success} alt="" className="success-img" />
           )}
-          {!statusTransfer && <img src={Failed} alt="" className="fail-img" />}
+          {!transferState?.status && (
+            <img src={Failed} alt="" className="fail-img" />
+          )}
           <div className="status-name">
-            {statusTransfer && (
+            {transferState?.status && (
               <h3 className="success-stat">Transfer Success</h3>
             )}
-            {!statusTransfer && (
+            {!transferState?.status && (
               <h3 className="failed-stat">Transfer Failed</h3>
             )}
-            {!statusTransfer && (
+            {!transferState?.status && (
               <p className="fail-message">
                 We can’t transfer your money at the moment, we recommend you to
                 check your internet connection and try again.
@@ -41,19 +45,19 @@ const StatusTransferPage = () => {
         </div>
         <SmallCard className="card-section-first">
           <p className="title">Amount</p>
-          <h4 className="content">Rp100.000</h4>
+          <h4 className="content">Rp{transferState.amount}</h4>
         </SmallCard>
         <SmallCard className="card-section">
           <p className="title">Balance left</p>
-          <h4 className="content">Rp20.000</h4>
+          <h4 className="content">Rp{transferState.balanceLeft}</h4>
         </SmallCard>
         <SmallCard className="card-section">
           <p className="title">Date & time</p>
-          <h4 className="content">May 11, 2020 - time</h4>
+          <h4 className="content">'transferState.date'</h4>
         </SmallCard>
         <SmallCard className="card-section">
           <p className="title">Notes</p>
-          <h4 className="content">For buying some snacks</h4>
+          <h4 className="content">{transferState.notes}</h4>
         </SmallCard>
 
         <p className="text-transfer">Transfer to</p>
@@ -84,6 +88,9 @@ const StatusTransferPage = () => {
             className="button-back"
             primary="primary"
             children="Back to Home"
+            onClick={() => {
+              return history.push(`/${username}/dashboard`);
+            }}
           />
         </div>
       </StyleStatus>

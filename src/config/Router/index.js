@@ -40,7 +40,7 @@ const Routes = () => {
         <Route exact path="/" component={Landingpage} />
         {/* START = AUTHENTICATION PAGE */}
         <PublicRoute exact path="/login" component={LoginPage} />
-        <PublicRoute path="/create-pin/:id" component={CreatePinPage} />
+        <Route path="/create-pin/:id" component={CreatePinPage} />
         <PublicRoute path="/sign-up" component={SignupPage} />
         <PublicRoute path="/success-pin" component={SuccessPinPage} />
         <PublicRoute
@@ -54,6 +54,10 @@ const Routes = () => {
         <PublicRoute path="/email-success" component={VerifiedEmailSuccess} />
 
         {/* END = AUTHENTICATION PAGE */}
+        {/* START = Admin Page */}
+        <PrivateRoute exact path="/admin/dashboard" component={AdminHomePage} />
+        <PrivateRoute path="/admin/user" component={AdminListUserPage} />
+        {/* END = Admin Page */}
         {/* START = USER PAGE */}
 
         <PrivateRoute path="/:username/dashboard" component={Homepage} />
@@ -61,52 +65,51 @@ const Routes = () => {
 
         <PrivateRoute
           exact
-          path="/username/search-receiver"
+          path="/:username/search-receiver"
           component={SearchReceiverPage}
         />
         <PrivateRoute
           exact
-          path="/username/search-receiver/to-username"
+          path="/:username/search-receiver/:toUser"
           component={UserReceiverPage}
         />
 
         <PrivateRoute
-          path="/username/search-receiver/to-username/confirmation"
+          path="/:username/search-receiver/:toUser/confirmation"
           component={ConfirmationTransferPage}
         />
         <PrivateRoute
-          path="/username/status-transfer"
+          path="/:username/status-transfer"
           component={StatusTransferPage}
         />
         <PrivateRoute
           exact
-          path="/username/profile"
+          path="/:username/profile"
           component={ProfileUserPage}
         />
-        <PrivateRoute path="/username/profile/info" component={PersonalInfo} />
+        <PrivateRoute path="/:username/profile/info" component={PersonalInfo} />
         <PrivateRoute
-          path="/username/profile/password"
+          path="/:username/profile/password"
           component={ChangePasswordPage}
         />
         <PrivateRoute
-          path="/username/profile/phone-number"
+          path="/:username/profile/phone-number"
           component={ManagePhoneNumber}
         />
         <PrivateRoute
-          path="/username/profile/change-pin"
+          path="/:username/profile/change-pin"
           component={ChangePinPage}
         />
-        <PrivateRoute path="/username/profile/new-pin" component={NewPinPage} />
         <PrivateRoute
-          path="/username/profile/add-phone-number"
+          path="/:username/profile/new-pin"
+          component={NewPinPage}
+        />
+        <PrivateRoute
+          path="/:username/profile/add-phone-number"
           component={AddPhoneNumberPage}
         />
-        <PrivateRoute path="/username/topup" component={TopupPage} />
+        <PrivateRoute path="/:username/topup" component={TopupPage} />
         {/* START = USER PAGE */}
-        {/* START = Admin Page */}
-        <PrivateRoute exact path="/admin/dashboard" component={AdminHomePage} />
-        <PrivateRoute path="/admin/user" component={AdminListUserPage} />
-        {/* END = Admin Page */}
       </Switch>
     </Router>
   );

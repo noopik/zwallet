@@ -3,23 +3,23 @@ import React from 'react';
 import { Redirect, Route } from 'react-router-dom';
 
 const PublicRoute = ({ component: Component, ...rest }) => {
-   const isAuth = localStorage.getItem("isAuth");
-   const role = localStorage.getItem("role");
-   const username = localStorage.getItem("username");
-   console.log(role);
+  const isAuth = localStorage.getItem('isAuth');
+  const role = localStorage.getItem('role');
+  const username = localStorage.getItem('username');
+  // console.log(role);
   // const userState = useSelector((state) => state.userReducer);
   // const token = localStorage.getItem('token');
   // const dispatch = useDispatch();
-  
+
   return (
     <Route
       {...rest}
       render={(props) => {
-        if (isAuth === 'false') {
+        if (!isAuth) {
           return <Component {...props} />;
-        } else if (isAuth === 'true' && role === "MEMBER") {
+        } else if (isAuth === 'true' && role === 'MEMBER') {
           return <Redirect to={`/${username}/dashboard`} />;
-        } else if (isAuth === 'true' && role === "ADMIN") {
+        } else if (isAuth === 'true' && role === 'ADMIN') {
           return <Redirect to={`/admin/dashboard`} />;
         }
       }}

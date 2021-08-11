@@ -25,7 +25,6 @@ import AdminHomePage from './AdminHomePage';
 import AdminListUserPage from './AdminListUserPage';
 import VerifiedEmailSuccess from './VerifiedEmailSuccess';
 
-
 // END = NISA
 
 export {
@@ -53,6 +52,5 @@ export {
   ChartaBar,
   AdminHomePage,
   AdminListUserPage,
-  VerifiedEmailSuccess
-
+  VerifiedEmailSuccess,
 };

@@ -5,11 +5,12 @@ import styled from 'styled-components';
 import { Cardwrapper } from '../../atoms';
 import { customMedia } from '../../Layouting/BreakPoints';
 
-const MenuAsideLeft = ({ active }) => {
+const MenuAsideLeft = ({ active, username }) => {
   const history = useHistory();
+  const isAdmin = localStorage.getItem('role');
 
   const actionMenu = (menu) => {
-    history.push(`/username/${menu}`);
+    history.push(`/${username}/${menu}`);
   };
 
   // START = LIST OF MENU
@@ -21,7 +22,10 @@ const MenuAsideLeft = ({ active }) => {
     logout: 'logout',
   };
   // END = LIST OF MENU
-
+  const logoutAction = () => {
+    localStorage.removeItem('isAuth');
+    history.push('/');
+  };
   return (
     <StyleMenuAsideLeft>
       <Cardwrapper>
@@ -75,79 +79,84 @@ const MenuAsideLeft = ({ active }) => {
                 <h2 className="title-menu">Dashboard</h2>
               </div>
             </div>
-            <div
-              className={`menu-item ${
-                listMenu[active] === listMenu.transfer ? 'active' : ''
-              }`}
-              onClick={() => actionMenu('search-receiver')}
-            >
-              <div className="blox"></div>
-              <div className="menu">
-                <svg
-                  className="icon"
-                  width="28"
-                  height="28"
-                  viewBox="0 0 28 28"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M14 22.1663V5.83301"
-                    stroke="#3A3D42"
-                    stroke-opacity="0.8"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  />
-                  <path
-                    d="M5.83333 13.9997L14 5.83301L22.1667 13.9997"
-                    stroke="#3A3D42"
-                    stroke-opacity="0.8"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  />
-                </svg>
-                <h2 className="title-menu">Transfer</h2>
+            {isAdmin !== 'ADMIN' && (
+              <div
+                className={`menu-item ${
+                  listMenu[active] === listMenu.transfer ? 'active' : ''
+                }`}
+                onClick={() => actionMenu('search-receiver')}
+              >
+                <div className="blox"></div>
+                <div className="menu">
+                  <svg
+                    className="icon"
+                    width="28"
+                    height="28"
+                    viewBox="0 0 28 28"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M14 22.1663V5.83301"
+                      stroke="#3A3D42"
+                      stroke-opacity="0.8"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                    <path
+                      d="M5.83333 13.9997L14 5.83301L22.1667 13.9997"
+                      stroke="#3A3D42"
+                      stroke-opacity="0.8"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                  <h2 className="title-menu">Transfer</h2>
+                </div>
               </div>
-            </div>
-            <div
-              className={`menu-item ${
-                listMenu[active] === listMenu.topup && 'active'
-              }`}
-              onClick={() => actionMenu('topup')}
-            >
-              <div className="blox"></div>
-              <div className="menu">
-                <svg
-                  className="icon"
-                  width="28"
-                  height="28"
-                  viewBox="0 0 28 28"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M14 5.83301V22.1663"
-                    stroke="#3A3D42"
-                    stroke-opacity="0.8"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  />
-                  <path
-                    d="M5.83333 14H22.1667"
-                    stroke="#3A3D42"
-                    stroke-opacity="0.8"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  />
-                </svg>
+            )}
+            {isAdmin !== 'ADMIN' && (
+              <div
+                className={`menu-item ${
+                  listMenu[active] === listMenu.topup && 'active'
+                }`}
+                onClick={() => actionMenu('topup')}
+              >
+                <div className="blox"></div>
+                <div className="menu">
+                  <svg
+                    className="icon"
+                    width="28"
+                    height="28"
+                    viewBox="0 0 28 28"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M14 5.83301V22.1663"
+                      stroke="#3A3D42"
+                      stroke-opacity="0.8"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                    <path
+                      d="M5.83333 14H22.1667"
+                      stroke="#3A3D42"
+                      stroke-opacity="0.8"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
 
-                <h2 className="title-menu">Top up</h2>
+                  <h2 className="title-menu">Top up</h2>
+                </div>
               </div>
-            </div>
+            )}
+
             <div
               className={`menu-item ${
                 listMenu[active] === listMenu.profile && 'active'
@@ -190,6 +199,7 @@ const MenuAsideLeft = ({ active }) => {
             className={`menu-item ${
               listMenu[active] === listMenu.logout && 'active'
             }`}
+            onClick={logoutAction}
           >
             <div className="blox"></div>
 

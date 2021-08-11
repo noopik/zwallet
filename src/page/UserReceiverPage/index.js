@@ -1,14 +1,94 @@
-import React, { useEffect } from 'react';
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { useDispatch } from 'react-redux';
+import { useHistory, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
-import { AVAJessicaMera } from '../../assets';
-import { Cardwrapper, Input } from '../../components';
+import { AlertValidationForm, Cardwrapper, Input } from '../../components';
 import Button from '../../components/atoms/Button';
 import { customMedia } from '../../components/Layouting/BreakPoints';
+import { patternNumber, toastify } from '../../utils';
+import { dispatchTypes } from '../../utils/dispatchType';
 
 const UserReceiverPage = () => {
+  const location = useLocation();
+  const getIdUserReceiver = location.pathname.split('/')[3];
+  const token = localStorage.getItem('token');
+  const idSender = localStorage.getItem('id');
+  const [userReceiver, setUserReceiver] = useState({});
+  const [amountTransfer, setAmountTransfer] = useState(0.0);
+  // const [amountAvailable, setAmountAvailable] = useState(false);
+  const username = localStorage.getItem('username');
+  const dispatch = useDispatch();
+  const history = useHistory();
+
   useEffect(() => {
     document.title = 'Tranfer to Samuel Suhu';
   });
+
+  // START = GET USER RECEIVER
+  useEffect(() => {
+    axios
+      .get(`${process.env.REACT_APP_BACKEND_API}/users/${getIdUserReceiver}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((res) => {
+        // console.log(res);
+        setUserReceiver(res.data.data[0]);
+      })
+      .catch((err) => {
+        console.log(err.response);
+      });
+  });
+  // END = GET USER RECEIVER
+
+  // START = HANDLE FORM
+  const {
+    register,
+    handleSubmit,
+    watch,
+    getValues,
+    formState: { errors },
+  } = useForm();
+
+  const valueAmount = getValues('amount');
+  const onSubmit = (data) => {
+    const amount = localStorage.getItem('amount');
+    const valueAmountRequest = valueAmount;
+    if (parseInt(valueAmountRequest) > parseInt(amount)) {
+      return toastify('Upps, saldo tidak mencukupi', 'error');
+    }
+    const dataSend = {
+      sender: idSender,
+      receiver: getIdUserReceiver,
+      amount: data.amount,
+      balanceLeft: amount - valueAmountRequest,
+      date: new Date(),
+      notes: data.notes,
+    };
+    // console.log(dataSend);
+    dispatch({ type: dispatchTypes.setTransfer, payload: dataSend });
+    // console.log(data);
+    history.push(
+      `/${username}/search-receiver/${getIdUserReceiver}/confirmation`
+    );
+  };
+
+  useEffect(() => {
+    if (watch('amount')) {
+      setAmountTransfer(valueAmount);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [watch('amount')]);
+
+  // END = HANDLE FORM
+
+  if (!userReceiver) {
+    return null;
+  }
+
   return (
     <Cardwrapper>
       <StyledUserReceiverPage>
@@ -18,33 +98,45 @@ const UserReceiverPage = () => {
         <Cardwrapper>
           <div className="user-profile-receiver">
             <div className="avatar">
-              <img src={AVAJessicaMera} alt="username" />
+              <img src={userReceiver.avatar} alt="username" />
             </div>
             <div className="description">
-              <h2 className="text-heading">Samuel Suhu</h2>
-              <p className="text-regular">+62 897 897 88</p>
+              <h2 className="text-heading">{userReceiver.username}</h2>
+              <p className="text-regular">{userReceiver.phone}</p>
             </div>
           </div>
         </Cardwrapper>
         <div className="body-section">
-          <form>
+          <form onSubmit={handleSubmit(onSubmit)}>
             <p className="text-regular">
               Type the amount you want to transfer and then press continue to
               the next steps.
             </p>
             <div className="input-wrapper">
-              <input className="amount" type="text" placeholder="0.00" />
+              <input
+                className="amount"
+                type="text"
+                placeholder="0.00"
+                {...register('amount', {
+                  required: true,
+                  pattern: patternNumber,
+                })}
+              />
+              {errors.amount && <AlertValidationForm message="Only numbers" />}
             </div>
-            <p className="text-heading summary">Rp. 120.000 Available</p>
+            <p className="text-heading summary">
+              Rp. {amountTransfer} Available
+            </p>
             <div className="notes-wrapper">
               <Input
                 icon="pen"
                 className="input"
                 placeholder="Add some notes"
+                {...register('notes', {})}
               />
             </div>
             <div className="btn-wrapper">
-              <Button primary className="btn-action">
+              <Button type="submit" primary className="btn-action">
                 Continue
               </Button>
             </div>

@@ -13,7 +13,7 @@ const ChangePinPage = () => {
   useEffect(() => {
     document.title = 'Username | Change pin';
   });
-  console.log(handleDisabledButton);
+  // console.log(handleDisabledButton);
 
   return (
     <Cardwrapper>
@@ -45,7 +45,12 @@ const ChangePinPage = () => {
               regexCriteria={/^[ A-Za-z0-9_@./#&+-]*$/}
             />
           </div>
-          <Button primary="primary" className="btn" onClick={handleSubmit}>
+          <Button
+            primary="primary"
+            className="btn"
+            onClick={handleSubmit}
+            disabled={handleDisabledButton}
+          >
             Continue
           </Button>
         </form>

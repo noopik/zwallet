@@ -1,27 +1,97 @@
-import React from 'react';
-import { useEffect } from 'react';
+import axios from 'axios';
+import React, { useEffect } from 'react';
+import { useForm } from 'react-hook-form';
 import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
-import { AVAJessicaMera, ICArrowLeft } from '../../assets';
+import { ICArrowLeft } from '../../assets';
 import { Cardwrapper } from '../../components';
 import { customMedia } from '../../components/Layouting/BreakPoints';
+import { toastify } from '../../utils';
 
 const ProfileUserPage = () => {
   const history = useHistory();
+  const avatar = localStorage.getItem('avatar');
+  const username = localStorage.getItem('username');
+  const phone = localStorage.getItem('phone');
+  const userId = localStorage.getItem('id');
+  const token = localStorage.getItem('token');
 
   useEffect(() => {
     document.title = 'Zwallet | Novi Dwi Cahya';
-  });
+  }, [avatar]);
 
+  // START = HANDLE FORM
+  const {
+    register,
+    // handleSubmit,
+    watch,
+    getValues,
+    // formState: { errors },
+  } = useForm();
+
+  const updateAvatar = (data) => {
+    const changeImage = getValues('avatar')[0];
+    const formData = new FormData();
+    formData.append('avatar', changeImage);
+    axios
+      .patch(
+        `${process.env.REACT_APP_BACKEND_API}/users/avatar/${userId}`,
+        formData,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      )
+      .then((result) => {
+        toastify('Success update image', 'info');
+        axios
+          .get(`${process.env.REACT_APP_BACKEND_API}/users/${userId}`, {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          })
+          .then((res) => {
+            const dataResponse = res.data.data[0];
+            // console.log(dataResponse);
+            return localStorage.setItem('avatar', dataResponse.avatar);
+          })
+          .catch((err) => {
+            console.log(err.response);
+          });
+      })
+      .catch((err) => {
+        console.log(err.response);
+        if (err.response.status === 400) {
+          return null;
+        }
+        return toastify(err.response.data.message, 'error');
+      });
+  };
+
+  useEffect(() => {
+    if (getValues('avatar')) {
+      updateAvatar();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [watch('avatar')]);
+  // END = HANDLE FORM
+
+  // START = LOGOUT ACTION
+  const logoutAction = () => {
+    localStorage.removeItem('isAuth');
+    history.push('/');
+  };
+  // END
   return (
     <Cardwrapper>
       <StyledProfileUserPage>
         <div className="content">
           <div className="header-avatar">
             <div className="avatar-wrapper">
-              <img src={AVAJessicaMera} alt="user" />
+              <img src={avatar} alt="user" />
             </div>
-            <div className="edit-wrapper">
+            <form className="edit-wrapper">
               <svg
                 className="icon"
                 width="24"
@@ -39,18 +109,18 @@ const ProfileUserPage = () => {
                   stroke-linejoin="round"
                 />
               </svg>
-              <p>Edit</p>
-            </div>
+              <input type="file" {...register('avatar')} />
+            </form>
           </div>
           <div className="description-user">
-            <h2 className="text-heading-bold">ROberto Mancini</h2>
-            <p className="text-regular">+62 3564 6562 12</p>
+            <h2 className="text-heading-bold">{username}</h2>
+            <p className="text-regular">{phone}</p>
           </div>
           <div className="body">
             <div
               className="item-menu"
               onClick={() => {
-                history.push('/username/profile/info');
+                history.push(`/${username}/profile/info`);
               }}
             >
               <p className="text-heading">Personal Information</p>
@@ -59,7 +129,7 @@ const ProfileUserPage = () => {
             <div
               className="item-menu"
               onClick={() => {
-                history.push('/username/profile/password');
+                history.push(`/${username}/profile/password`);
               }}
             >
               <p className="text-heading">Change Password</p>
@@ -68,13 +138,13 @@ const ProfileUserPage = () => {
             <div
               className="item-menu"
               onClick={() => {
-                history.push('/username/profile/change-pin');
+                history.push(`/${username}/profile/change-pin`);
               }}
             >
               <p className="text-heading">Change PIN</p>
               <img src={ICArrowLeft} alt="icon arrow" />
             </div>
-            <div className="item-menu">
+            <div className="item-menu" onClick={logoutAction}>
               <p className="text-heading">Logout</p>
             </div>
           </div>

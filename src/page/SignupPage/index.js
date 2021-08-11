@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { Link, useHistory } from 'react-router-dom';
 import styled from 'styled-components';
 import {
   AlertValidationForm,
@@ -8,15 +9,13 @@ import {
   Input,
   SidebarAuth,
 } from '../../components';
-import { customMedia } from "../../components/Layouting/BreakPoints";
+import { customMedia } from '../../components/Layouting/BreakPoints';
+import { registerUser } from '../../config/Redux/actions/userActions';
 import { patternEmail } from '../../utils';
-import { registerUser } from "../../config/Redux/actions/userActions";
-import { useDispatch } from "react-redux";
-import { useHistory } from "react-router-dom";
 
 const SignupPage = () => {
-    const dispatch = useDispatch();
-    const history = useHistory();
+  const dispatch = useDispatch();
+  const history = useHistory();
   const [handleDisabledButton, setHandleDisabledButton] = useState(true);
 
   //   START = TITLE DOCUMENT
@@ -34,10 +33,10 @@ const SignupPage = () => {
   } = useForm();
 
   const onSubmit = (data) => {
-    console.log(data);
+    // console.log(data);
+
     dispatch(registerUser(data, history));
     // history.push('/createpin');
-    return;
   };
   // END = HANDLE FORM
 
@@ -137,7 +136,6 @@ const SignupPage = () => {
                 className={inputActive && 'active'}
                 {...register('password', {
                   required: true,
-                  
                 })}
               />
               {errors.password && (
@@ -174,7 +172,7 @@ export default SignupPage;
 const Styles = styled.div`
   height: 100vh;
   display: flex;
-  ${customMedia.lessThan("tablet")`
+  ${customMedia.lessThan('tablet')`
   flex-direction: column
   `}
   /* background: orange; */
@@ -182,7 +180,7 @@ const Styles = styled.div`
   .row-side {
     /* height: 100%; */
     width: 55%;
-    ${customMedia.lessThan("tablet")`
+    ${customMedia.lessThan('tablet')`
  width: 100%;
   `}
   }
@@ -196,7 +194,7 @@ const Styles = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    ${customMedia.lessThan("tablet")`
+    ${customMedia.lessThan('tablet')`
  width: 100%;
   `}
     .content {
