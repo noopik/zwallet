@@ -10,7 +10,6 @@ export const StylingMainContent = styled.main`
   margin: 0 auto;
   margin-top: 40px;
   display: flex;
-  /* background-color: pink; */
   gap: 20px;
   .main {
     width: 100%;

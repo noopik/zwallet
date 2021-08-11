@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { customMedia } from '../../components/Layouting/BreakPoints';
 
 export const StylesPinChange = styled.div`
   padding: 30px;
@@ -15,7 +16,14 @@ export const StylesPinChange = styled.div`
     margin-right: auto;
     margin-top: 100px;
     overflow: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     .field-wrap {
+      ${customMedia.lessThan('960px')` 
+        width: 90%;
+      `}
+      width: 500px;
       display: flex;
       .pincode-input-container {
         display: flex;
@@ -48,12 +56,15 @@ export const StylesPinChange = styled.div`
         }
       }
     }
+    .btn {
+      width: 500px;
+      ${customMedia.lessThan('960px')` 
+        width: 90%;
+      `}
+      margin-top: 70px;
+    }
   }
   .field-token {
     margin-left: 20px;
-  }
-  .btn {
-    width: 100%;
-    margin-top: 70px;
   }
 `;

@@ -30,12 +30,12 @@ const Navbar = ({ className }) => {
             >
               <img src={ICBell} alt="Icon bell" />
             </div>
-            <NotificationPopup
-              showPopup={setNotification}
-              closePopup={() => setShowNotification(false)}
-            />
           </div>
         </div>
+        <NotificationPopup
+          showPopup={setNotification}
+          closePopup={() => setShowNotification(false)}
+        />
       </NavbarStyling>
     </>
   );
@@ -55,6 +55,7 @@ const NavbarStyling = styled.nav`
   position: fixed;
   width: 100vw;
   top: 0;
+  z-index: 99;
   .custom-container {
     position: relative;
     ${customMedia.lessThan('1000px')`
