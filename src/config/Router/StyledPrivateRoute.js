@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { customMedia } from '../../components/Layouting/BreakPoints';
 
 export const StylingMainContent = styled.main`
+  padding-top: 120px;
   width: 80%;
   ${customMedia.lessThan('1000px')`
       width: 90%; 
@@ -9,7 +10,6 @@ export const StylingMainContent = styled.main`
   margin: 0 auto;
   margin-top: 40px;
   display: flex;
-  /* background-color: pink; */
   gap: 20px;
   .main {
     width: 100%;

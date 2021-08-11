@@ -23,6 +23,10 @@ const Landingpage = () => {
   const actionLogin = () => {
     history.push('/login');
   };
+    const actionRegister = () => {
+      history.push("/sign-up");
+    };
+    
   return (
     <LandingPageStyles>
       <img className="bg-layer" src={ICBackgroundLandingPage} alt="ng" />
@@ -34,17 +38,21 @@ const Landingpage = () => {
               <button className="button default" onClick={actionLogin}>
                 Login
               </button>
-              <button className="button filled">Sign Up</button>
+              <button className="button filled" onClick={actionRegister}>
+                Sign Up
+              </button>
             </div>
           </div>
         </nav>
         <header className="custom-container">
           <div className="right">
             <h1 className="title-section">
-              Awesome App For Saving{' '}
+              Awesome App For Saving{" "}
               <span className="heading primary">Time.</span>
             </h1>
-            <button className="button primary">Try It Free</button>
+            <button className="button primary" onClick={actionRegister}>
+              Try It Free
+            </button>
           </div>
           <aside>
             <div className="image-wrapper">

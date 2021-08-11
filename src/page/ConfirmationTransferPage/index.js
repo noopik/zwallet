@@ -1,25 +1,31 @@
-import React, { useEffect, useState } from "react";
-import PinInput from "react-pin-input";
-import styled from "styled-components";
+import React, { useEffect, useState } from 'react';
+import PinInput from 'react-pin-input';
+import { useHistory } from 'react-router-dom';
+import styled from 'styled-components';
+
 import {
   Button,
   CardProfileUser,
   Cardwrapper,
   HeadingContent,
   Modal,
-} from "../../components";
-import ItemDetail from "../../components/atoms/ItemDetail";
+} from '../../components';
+import ItemDetail from '../../components/atoms/ItemDetail';
+import { customMedia } from '../../components/Layouting/BreakPoints';
+import { colors } from '../../utils';
 
 const ConfirmationTransferPage = () => {
-  const [showModal, setShowModal] = useState(true);
+  const [isShowModal, setIsShowModal] = useState(false);
+  const history = useHistory();
 
   useEffect(() => {
-    document.title = "Transfer Confirmation";
+    document.title = 'Transfer Confirmation';
   });
 
-  // const hanleShowContinue = () => {
-  //   setShowModal(true);
-  // };
+  const actionButton = () => {
+    console.log(2);
+    setIsShowModal(true);
+  };
 
   return (
     <Cardwrapper>
@@ -36,12 +42,12 @@ const ConfirmationTransferPage = () => {
           <ItemDetail title="Notes" description="For buying some socks" />
         </div>
         <div className="btn-wrapper">
-          <Button primary className="btn-action">
+          <button onClick={actionButton} className="btn-action">
             Continue
-          </Button>
+          </button>
         </div>
       </StyledConfirmationPage>
-      <Modal showModal={showModal} closeModal={() => setShowModal(false)}>
+      <Modal showModal={isShowModal} closeModal={() => setIsShowModal(false)}>
         <Form>
           <div className="token-field">
             <PinInput
@@ -56,7 +62,13 @@ const ConfirmationTransferPage = () => {
             />
           </div>
           <div className="btn-wrapper">
-            <Button primary className="btn-action">
+            <Button
+              primary
+              className="btn-action"
+              onClick={() => {
+                history.push(`/username/status-transfer`);
+              }}
+            >
               Continue
             </Button>
           </div>
@@ -130,6 +142,21 @@ const StyledConfirmationPage = styled.div`
     margin-top: 55px;
     .btn-action {
       width: 170px;
+      ${customMedia.lessThan('603px')`
+        width: 100%; 
+      `}
+      /* background: rgba(255, 255, 255, 0.2); */
+      border: 1px solid #ffffff;
+      box-sizing: border-box;
+      border-radius: 10px;
+      padding: 14px 27px;
+      color: white;
+      font: inherit;
+      /* background-color: yellow; */
+      background-color: ${colors.primary};
+      &:hover {
+        opacity: 0.8;
+      }
     }
   }
 `;

@@ -11,9 +11,13 @@ import {
 } from '../../components';
 import { customMedia } from '../../components/Layouting/BreakPoints';
 import { patternEmail } from '../../utils';
+import { loginUser } from "../../config/Redux/actions/userActions";
+import { useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
 
 const LoginPage = () => {
-  // const history = useHistory();
+   const dispatch = useDispatch();
+   const history = useHistory();
   const [handleDisabledButton, setHandleDisabledButton] = useState(true);
 
   // START = HANDLE FORM
@@ -27,6 +31,7 @@ const LoginPage = () => {
 
   const onSubmit = (data) => {
     console.log(data);
+      dispatch(loginUser(data, history));
     // history.push('/createpin');
     return;
   };
@@ -127,7 +132,7 @@ const LoginPage = () => {
           <div className="register-link">
             <p>Don't have an account ? Let's</p>
             <Link
-              to="/signup"
+              to="/sign-up"
               classname="link"
               style={{ textDecoration: 'none' }}
             >

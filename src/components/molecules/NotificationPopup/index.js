@@ -84,8 +84,8 @@ const StyledNotificationPopup = styled.div`
     box-shadow: 0px 0px 70px rgba(99, 99, 99, 0.15);
     border-radius: 20px;
     position: absolute;
-    right: 0;
-    top: 120px;
+    right: 10rem;
+    top: 150px;
     padding: 30px;
     display: flex;
     flex-direction: column;

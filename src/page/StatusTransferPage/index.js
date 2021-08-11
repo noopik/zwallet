@@ -1,5 +1,6 @@
 import React from 'react';
 import { useState } from 'react';
+// import { useHistory } from 'react-router-dom';
 import {
   AVAJessicaMera,
   DownloadIcon,
@@ -11,6 +12,8 @@ import { Button, Cardwrapper, SmallCard } from '../../components';
 import { StyleStatus } from './StyleStatus';
 
 const StatusTransferPage = () => {
+  // const history = useHistory();
+
   const [statusTransfer, setStatusTransfer] = useState(false);
   console.log(setStatusTransfer);
   return (

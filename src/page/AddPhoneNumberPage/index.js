@@ -1,8 +1,48 @@
-import React from "react";
-import { Button, Cardwrapper, HeadingContent } from "../../components";
-import { StyledPhone } from "./StyledPhone";
+import React, { useEffect, useState } from 'react';
+import {
+  AlertValidationForm,
+  Button,
+  Cardwrapper,
+  HeadingContent,
+  Input,
+} from '../../components';
+import { StyledPhone } from './StyledPhone';
+import { useForm } from 'react-hook-form';
+import { patternNumber } from '../../utils';
 
 const AddPhoneNumberPage = () => {
+  const [handleDisabledButton, setHandleDisabledButton] = useState(true);
+
+  // START = HANDLE FORM
+  const {
+    register,
+    handleSubmit,
+    watch,
+    getValues,
+    formState: { errors },
+  } = useForm();
+
+  const onSubmit = (data) => {
+    console.log(data);
+    // history.push('/createpin');
+    return;
+  };
+  // END = HANDLE FORM
+
+  useEffect(() => {
+    document.title = 'Username | Add phone number';
+  });
+
+  useEffect(() => {
+    const value = getValues();
+    if (value.phone) {
+      setHandleDisabledButton(false);
+    } else {
+      setHandleDisabledButton(true);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [watch('phone')]);
+
   return (
     <Cardwrapper>
       <StyledPhone>
@@ -13,14 +53,35 @@ const AddPhoneNumberPage = () => {
             ID so you can start transfering your money to <br /> another user.
           </p>
         </div>
-        <div className="content-wrapper">
-          <input
-            type="text"
-            className="input-dummy"
-            placeholder="Enter Your Phone number"
-          />
-          <Button primary="primary" className="btn" onClick="" />
-        </div>
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <div className="form-input">
+            <Input
+              icon="phone"
+              type="text"
+              id="phone"
+              name="phone"
+              placeholder="Enter your phone number"
+              {...register('phone', {
+                required: true,
+                minLength: 11,
+                pattern: patternNumber,
+              })}
+            />
+            {errors.phone && (
+              <AlertValidationForm message="Number phone must be a number and min 11 character" />
+            )}
+          </div>
+          <div className="btn-wrapper">
+            <Button
+              type="submit"
+              primary="primary"
+              className="btn"
+              disabled={handleDisabledButton}
+            >
+              Add Phone Number
+            </Button>
+          </div>
+        </form>
       </StyledPhone>
     </Cardwrapper>
   );

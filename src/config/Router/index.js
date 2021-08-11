@@ -26,50 +26,38 @@ import {
   NewPinPage,
   AdminHomePage,
   AdminListUserPage,
-  VerifiedEmailSuccess
-
+  VerifiedEmailSuccess,
 
   //  END = nisa
 } from '../../page';
 import PrivateRoute from './PrivateRoute';
 import PublicRoute from './PublicRoute';
 
-
 const Routes = () => {
   return (
     <Router>
       <Switch>
-
-    
-
-        {/* Admin Page */}
-        <PrivateRoute exact path="/admin/dashboard" component={AdminHomePage} />
-        <PrivateRoute path="/admin/user" component={AdminListUserPage} />
-
-        <PublicRoute path="/email-success" component={VerifiedEmailSuccess} />
-
-
-
         <Route exact path="/" component={Landingpage} />
         {/* START = AUTHENTICATION PAGE */}
         <PublicRoute exact path="/login" component={LoginPage} />
-        <PublicRoute path="/create-pin" component={CreatePinPage} />
+        <PublicRoute path="/create-pin/:id" component={CreatePinPage} />
         <PublicRoute path="/sign-up" component={SignupPage} />
         <PublicRoute path="/success-pin" component={SuccessPinPage} />
-        <PublicRoute path="/new-password" component={ForgotPasswordPage} />
+        <PublicRoute
+          path="/new-password/:token"
+          component={ForgotPasswordPage}
+        />
         <PublicRoute
           path="/reset-password"
           component={ResetPasswordEmailPage}
         />
+        <PublicRoute path="/email-success" component={VerifiedEmailSuccess} />
 
         {/* END = AUTHENTICATION PAGE */}
         {/* START = USER PAGE */}
-        <PrivateRoute path="/username/dashboard" component={Homepage} />
-        <PrivateRoute path="/username/history" component={HistoryPage} />
-        
-        {/* ini route untuk page chart bar
-            nanti di hapus aja  */}
-        {/* <PrivateRoute path="/chart" component={ChartaBar} /> */}
+
+        <PrivateRoute path="/:username/dashboard" component={Homepage} />
+        <PrivateRoute path="/:username/history" component={HistoryPage} />
 
         <PrivateRoute
           exact
@@ -114,9 +102,11 @@ const Routes = () => {
           component={AddPhoneNumberPage}
         />
         <PrivateRoute path="/username/topup" component={TopupPage} />
-
         {/* START = USER PAGE */}
-
+        {/* START = Admin Page */}
+        <PrivateRoute exact path="/admin/dashboard" component={AdminHomePage} />
+        <PrivateRoute path="/admin/user" component={AdminListUserPage} />
+        {/* END = Admin Page */}
       </Switch>
     </Router>
   );
