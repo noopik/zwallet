@@ -145,15 +145,16 @@ export default LoginPage;
 const Styles = styled.div`
   height: 100vh;
   display: flex;
-  ${customMedia.lessThan('777px')` 
-    // flex-direction: column;
-  `}
-  ${customMedia.lessThan('320px')` 
-  // background-color: yellow;
-  `}
+  ${customMedia.lessThan("tablet")`
+  flex-direction: column
+`}
+ 
   .row-side {
     /* height: 100%; */
     width: 55%;
+    ${customMedia.lessThan("tablet")`
+ width: 100%
+  `}
   }
   .form-side {
     /* width: 50%; */
@@ -161,6 +162,9 @@ const Styles = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
+    ${customMedia.lessThan("tablet")`
+ width: 100%;
+  `}
     .content {
       width: 80%;
       h5 {
@@ -211,4 +215,4 @@ const Styles = styled.div`
       margin-bottom: 0;
     }
   }
-`;
+`

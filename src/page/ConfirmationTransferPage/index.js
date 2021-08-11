@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import PinInput from 'react-pin-input';
 import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
+
 import {
   Button,
   CardProfileUser,

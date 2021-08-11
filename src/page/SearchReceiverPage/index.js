@@ -3,10 +3,10 @@ import styled from 'styled-components';
 import { CardProfileUser, Cardwrapper, HeadingContent } from '../../components';
 import { useForm } from 'react-hook-form';
 import { useEffect } from 'react';
-import { useHistory } from 'react-router-dom';
+// import { useHistory } from 'react-router-dom';
 
 const SearchReceiverPage = () => {
-  const history = useHistory();
+  // const history = useHistory();
 
   // START = SEARCHING FEATURE
   const {

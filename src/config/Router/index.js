@@ -1,3 +1,4 @@
+// import { Public } from '@material-ui/icons';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 import {
@@ -23,8 +24,9 @@ import {
   ChangePinPage,
   AddPhoneNumberPage,
   NewPinPage,
-  ChartaBar,
-
+  AdminHomePage,
+  AdminListUserPage,
+  VerifiedEmailSuccess,
   //  END = nisa
 } from '../../page';
 import PrivateRoute from './PrivateRoute';
@@ -45,6 +47,7 @@ const Routes = () => {
           path="/reset-password"
           component={ResetPasswordEmailPage}
         />
+        <PublicRoute path="/email-success" component={VerifiedEmailSuccess} />
 
         {/* END = AUTHENTICATION PAGE */}
         {/* START = USER PAGE */}
@@ -53,7 +56,7 @@ const Routes = () => {
 
         {/* ini route untuk page chart bar
             nanti di hapus aja  */}
-        <PrivateRoute path="/chart" component={ChartaBar} />
+        {/* <PrivateRoute path="/chart" component={ChartaBar} /> */}
 
         <PrivateRoute
           exact
@@ -99,6 +102,10 @@ const Routes = () => {
         />
         <PrivateRoute path="/username/topup" component={TopupPage} />
         {/* START = USER PAGE */}
+        {/* START = Admin Page */}
+        <PrivateRoute exact path="/admin/dashboard" component={AdminHomePage} />
+        <PrivateRoute path="/admin/user" component={AdminListUserPage} />
+        {/* END = Admin Page */}
       </Switch>
     </Router>
   );

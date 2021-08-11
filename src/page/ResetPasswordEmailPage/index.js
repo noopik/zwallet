@@ -8,6 +8,7 @@ import {
   SidebarAuth,
 } from '../../components';
 import { patternEmail } from '../../utils';
+import { customMedia } from "../../components/Layouting/BreakPoints";
 
 const ResetPasswordEmailPage = () => {
   const [handleDisabledButton, setHandleDisabledButton] = useState(true);
@@ -89,8 +90,14 @@ export default ResetPasswordEmailPage;
 const Styles = styled.div`
   height: 100vh;
   display: flex;
+  ${customMedia.lessThan("tablet")`
+  flex-direction: column
+  `}
   .row-side {
     width: 55%;
+    ${customMedia.lessThan("tablet")`
+ width: 100%;
+  `}
   }
   .sidebar {
     width: 100%;
@@ -101,6 +108,9 @@ const Styles = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
+    ${customMedia.lessThan("tablet")`
+ width: 100%;
+  `}
     .content {
       width: 80%;
       h5 {

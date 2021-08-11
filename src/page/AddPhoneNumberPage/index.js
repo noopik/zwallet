@@ -72,7 +72,12 @@ const AddPhoneNumberPage = () => {
             )}
           </div>
           <div className="btn-wrapper">
-            <Button type="submit" primary="primary" className="btn">
+            <Button
+              type="submit"
+              primary="primary"
+              className="btn"
+              disabled={handleDisabledButton}
+            >
               Add Phone Number
             </Button>
           </div>

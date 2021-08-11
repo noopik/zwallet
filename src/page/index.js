@@ -21,6 +21,9 @@ import ChangePinPage from './ChangePinPage';
 import AddPhoneNumberPage from './AddPhoneNumberPage';
 import NewPinPage from './NewPinPage';
 import ChartaBar from './ChartBar';
+import AdminHomePage from './AdminHomePage';
+import AdminListUserPage from './AdminListUserPage';
+import VerifiedEmailSuccess from './VerifiedEmailSuccess';
 
 
 // END = NISA
@@ -47,6 +50,9 @@ export {
   ChangePinPage,
   AddPhoneNumberPage,
   NewPinPage,
-  ChartaBar
+  ChartaBar,
+  AdminHomePage,
+  AdminListUserPage,
+  VerifiedEmailSuccess
 
 };
