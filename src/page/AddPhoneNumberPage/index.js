@@ -9,9 +9,12 @@ import {
 import { StyledPhone } from './StyledPhone';
 import { useForm } from 'react-hook-form';
 import { patternNumber } from '../../utils';
+import { updatePhoneNumber } from '../../config/Redux/actions/userActions';
 
 const AddPhoneNumberPage = () => {
   const [handleDisabledButton, setHandleDisabledButton] = useState(true);
+  const idUser = localStorage.getItem('id');
+  const token = localStorage.getItem('token');
 
   // START = HANDLE FORM
   const {
@@ -23,9 +26,8 @@ const AddPhoneNumberPage = () => {
   } = useForm();
 
   const onSubmit = (data) => {
-    console.log(data);
-    // history.push('/createpin');
-    return;
+    // console.log(data);
+    updatePhoneNumber(idUser, data, token);
   };
   // END = HANDLE FORM
 

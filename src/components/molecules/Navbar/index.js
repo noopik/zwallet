@@ -1,13 +1,21 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { AVARobert, ICBell } from '../../../assets';
+import { AVARobert, AVAUserDefault, ICBell } from '../../../assets';
 import { LogoBrand } from '../../atoms';
 import NotificationPopup from '../NotificationPopup';
 import PropTypes from 'prop-types';
 import { customMedia } from '../../Layouting/BreakPoints';
+import { useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 
 const Navbar = ({ className }) => {
   const [setNotification, setShowNotification] = useState(false);
+
+  const history = useHistory();
+  const avaUser = localStorage.getItem('avatar');
+  const username = localStorage.getItem('username');
+  const phone = localStorage.getItem('phone');
+  // console.log(typeof avaUser);
 
   return (
     <>
@@ -15,13 +23,21 @@ const Navbar = ({ className }) => {
         <div className="custom-container">
           <LogoBrand />
           <div className="navigation-user-right">
-            <div className="user-profile">
+            <div
+              className="user-profile"
+              onClick={() => {
+                return history.push(`/${username}/profile`);
+              }}
+            >
               <div className="image-wrapper">
-                <img src={AVARobert} alt="user" />
+                <img
+                  src={avaUser === 'null' ? AVAUserDefault : avaUser}
+                  alt="user"
+                />
               </div>
               <div className="profile-identity">
-                <h3 className="username">Robert Alfrido</h3>
-                <p className="phone-number">+62 8139 3877 7946</p>
+                <h3 className="username">{username}</h3>
+                <p className="phone-number">{phone === 'null' ? '' : phone}</p>
               </div>
             </div>
             <div
@@ -81,6 +97,10 @@ const NavbarStyling = styled.nav`
       .image-wrapper {
         width: 52px;
         height: 52px;
+        img {
+          width: 100%;
+          height: 100%;
+        }
         &:hover {
           opacity: 0.5;
           cursor: pointer;

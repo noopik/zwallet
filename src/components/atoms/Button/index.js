@@ -84,7 +84,7 @@ const Button = ({
 Button.propTypes = {
   children: PropTypes.string.isRequired,
   icon: PropTypes.string,
-  onClick: PropTypes.func.isRequired,
+  onClick: PropTypes.func,
   className: PropTypes.string,
   type: PropTypes.string,
 };

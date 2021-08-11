@@ -7,19 +7,19 @@ import {
   Input,
   SidebarAuth,
 } from '../../components';
-import { customMedia } from "../../components/Layouting/BreakPoints";
-import { resetPasswordUser } from "../../config/Redux/actions/userActions";
-import { useDispatch } from "react-redux";
-import { useHistory, useParams } from "react-router-dom";
+import { customMedia } from '../../components/Layouting/BreakPoints';
+import { resetPasswordUser } from '../../config/Redux/actions/userActions';
+import { useDispatch } from 'react-redux';
+import { useHistory, useParams } from 'react-router-dom';
 
 const ForgotPasswordPage = () => {
-      const dispatch = useDispatch();
-      const history = useHistory();
+  const dispatch = useDispatch();
+  const history = useHistory();
   const [handleDisabledButton, setHandleDisabledButton] = useState(true);
   const [isShowNewPassword, setIsShowNewPassword] = useState(false);
   const [isShowVerifyPassword, setIsShowVerifyPassword] = useState(false);
 
- let { token } = useParams()
+  let { token } = useParams();
 
   const {
     register,
@@ -50,9 +50,9 @@ const ForgotPasswordPage = () => {
       alert('Tidak sama');
       return;
     }
-    console.log("sama");
-    const setPassword={newPassword: data.password}
-   dispatch(resetPasswordUser(setPassword, token, history));
+    // console.log("sama");
+    const setPassword = { newPassword: data.password };
+    dispatch(resetPasswordUser(setPassword, token, history));
 
     return;
   };
@@ -140,12 +140,12 @@ export default ForgotPasswordPage;
 const Styles = styled.div`
   height: 100vh;
   display: flex;
-  ${customMedia.lessThan("tablet")`
+  ${customMedia.lessThan('tablet')`
   flex-direction: column
   `}
   .row-side {
     width: 55%;
-    ${customMedia.lessThan("tablet")`
+    ${customMedia.lessThan('tablet')`
  width: 100%;
   `}
   }
@@ -158,7 +158,7 @@ const Styles = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    ${customMedia.lessThan("tablet")`
+    ${customMedia.lessThan('tablet')`
  width: 100%;
   `}
     .content {

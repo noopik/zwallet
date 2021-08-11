@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { BGSideAuth, ZwalletApp } from '../../../assets';
+import { LogoBrand } from '../../atoms';
 import { customMedia } from '../../Layouting/BreakPoints';
 
 const SidebarAuth = ({ className }) => {
@@ -8,7 +9,7 @@ const SidebarAuth = ({ className }) => {
     <Styles className={className}>
       {/* <div className="image-background"></div> */}
       <div className="wrapper">
-        <h1 className="logo">Zwallet</h1>
+        <LogoBrand light />
         <div className="image-wrapper">
           <img src={ZwalletApp} alt="zwalletapp" />
         </div>
@@ -41,10 +42,10 @@ const Styles = styled.div`
   .wrapper {
     z-index: 9;
     padding: 0 150px;
-    ${customMedia.lessThan("laptop")`
+    ${customMedia.lessThan('laptop')`
       padding-left: 50px; 
     `}
-    ${customMedia.lessThan("tablet")`
+    ${customMedia.lessThan('tablet')`
       padding: 50px;
     `}
     padding-top: 50px;
@@ -59,22 +60,22 @@ const Styles = styled.div`
     }
     .image-wrapper {
       width: 600px;
-      ${customMedia.lessThan("tablet")`
+      ${customMedia.lessThan('tablet')`
       width: 100%;
     `}
       img {
         width: 100%;
         height: 100%;
-        ${customMedia.lessThan("laptop")`
+        ${customMedia.lessThan('laptop')`
      width: 90%;
     `}
-        ${customMedia.lessThan("1000px")`
+        ${customMedia.lessThan('1000px')`
      width: 80%;
     `}
-        ${customMedia.lessThan("900px")`
+        ${customMedia.lessThan('900px')`
       width: 70%;
     `}
-        ${customMedia.lessThan("tablet")`
+        ${customMedia.lessThan('tablet')`
       width: 70%;
     `}
       }

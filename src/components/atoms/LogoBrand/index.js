@@ -3,9 +3,9 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
-const index = ({ primary }) => {
+const index = ({ primary, light }) => {
   return (
-    <Styles primary={primary}>
+    <Styles primary={primary} light={light}>
       <Link className="anchor" to="/">
         <h1>Zwallet</h1>
       </Link>
@@ -26,7 +26,7 @@ const Styles = styled.h1`
     font-weight: bold;
     font-size: 29px;
     line-height: 40px;
-    color: #6379f4;
+    color: ${({ light }) => (light ? '#ffffff' : '#6379f4')};
   }
   .anchor {
     text-decoration: none;

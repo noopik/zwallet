@@ -3,30 +3,80 @@ import styled from 'styled-components';
 import { CardProfileUser, Cardwrapper, HeadingContent } from '../../components';
 import { useForm } from 'react-hook-form';
 import { useEffect } from 'react';
+import { useState } from 'react';
+import axios from 'axios';
+import { AVAUserDefault } from '../../assets';
 // import { useHistory } from 'react-router-dom';
 
 const SearchReceiverPage = () => {
+  const [searchAllResult, setSearchAllResult] = useState([]);
+  // const [searchResult, setSearchResult] = useState([]);
+  const token = localStorage.getItem('token');
   // const history = useHistory();
 
   // START = SEARCHING FEATURE
   const {
     register,
     handleSubmit,
-    // watch,
-    // getValues,
+    watch,
+    getValues,
     // formState: { errors },
   } = useForm();
 
   const onSubmit = (data) => {
-    console.log(data);
+    // console.log(data);/
     return;
   };
+
   // END = SEARCHING FEATURE
   useEffect(() => {
     document.title = 'Zwallet | Create New Password';
   });
 
+  // START = SEARCHING FEATURE
   const actionSearch = () => {};
+
+  useEffect(() => {
+    const keyword = getValues('searching');
+    axios
+      .get(`${process.env.REACT_APP_BACKEND_API}/users?search=${keyword}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((result) => {
+        const data = result.data.data;
+        // console.log(data);
+        setSearchAllResult(data);
+      })
+      .catch((err) => {
+        console.log(err.resonse);
+      });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [watch('searching')]);
+  // END = SEARCHING FEATURE
+  // START = SEARCHING FEATURE
+
+  useEffect(() => {
+    axios
+      .get(`${process.env.REACT_APP_BACKEND_API}/users`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((result) => {
+        // console.log(result);
+        const data = result.data.data;
+        // console.log('DATA 1: ', data);
+        setSearchAllResult(data);
+      })
+      .catch((err) => {
+        console.log(err.resonse);
+      });
+  }, []);
+  // END = SEARCHING FEATURE
+  // console.log(watch('searching'));
+
   return (
     <Cardwrapper>
       <StyledSearchPage>
@@ -67,26 +117,17 @@ const SearchReceiverPage = () => {
           </form>
         </div>
         <div className="body-section">
-          <CardProfileUser
-            typeTransaction="+65 789 7897 77"
-            link="search-receiver/to-username"
-          />
-          <CardProfileUser
-            typeTransaction="+65 789 7897 77"
-            link="search-receiver/to-username"
-          />
-          <CardProfileUser
-            typeTransaction="+65 789 7897 77"
-            link="search-receiver/to-username"
-          />
-          <CardProfileUser
-            typeTransaction="+65 789 7897 77"
-            link="search-receiver/to-username"
-          />
-          <CardProfileUser
-            typeTransaction="+65 789 7897 77"
-            link="search-receiver/to-username"
-          />
+          {searchAllResult.length > 0 &&
+            searchAllResult.map((item) => {
+              return (
+                <CardProfileUser
+                  avatar={item.avatar ? item.avatar : AVAUserDefault}
+                  typeTransaction={item.phone}
+                  link={`search-receiver/${item.id}`}
+                  username={item.username}
+                />
+              );
+            })}
         </div>
       </StyledSearchPage>
     </Cardwrapper>

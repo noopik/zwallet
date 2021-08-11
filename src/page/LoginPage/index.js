@@ -11,13 +11,13 @@ import {
 } from '../../components';
 import { customMedia } from '../../components/Layouting/BreakPoints';
 import { patternEmail } from '../../utils';
-import { loginUser } from "../../config/Redux/actions/userActions";
-import { useDispatch } from "react-redux";
-import { useHistory } from "react-router-dom";
+import { loginUser } from '../../config/Redux/actions/userActions';
+import { useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 
 const LoginPage = () => {
-   const dispatch = useDispatch();
-   const history = useHistory();
+  const dispatch = useDispatch();
+  const history = useHistory();
   const [handleDisabledButton, setHandleDisabledButton] = useState(true);
 
   // START = HANDLE FORM
@@ -30,10 +30,9 @@ const LoginPage = () => {
   } = useForm();
 
   const onSubmit = (data) => {
-    console.log(data);
-      dispatch(loginUser(data, history));
+    // console.log(data);
+    dispatch(loginUser(data, history));
     // history.push('/createpin');
-    return;
   };
   // END = HANDLE FORM
 
@@ -150,14 +149,14 @@ export default LoginPage;
 const Styles = styled.div`
   height: 100vh;
   display: flex;
-  ${customMedia.lessThan("tablet")`
+  ${customMedia.lessThan('tablet')`
   flex-direction: column
 `}
- 
+
   .row-side {
     /* height: 100%; */
     width: 55%;
-    ${customMedia.lessThan("tablet")`
+    ${customMedia.lessThan('tablet')`
  width: 100%
   `}
   }
@@ -167,7 +166,7 @@ const Styles = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    ${customMedia.lessThan("tablet")`
+    ${customMedia.lessThan('tablet')`
  width: 100%;
   `}
     .content {
@@ -220,4 +219,4 @@ const Styles = styled.div`
       margin-bottom: 0;
     }
   }
-`
+`;
