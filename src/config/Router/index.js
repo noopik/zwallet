@@ -54,6 +54,10 @@ const Routes = () => {
         <PublicRoute path="/email-success" component={VerifiedEmailSuccess} />
 
         {/* END = AUTHENTICATION PAGE */}
+        {/* START = Admin Page */}
+        <PrivateRoute exact path="/admin/dashboard" component={AdminHomePage} />
+        <PrivateRoute path="/admin/user" component={AdminListUserPage} />
+        {/* END = Admin Page */}
         {/* START = USER PAGE */}
 
         <PrivateRoute path="/:username/dashboard" component={Homepage} />
@@ -106,10 +110,6 @@ const Routes = () => {
         />
         <PrivateRoute path="/:username/topup" component={TopupPage} />
         {/* START = USER PAGE */}
-        {/* START = Admin Page */}
-        <PrivateRoute exact path="/admin/dashboard" component={AdminHomePage} />
-        <PrivateRoute path="/admin/user" component={AdminListUserPage} />
-        {/* END = Admin Page */}
       </Switch>
     </Router>
   );

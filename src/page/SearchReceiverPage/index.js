@@ -73,6 +73,7 @@ const SearchReceiverPage = () => {
       .catch((err) => {
         console.log(err.resonse);
       });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   // END = SEARCHING FEATURE
   // console.log(watch('searching'));

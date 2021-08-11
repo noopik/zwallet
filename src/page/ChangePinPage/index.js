@@ -45,7 +45,12 @@ const ChangePinPage = () => {
               regexCriteria={/^[ A-Za-z0-9_@./#&+-]*$/}
             />
           </div>
-          <Button primary="primary" className="btn" onClick={handleSubmit}>
+          <Button
+            primary="primary"
+            className="btn"
+            onClick={handleSubmit}
+            disabled={handleDisabledButton}
+          >
             Continue
           </Button>
         </form>

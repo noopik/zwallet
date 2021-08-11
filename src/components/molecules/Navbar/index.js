@@ -1,12 +1,11 @@
-import React, { useState } from 'react';
-import styled from 'styled-components';
-import { AVARobert, AVAUserDefault, ICBell } from '../../../assets';
-import { LogoBrand } from '../../atoms';
-import NotificationPopup from '../NotificationPopup';
 import PropTypes from 'prop-types';
-import { customMedia } from '../../Layouting/BreakPoints';
-import { useSelector } from 'react-redux';
+import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import styled from 'styled-components';
+import { AVAUserDefault, ICBell } from '../../../assets';
+import { LogoBrand } from '../../atoms';
+import { customMedia } from '../../Layouting/BreakPoints';
+import NotificationPopup from '../NotificationPopup';
 
 const Navbar = ({ className }) => {
   const [setNotification, setShowNotification] = useState(false);

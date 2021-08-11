@@ -1,37 +1,84 @@
-
-import { Button, ModalBank, SidebarAuth } from "../../components";
+import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import PinInput from 'react-pin-input';
-import styled from 'styled-components';
-import { customMedia } from '../../components/Layouting/BreakPoints';
-import { setPinUser } from '../../config/Redux/actions/userActions';
-import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-
+import styled from 'styled-components';
+import { Button, ModalBank, SidebarAuth } from '../../components';
+import { customMedia } from '../../components/Layouting/BreakPoints';
 
 const CreatePinPage = () => {
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   const history = useHistory();
   const [handleDisabledButton, setHandleDisabledButton] = useState(true);
   const [inputValuePin, setInputValuePin] = useState();
   const [isShowModal, setIsShowModal] = useState(false);
+  const token = localStorage.getItem('token');
+  const username = localStorage.getItem('username');
+  const id = localStorage.getItem('id');
   // START = HANDLE FORM
-  const { handleSubmit } = useForm();
-  const data = { pin: inputValuePin };
-  const onSubmit = () => {
-    // console.log(data);
-    dispatch(setPinUser(data, history));
-    setIsShowModal(true);
-  
-    // history.push('/createpin');
-    return;
-  };
+  const { handleSubmit, register } = useForm();
+  // const data = { pin: inputValuePin };
+
+  // const onSubmit = () => {
+  //   // console.log(data);
+  //   dispatch(setPinUser(data, history));
+  //   setIsShowModal(true);
+
+  //   // history.push('/createpin');
+  //   return;
+  // };
   // END = HANDLE FORM
-  
+
   useEffect(() => {
     document.title = 'Zwallet | Create Pin';
   }, [inputValuePin]);
+
+  // START = SEND ACTION PIN
+  const actionPin = () => {
+    const data = {
+      pin: inputValuePin,
+    };
+    axios
+      .post(`${process.env.REACT_APP_BACKEND_API}/auth/setpin/${id}`, data, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((res) => {
+        setIsShowModal(true);
+      })
+      .catch((err) => {
+        console.log('NO');
+      });
+  };
+  // END = SEND ACTION PIN
+  // START = SEND ACTION PIN
+  const actionChooseBank = (data) => {
+    const sendBank = {
+      codeBank: data.bank,
+    };
+    axios
+      .post(
+        `${process.env.REACT_APP_BACKEND_API}/transactions/addvirtualaccount`,
+        sendBank,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      )
+      .then((res) => {
+        console.log(res);
+        // return;
+        history.push(`/${username}/dashboard`);
+      })
+      .catch((err) => {
+        history.push(`/${username}/dashboard`);
+        console.log(err.response);
+      });
+  };
+  // END = SEND ACTION PIN
 
   return (
     <Styles>
@@ -53,7 +100,7 @@ const CreatePinPage = () => {
             <br />
             we cover all of that for you!
           </h6>
-          <form onSubmit={handleSubmit(onSubmit)}>
+          <div>
             <div className="token-field">
               <PinInput
                 length={6}
@@ -77,33 +124,39 @@ const CreatePinPage = () => {
               primary
               className="button-login"
               disabled={handleDisabledButton}
+              onClick={actionPin}
             >
               Confirm
             </Button>
-          </form>
+          </div>
         </div>
       </div>
 
-      <ModalBank showModal={isShowModal} closeModal={() => setIsShowModal(false)}>
-        <form>
-            <div className="bank-choice">
-                  <select className="custom-select" name="" id="inputGroupSelect01">
-                  <option selected>Choose your bank</option>
-                  <option value="">MANDIRI</option>
-                  <option value="">BNI</option>
-                  <option value="">BRI</option>
-                  <option value="">PERMATA</option>
-                  <option value="">BCA</option>
-              </select>
-            </div>
-            <div className="btn-wrapper">
-              <Button    
-              primary
-              className="btn-action"
-              onClick="">
-                Continue
-              </Button>
-            </div>
+      <ModalBank
+        showModal={isShowModal}
+        closeModal={() => setIsShowModal(false)}
+      >
+        <form onSubmit={handleSubmit(actionChooseBank)}>
+          <div className="bank-choice">
+            <select
+              className="custom-select"
+              name=""
+              id="inputGroupSelect01"
+              {...register('bank')}
+            >
+              <option selected>Choose your bank</option>
+              <option value="MANDIRI">MANDIRI</option>
+              <option value="BNI">BNI</option>
+              <option value="BRI">BRI</option>
+              <option value="PERMATA">PERMATA</option>
+              <option value="BCA">BCA</option>
+            </select>
+          </div>
+          <div className="btn-wrapper">
+            <Button primary className="btn-action">
+              Continue
+            </Button>
+          </div>
         </form>
       </ModalBank>
     </Styles>
@@ -205,21 +258,20 @@ const Styles = styled.div`
       }
     }
   }
-  .bank-choice{
+  .bank-choice {
     margin-top: 30px;
-    .custom-select{
+    .custom-select {
       width: 100%;
       height: 35px;
     }
   }
-.btn-wrapper{
-  display: flex;
-  justify-content: flex-end;
-  margin-top: 50px;
-  .btn-action{
-    width: 170px;
-    height: 57px;
+  .btn-wrapper {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 50px;
+    .btn-action {
+      width: 170px;
+      height: 57px;
+    }
   }
-}
-
 `;

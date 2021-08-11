@@ -1,12 +1,11 @@
-import React from 'react';
-import { useEffect } from 'react';
+import axios from 'axios';
+import React, { useEffect } from 'react';
+import { useForm } from 'react-hook-form';
 import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
-import { AVAJessicaMera, ICArrowLeft } from '../../assets';
+import { ICArrowLeft } from '../../assets';
 import { Cardwrapper } from '../../components';
 import { customMedia } from '../../components/Layouting/BreakPoints';
-import { useForm } from 'react-hook-form';
-import axios from 'axios';
 import { toastify } from '../../utils';
 
 const ProfileUserPage = () => {
@@ -24,10 +23,10 @@ const ProfileUserPage = () => {
   // START = HANDLE FORM
   const {
     register,
-    handleSubmit,
+    // handleSubmit,
     watch,
     getValues,
-    formState: { errors },
+    // formState: { errors },
   } = useForm();
 
   const updateAvatar = (data) => {
@@ -74,6 +73,7 @@ const ProfileUserPage = () => {
     if (getValues('avatar')) {
       updateAvatar();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [watch('avatar')]);
   // END = HANDLE FORM
 

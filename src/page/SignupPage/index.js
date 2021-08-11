@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { Link, useHistory } from 'react-router-dom';
 import styled from 'styled-components';
 import {
   AlertValidationForm,
@@ -9,11 +10,8 @@ import {
   SidebarAuth,
 } from '../../components';
 import { customMedia } from '../../components/Layouting/BreakPoints';
-import { patternEmail } from '../../utils';
 import { registerUser } from '../../config/Redux/actions/userActions';
-import { useDispatch } from 'react-redux';
-import { useHistory } from 'react-router-dom';
-import { toast } from 'react-toastify';
+import { patternEmail } from '../../utils';
 
 const SignupPage = () => {
   const dispatch = useDispatch();

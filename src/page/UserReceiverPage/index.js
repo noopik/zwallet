@@ -1,15 +1,13 @@
 import axios from 'axios';
-import React, { useEffect } from 'react';
-import { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { useDispatch } from 'react-redux';
 import { useHistory, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
-import { AVAJessicaMera } from '../../assets';
 import { AlertValidationForm, Cardwrapper, Input } from '../../components';
 import Button from '../../components/atoms/Button';
 import { customMedia } from '../../components/Layouting/BreakPoints';
-import { useForm } from 'react-hook-form';
 import { patternNumber, toastify } from '../../utils';
-import { useDispatch } from 'react-redux';
 import { dispatchTypes } from '../../utils/dispatchType';
 
 const UserReceiverPage = () => {
@@ -19,7 +17,7 @@ const UserReceiverPage = () => {
   const idSender = localStorage.getItem('id');
   const [userReceiver, setUserReceiver] = useState({});
   const [amountTransfer, setAmountTransfer] = useState(0.0);
-  const [amountAvailable, setAmountAvailable] = useState(false);
+  // const [amountAvailable, setAmountAvailable] = useState(false);
   const username = localStorage.getItem('username');
   const dispatch = useDispatch();
   const history = useHistory();
@@ -82,6 +80,7 @@ const UserReceiverPage = () => {
     if (watch('amount')) {
       setAmountTransfer(valueAmount);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [watch('amount')]);
 
   // END = HANDLE FORM

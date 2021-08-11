@@ -84,9 +84,10 @@ const Homepage = () => {
       .catch((err) => {
         console.log(err.response);
       });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   // END = HISTORY TRANSACTION
-  console.log('resultHistory:', resultHistory);
+  // console.log('resultHistory:', resultHistory);
   return (
     <StyledDashboard>
       <div className="header-section">

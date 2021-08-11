@@ -1,55 +1,52 @@
-import React from 'react'
-import styled from 'styled-components'
+import React from 'react';
+import styled from 'styled-components';
 import { Cardwrapper } from '../../atoms';
-import PropTypes from 'prop-types';
-
 
 const ModalBank = ({ children, showModal, closeModal }) => {
-
-    if (!showModal) return null
-    return (
+  if (!showModal) return null;
+  return (
     <Styles>
-     <Cardwrapper className="content-wrapper">
+      <Cardwrapper className="content-wrapper">
         <div className="header">
           <h3 className="text-heading">Select Bank Payment</h3>
-            <svg
-                onClick={closeModal}
-                className="icon"
-                width="28"
-                height="28"
-                viewBox="0 0 28 28"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-            >
-                <path
-                d="M21 7L7 21"
-                stroke="#3A3D42"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                />
-                <path
-                d="M7 7L21 21"
-                stroke="#3A3D42"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                />
-            </svg>
-            </div>
-            <p className="modal-description">
-            Select your preferred bank for your <br /> payment method
-            </p>
+          <svg
+            onClick={closeModal}
+            className="icon"
+            width="28"
+            height="28"
+            viewBox="0 0 28 28"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M21 7L7 21"
+              stroke="#3A3D42"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M7 7L21 21"
+              stroke="#3A3D42"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+        </div>
+        <p className="modal-description">
+          Select your preferred bank for your <br /> payment method
+        </p>
         <div className="body">{children}</div>
       </Cardwrapper>
-    <div className="bg-layer" onClick={closeModal}></div>
+      <div className="bg-layer" onClick={closeModal}></div>
     </Styles>
-    )
-}
+  );
+};
 
-export default ModalBank
+export default ModalBank;
 const Styles = styled.div`
- width: 100vw;
+  width: 100vw;
   height: 100vh;
   position: fixed;
   z-index: 1;
@@ -82,4 +79,4 @@ const Styles = styled.div`
     top: 0;
     position: fixed;
   }
-`
+`;

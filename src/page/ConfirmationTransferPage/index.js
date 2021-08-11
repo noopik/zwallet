@@ -53,6 +53,7 @@ const ConfirmationTransferPage = () => {
       .catch((err) => {
         console.log(err.response);
       });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   // END = GET USER RECEIVER
   const actionButton = () => {

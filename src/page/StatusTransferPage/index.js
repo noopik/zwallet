@@ -1,5 +1,4 @@
 import React from 'react';
-import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import {
@@ -17,8 +16,8 @@ const StatusTransferPage = () => {
   const transferState = useSelector((state) => state.transferReducer);
   const username = localStorage.getItem('username');
 
-  const [statusTransfer, setStatusTransfer] = useState(true);
-  // console.log(setStatusTransfer);
+  // const [statusTransfer, setStatusTransfer] = useState(true);
+  // // console.log(setStatusTransfer);
   return (
     <Cardwrapper>
       <StyleStatus>

@@ -1,16 +1,14 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { useForm } from 'react-hook-form';
 import {
+  AlertValidationForm,
+  Button,
   Cardwrapper,
   HeadingContent,
-  Button,
-  AlertValidationForm,
   Input,
 } from '../../components';
-import { StyledChange } from './StyledChange';
-import { useForm } from 'react-hook-form';
-import { useState } from 'react';
-import { useEffect } from 'react';
 import { toastify } from '../../utils';
+import { StyledChange } from './StyledChange';
 
 const ChangePasswordPage = () => {
   const [handleDisabledButton, setHandleDisabledButton] = useState(true);
@@ -46,7 +44,8 @@ const ChangePasswordPage = () => {
 
   // START = SEND DATA FUNCTION
   const onSubmit = (data) => {
-    const { oldPassword, newPassword, repeatNewPassword } = data;
+    // oldPassword
+    const { newPassword, repeatNewPassword } = data;
     if (newPassword !== repeatNewPassword) {
       return toastify('Password baru tidak sama', 'error');
     } else {

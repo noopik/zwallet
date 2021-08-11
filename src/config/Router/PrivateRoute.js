@@ -50,7 +50,19 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
             </>
           );
         } else if (isAuth === 'true' && role === 'ADMIN') {
-          return <Redirect to="/admin/dashboard" />;
+          return (
+            <>
+              <Navbar />
+              <StylingMainContent>
+                <MenuAsideLeft active={listMenu[pathNow]} username={username} />
+                {/* Styling for this element (Main, Header-setion) inside StylingMainContent component */}
+                <div className="main">
+                  <Component {...props} />
+                </div>
+              </StylingMainContent>
+              <Footer />
+            </>
+          );
         } else {
           return <Redirect to="/login" />;
         }
