@@ -41,7 +41,7 @@ const Routes = () => {
         <PublicRoute path="/create-pin/:id" component={CreatePinPage} />
         <PublicRoute path="/sign-up" component={SignupPage} />
         <PublicRoute path="/success-pin" component={SuccessPinPage} />
-        <PublicRoute path="/new-password" component={ForgotPasswordPage} />
+        <PublicRoute path="/new-password/:token" component={ForgotPasswordPage} />
         <PublicRoute
           path="/reset-password"
           component={ResetPasswordEmailPage}

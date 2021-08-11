@@ -132,7 +132,7 @@ const LoginPage = () => {
           <div className="register-link">
             <p>Don't have an account ? Let's</p>
             <Link
-              to="/signup"
+              to="/sign-up"
               classname="link"
               style={{ textDecoration: 'none' }}
             >

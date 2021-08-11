@@ -6,6 +6,6 @@ export const dispatchTypes = {
   postLoginUser: "POST_LOGIN_USER",
   getActivationUser: "GET_ACTIVATION_USER",
   postSetPinUser: "POST_SET_PIN_USER",
-  getForgotPasswordUser: "GET_FORGOT_PASSWORD_USER",
+  postForgotPasswordUser: "POST_FORGOT_PASSWORD_USER",
   postResetPasswordUser: "POST_RESET_PASSWORD_USER",
 };

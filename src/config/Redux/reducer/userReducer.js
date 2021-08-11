@@ -41,7 +41,7 @@ export const userReducer = (state =  initialData , action) => {
        message: action.payload.message,
        status: action.payload.status,
      };
-   case dispatchTypes.getForgotPasswordUser:
+   case dispatchTypes.postForgotPasswordUser:
      return {
        ...state,
        data: action.payload.data,
