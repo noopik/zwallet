@@ -7,6 +7,8 @@ import Button from '../../components/atoms/Button';
 import { StyledDashboard } from './styled';
 import { Bar } from 'react-chartjs-2';
 import axios from 'axios';
+import { useDispatch } from 'react-redux';
+import { dispatchTypes } from '../../utils/dispatchType';
 
 const Homepage = () => {
   const history = useHistory();
@@ -15,6 +17,7 @@ const Homepage = () => {
   const username = localStorage.getItem('username');
   const token = localStorage.getItem('token');
   const id = localStorage.getItem('id');
+  const dispatch = useDispatch();
 
   useEffect(() => {
     document.title = `${username} | Dashboard`;
@@ -80,6 +83,11 @@ const Homepage = () => {
       })
       .then((res) => {
         setResultHistory(res.data.data);
+        console.log(res.data);
+        const sendData = {
+          data: res.data.data,
+        };
+        dispatch({ type: dispatchTypes.setAllHistory, payload: sendData });
       })
       .catch((err) => {
         console.log(err.response);
@@ -122,13 +130,13 @@ const Homepage = () => {
           <div className="header">
             <div className="text-green-wrapper">
               <img src={ICDownGreen} alt="icon down" />
-              <h4 className="text">text-green</h4>
-              <h4 className="text-heading">Rp.2.120.000</h4>
+              <h4 className="text">Income</h4>
+              <h4 className="text-heading">Rp.0</h4>
             </div>
             <div className="text-green-wrapper">
               <img src={ICUpRed} alt="icon" />
               <h4 className="text">Expense</h4>
-              <h4 className="text-heading">Rp.2.120.000</h4>
+              <h4 className="text-heading">Rp. 0</h4>
             </div>
           </div>
           {/* Ini yang aku tambahin ya mas nopik */}

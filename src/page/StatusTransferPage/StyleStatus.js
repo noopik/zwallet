@@ -98,7 +98,6 @@ export const StyleStatus = styled.div`
     flex-direction: row;
   }
   .image-wrapper {
-    background: #adadad;
     width: 70px;
     height: 70px;
     margin-left: 20px;

@@ -80,7 +80,7 @@ const ConfirmationTransferPage = () => {
           }
         )
         .then((res) => {
-          // console.log(res);
+          console.log(res.data);
           localStorage.setItem('amount', transferReducer.balanceLeft);
           dispath({ type: dispatchTypes.setStatusTransfer, payload: true });
           history.push(`/${username}/status-transfer`);
@@ -120,7 +120,14 @@ const ConfirmationTransferPage = () => {
             title="Date & Time"
             description={`${transferReducer.date}`}
           />
-          <ItemDetail title="Notes" description={`${transferReducer.notes}`} />
+          <ItemDetail
+            title="Notes"
+            description={`${
+              transferReducer?.notes
+                ? transferReducer?.notes
+                : 'Tidak ada pesan'
+            }`}
+          />
         </div>
         <div className="btn-wrapper">
           <button onClick={actionButton} className="btn-action">
