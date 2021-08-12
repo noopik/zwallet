@@ -12,4 +12,7 @@ export const dispatchTypes = {
   setTransfer: 'SET_TRANSFER',
   setStatusTransfer: 'SET_STATUS_TRANSFER',
   setAllHistory: 'SET_ALL_TRANSACTIONS',
+
+  // ADMIN
+  getAllActivity: 'GET_ALL_ACTIVITY',
 };
