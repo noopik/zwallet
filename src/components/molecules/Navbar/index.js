@@ -21,7 +21,7 @@ const Navbar = ({ className }) => {
 
   // START = CONDITION AVATAR CHANGES
   const avatarState = userState?.data?.avatar;
-  console.log(avatarState);
+  // console.log(avatarState);
   useEffect(() => {
     setAvatar(avatarState);
   }, [avatarState, avaUser]);

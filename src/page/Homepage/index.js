@@ -83,14 +83,14 @@ const Homepage = () => {
       })
       .then((res) => {
         setResultHistory(res.data.data);
-        console.log(res.data);
+        // console.log(res.data);
         const sendData = {
           data: res.data.data,
         };
         dispatch({ type: dispatchTypes.setAllHistory, payload: sendData });
       })
       .catch((err) => {
-        console.log(err.response);
+        // console.log(err.response);
       });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);

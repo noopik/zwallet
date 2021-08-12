@@ -51,7 +51,7 @@ const ProfileUserPage = () => {
   };
   const updateAvatar = (data) => {
     const changeImage = getValues('avatar')[0];
-    console.log(changeImage);
+    // console.log(changeImage);
     const formData = new FormData();
     formData.append('avatar', changeImage);
     axios
@@ -82,11 +82,11 @@ const ProfileUserPage = () => {
             dispatch({ type: dispatchTypes.setUserProfile, payload: sendData });
           })
           .catch((err) => {
-            console.log(err.response);
+            // console.log(err.response);
           });
       })
       .catch((err) => {
-        console.log(err.response);
+        // console.log(err.response);
         if (err.response.status === 400) {
           return toastify(err.response.data.message, 'error');
         }

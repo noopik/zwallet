@@ -78,7 +78,7 @@ const SearchReceiverPage = () => {
         setSearchAllResult(data);
       })
       .catch((err) => {
-        console.log(err.resonse);
+        // console.log(err.resonse);
       });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);

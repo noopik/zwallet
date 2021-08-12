@@ -13,13 +13,17 @@ import { updatePhoneNumber } from '../../config/Redux/actions/userActions';
 import { ICTrash } from '../../assets';
 import axios from 'axios';
 import { toastify } from '../../../src/utils';
+import { useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 
 const AddPhoneNumberPage = () => {
+  const history = useHistory();
   const [handleDisabledButton, setHandleDisabledButton] = useState(true);
   const idUser = localStorage.getItem('id');
   const token = localStorage.getItem('token');
   const username = localStorage.getItem('username');
   const phone = localStorage.getItem('phone');
+  const [userPhone, setUserPhone] = useState(phone);
 
   // START = HANDLE FORM
   const {
@@ -31,8 +35,10 @@ const AddPhoneNumberPage = () => {
   } = useForm();
 
   const onSubmit = (data) => {
-    // console.log(data);
-    updatePhoneNumber(idUser, data, token);
+    const sendDataPhone = {
+      phone: `62${data.phone}`,
+    };
+    updatePhoneNumber(idUser, sendDataPhone, token, history);
   };
   // END = HANDLE FORM
 
@@ -51,18 +57,19 @@ const AddPhoneNumberPage = () => {
   }, [watch('phone')]);
 
   const actionTrash = () => {
-    localStorage.removeItem('phone');
     const sendData = {
       phone: '',
     };
     axios
-      .patch(`${process.env.REACT_APP_BACKEND_API}/${idUser}`, sendData, {
+      .patch(`${process.env.REACT_APP_BACKEND_API}/users/${idUser}`, sendData, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       })
       .then((res) => {
-        return toastify('Success', 'success');
+        localStorage.removeItem('phone');
+        setUserPhone('');
+        return toastify(res.data.message, 'success');
       })
       .catch((err) => {
         console.log(err.response);
@@ -80,7 +87,7 @@ const AddPhoneNumberPage = () => {
             ID so you can start transfering your money to <br /> another user.
           </p>
         </div>
-        {!phone && (
+        {!userPhone && (
           <form onSubmit={handleSubmit(onSubmit)}>
             <div className="form-input">
               <Input
@@ -91,7 +98,7 @@ const AddPhoneNumberPage = () => {
                 placeholder="Enter your phone number"
                 {...register('phone', {
                   required: true,
-                  minLength: 11,
+                  minLength: 9,
                   pattern: patternNumber,
                 })}
               />
@@ -111,12 +118,12 @@ const AddPhoneNumberPage = () => {
             </div>
           </form>
         )}
-        {phone && (
+        {userPhone && (
           <Cardwrapper>
             <div className="manage-phone-exist">
               <div className="desc">
                 <p className="text-heading">Primary</p>
-                <p>{phone}</p>
+                <p>{userPhone}</p>
               </div>
               <div className="icon-wrappper" onClick={actionTrash}>
                 <img src={ICTrash} alt="icon" />

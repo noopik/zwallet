@@ -42,7 +42,7 @@ const ChangePasswordPage = () => {
 
   // END = ACTION SHOW PASSWORD
   useEffect(() => {
-    document.title = username | 'Change password';
+    document.title = username + ' Change password';
   });
 
   // START = SEND DATA FUNCTION
