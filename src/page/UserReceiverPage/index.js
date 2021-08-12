@@ -13,7 +13,8 @@ import { dispatchTypes } from '../../utils/dispatchType';
 
 const UserReceiverPage = () => {
   const location = useLocation();
-  const getIdUserReceiver = location.pathname.split('/')[3];
+  const getIdUserReceiver = location.pathname.split('/')[2];
+  console.log('getIdUserReceiver', getIdUserReceiver);
   const token = localStorage.getItem('token');
   const idSender = localStorage.getItem('id');
   const [userReceiver, setUserReceiver] = useState({});
@@ -36,13 +37,13 @@ const UserReceiverPage = () => {
         },
       })
       .then((res) => {
-        // console.log(res);
+        console.log('USER RECEIVER:', res);
         setUserReceiver(res.data.data[0]);
       })
       .catch((err) => {
         console.log(err.response);
       });
-  });
+  }, []);
   // END = GET USER RECEIVER
 
   // START = HANDLE FORM
@@ -76,9 +77,7 @@ const UserReceiverPage = () => {
     };
     dispatch({ type: dispatchTypes.setTransfer, payload: dataSend });
     // console.log(data);
-    history.push(
-      `/search-receiver/${getIdUserReceiver}/confirmation`
-    );
+    history.push(`/search-receiver/${getIdUserReceiver}/confirmation`);
   };
 
   useEffect(() => {

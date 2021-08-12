@@ -1,4 +1,9 @@
+import axios from 'axios';
 import React, { useEffect, useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { useHistory } from 'react-router-dom';
+import { toastify } from '../../../src/utils';
+import { ICTrash } from '../../assets';
 import {
   AlertValidationForm,
   Button,
@@ -6,21 +11,16 @@ import {
   HeadingContent,
   Input,
 } from '../../components';
-import { StyledPhone } from './StyledPhone';
-import { useForm } from 'react-hook-form';
-import { patternNumber } from '../../utils';
 import { updatePhoneNumber } from '../../config/Redux/actions/userActions';
-import { ICTrash } from '../../assets';
-import axios from 'axios';
-import { toastify } from '../../../src/utils';
-import { useSelector } from 'react-redux';
-import { useHistory } from 'react-router-dom';
+import { patternNumber } from '../../utils';
+import { StyledPhone } from './StyledPhone';
 
 const AddPhoneNumberPage = () => {
   const history = useHistory();
   const [handleDisabledButton, setHandleDisabledButton] = useState(true);
   const idUser = localStorage.getItem('id');
   const token = localStorage.getItem('token');
+  const role = localStorage.getItem('role');
   const username = localStorage.getItem('username');
   const phone = localStorage.getItem('phone');
   const [userPhone, setUserPhone] = useState(phone);
@@ -38,7 +38,7 @@ const AddPhoneNumberPage = () => {
     const sendDataPhone = {
       phone: `62${data.phone}`,
     };
-    updatePhoneNumber(idUser, sendDataPhone, token, history);
+    updatePhoneNumber(idUser, sendDataPhone, token, history, role);
   };
   // END = HANDLE FORM
 

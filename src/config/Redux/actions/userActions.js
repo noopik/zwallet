@@ -73,8 +73,9 @@ export const loginUser = (data, history) => (dispatch) => {
       if (!pin) {
         history.push(`/create-pin/${id}`);
       } else {
-        if(role==='ADMIN'){history.push(`/admin/dashboard`);}
-        else if(role==='MEMBER'){
+        if (role === 'ADMIN') {
+          history.push(`/admin/dashboard`);
+        } else if (role === 'MEMBER') {
           history.push(`/dashboard`);
         }
       }
@@ -153,7 +154,7 @@ export const resetPasswordUser = (data, token, history) => (dispatch) => {
     });
 };
 
-export const updatePhoneNumber = (idUser, data, token, history) => {
+export const updatePhoneNumber = (idUser, data, token, history, role) => {
   axios
     .patch(`${process.env.REACT_APP_BACKEND_API}/users/${idUser}`, data, {
       headers: {
@@ -163,8 +164,13 @@ export const updatePhoneNumber = (idUser, data, token, history) => {
     .then((result) => {
       // console.log(result);
       localStorage.setItem('phone', data.phone);
-      history.push(`/user/profile/info`);
-      return toastify('Success updated password', 'info');
+      if (role === 'ADMIN') {
+        history.push(`admin/profile/info`);
+        return toastify('Success updated password', 'info');
+      } else {
+        history.push(`/profile/info`);
+        return toastify('Success updated password', 'info');
+      }
     })
     .catch((err) => {
       console.log(err.response);
