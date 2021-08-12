@@ -98,7 +98,7 @@ export const setPinUser = (data, history) => (dispatch) => {
       history.push(`/success-pin`);
     })
     .catch((error) => {
-      alert(error.response.data.message);
+      toastify(error.response.data.message, "error");
     });
 };
 
@@ -117,10 +117,10 @@ export const forgotPasswordUser = (data) => (dispatch) => {
         payload: dataUser,
       });
       //   history.push(`/new-password`);
-      alert('success sent reset password email');
+      toastify("success sent reset password email", "info");
     })
     .catch((error) => {
-      alert(error.response.data.message);
+    toastify(error.response.data.message, "error");
     });
 };
 export const resetPasswordUser = (data, token, history) => (dispatch) => {
@@ -142,11 +142,11 @@ export const resetPasswordUser = (data, token, history) => (dispatch) => {
         payload: dataUser,
       });
       //   history.push(`/new-password`);
-      alert('success reset password');
+       toastify("success reset password", "info");
       history.push(`/login`);
     })
     .catch((error) => {
-      alert(error.response.data.message);
+      toastify(error.response.data.message, "error");
     });
 };
 
