@@ -14,7 +14,7 @@ const CreatePinPage = () => {
   const [inputValuePin, setInputValuePin] = useState();
   const [isShowModal, setIsShowModal] = useState(false);
   const token = localStorage.getItem('token');
-  const username = localStorage.getItem('username');
+  // const username = localStorage.getItem('username');
   const id = localStorage.getItem('id');
   // START = HANDLE FORM
   const { handleSubmit, register } = useForm();

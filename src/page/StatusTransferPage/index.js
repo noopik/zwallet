@@ -67,6 +67,7 @@ const StatusTransferPage = () => {
       .catch((err) => {
         console.log(err.response);
       });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   console.log(dataReceiverPDF);
   const getPdf = () => {

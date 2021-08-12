@@ -20,7 +20,7 @@ const UserReceiverPage = () => {
   const [userReceiver, setUserReceiver] = useState({});
   const [amountTransfer, setAmountTransfer] = useState(0.0);
   // const [amountAvailable, setAmountAvailable] = useState(false);
-  const username = localStorage.getItem('username');
+  // const username = localStorage.getItem('username');
   const dispatch = useDispatch();
   const history = useHistory();
 
@@ -43,6 +43,7 @@ const UserReceiverPage = () => {
       .catch((err) => {
         console.log(err.response);
       });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   // END = GET USER RECEIVER
 
