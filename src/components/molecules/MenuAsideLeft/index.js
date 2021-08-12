@@ -5,12 +5,16 @@ import styled from 'styled-components';
 import { Cardwrapper } from '../../atoms';
 import { customMedia } from '../../Layouting/BreakPoints';
 
-const MenuAsideLeft = ({ active, username }) => {
+const MenuAsideLeft = ({ active }) => {
   const history = useHistory();
   const isAdmin = localStorage.getItem('role');
 
   const actionMenu = (menu) => {
-    history.push(`/${username}/${menu}`);
+    if (isAdmin === "MEMBER") {
+      history.push(`/${menu}`);
+    } else if (isAdmin === "ADMIN") {
+      history.push(`/admin/${menu}`);
+    }
   };
 
   // START = LIST OF MENU

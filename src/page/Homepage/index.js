@@ -101,7 +101,7 @@ const Homepage = () => {
             primary
             icon="transfer"
             onClick={() => {
-              return history.push(`/${username}/search-receiver`);
+              return history.push(`/search-receiver`);
             }}
           >
             Transfer
@@ -141,7 +141,7 @@ const Homepage = () => {
         <div className="history-wrapper card">
           <div className="heading">
             <h2 className="text-heading">Transaction History</h2>
-            <Link className="anchor" to={`/${username}/history`}>
+            <Link className="anchor" to={`/history`}>
               <p className="text-link">See all</p>
             </Link>
           </div>

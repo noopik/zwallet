@@ -7,7 +7,7 @@ const ChangePinPage = () => {
   const [handleDisabledButton, setHandleDisabledButton] = useState(true);
 
   const handleSubmit = () => {
-    window.open('/username/profile/new-pin');
+    window.open('/profile/new-pin');
   };
 
   useEffect(() => {

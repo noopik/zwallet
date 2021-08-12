@@ -9,7 +9,7 @@ import { useHistory } from "react-router-dom";
 const SuccessPinPage = () => {
         const history = useHistory();
          const username = localStorage.getItem("username");
-      setTimeout(()=>{history.push(`/${username}/dashboard`)},3000)
+      setTimeout(()=>{history.push(`/dashboard`)},3000)
          useEffect(() => {
            document.title = "Zwallet | Create Pin Success";
          }); 

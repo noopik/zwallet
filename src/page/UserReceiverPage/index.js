@@ -72,7 +72,7 @@ const UserReceiverPage = () => {
     dispatch({ type: dispatchTypes.setTransfer, payload: dataSend });
     // console.log(data);
     history.push(
-      `/${username}/search-receiver/${getIdUserReceiver}/confirmation`
+      `/search-receiver/${getIdUserReceiver}/confirmation`
     );
   };
 

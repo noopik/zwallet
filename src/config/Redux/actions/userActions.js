@@ -73,7 +73,10 @@ export const loginUser = (data, history) => (dispatch) => {
       if (!pin) {
         history.push(`/create-pin/${id}`);
       } else {
-        history.push(`/${username}/dashboard`);
+        if(role==='ADMIN'){history.push(`/admin/dashboard`);}
+        else if(role==='MEMBER'){
+          history.push(`/dashboard`);
+        }
       }
     })
     .catch((error) => {
