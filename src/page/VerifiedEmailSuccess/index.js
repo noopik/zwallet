@@ -1,9 +1,11 @@
 import React from 'react'
 import styled from 'styled-components'
 import { SuccessLogo } from '../../assets'
-
+import { useHistory } from "react-router-dom";
 
 const VerifiedEmailSuccess = () => {
+     const history = useHistory();
+    const toLogin=()=>{ history.push(`/login`);}
     return (
 
             <Styles>
@@ -27,7 +29,7 @@ const VerifiedEmailSuccess = () => {
                 Click the button below to start the adventure
                 </div>
            
-                    <input type="button" name="" id="" value="Start Journey" class="Btn"></input>
+                    <input type="button" name="" id="" value="Start Journey" class="Btn" onClick={()=>toLogin()}></input>
         
                 </div>
                 <div class="footer"></div>

@@ -11,6 +11,7 @@ import { customMedia } from '../../components/Layouting/BreakPoints';
 import { resetPasswordUser } from '../../config/Redux/actions/userActions';
 import { useDispatch } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
+import { toastify } from "../../utils/Toast";
 
 const ForgotPasswordPage = () => {
   const dispatch = useDispatch();
@@ -47,7 +48,7 @@ const ForgotPasswordPage = () => {
   const onSubmit = (data) => {
     // CHECKING PASSWORD MUST BE SAME
     if (data.password !== data.verifyPassword) {
-      alert('Tidak sama');
+     toastify("password not match", "error");
       return;
     }
     // console.log("sama");

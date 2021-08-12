@@ -40,7 +40,7 @@ const Routes = () => {
         <Route exact path="/" component={Landingpage} />
         {/* START = AUTHENTICATION PAGE */}
         <PublicRoute exact path="/login" component={LoginPage} />
-        <PublicRoute path="/create-pin/:id" component={CreatePinPage} />
+        <Route path="/create-pin/:id" component={CreatePinPage} />
         <PublicRoute path="/sign-up" component={SignupPage} />
         <PublicRoute path="/success-pin" component={SuccessPinPage} />
         <PublicRoute
