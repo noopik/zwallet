@@ -7,12 +7,12 @@ const HistoryPage = () => {
   const username = localStorage.getItem('username');
   const historyState = useSelector((state) => state.historyReducer);
 
-  console.log('historyState', historyState?.data);
+  // console.log('historyState', historyState?.data);
 
   useEffect(() => {
     document.title = `${username} | Transaction History`;
   });
-  console.log(historyState);
+  // console.log(historyState);
   return (
     <Cardwrapper>
       <StyledHistoryPage>

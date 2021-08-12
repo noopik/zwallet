@@ -35,7 +35,7 @@ const ChangePinPage = () => {
   };
 
   useEffect(() => {
-    document.title = username | 'Add phone number';
+    document.title = username + ' | Add phone number';
   });
   // console.log(handleDisabledButton);
 

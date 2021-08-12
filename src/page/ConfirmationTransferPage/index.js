@@ -80,7 +80,7 @@ const ConfirmationTransferPage = () => {
           }
         )
         .then((res) => {
-          console.log(res.data);
+          // console.log(res.data);
           localStorage.setItem('amount', transferReducer.balanceLeft);
           dispath({ type: dispatchTypes.setStatusTransfer, payload: true });
           history.push(`/${username}/status-transfer`);

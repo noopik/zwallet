@@ -9,6 +9,11 @@ const initialData = {
 
 export const userReducer = (state = initialData, action) => {
   switch (action.type) {
+    case dispatchTypes.setUserProfile:
+      return {
+        ...state,
+        data: action.payload.data,
+      };
     case dispatchTypes.postRegisterUser:
       return {
         ...state,

@@ -7,6 +7,7 @@ const PersonalInfo = () => {
   const username = localStorage.getItem('username');
   const email = localStorage.getItem('email');
   const phone = localStorage.getItem('phone');
+
   return (
     <Cardwrapper>
       <Styledpersonal>
