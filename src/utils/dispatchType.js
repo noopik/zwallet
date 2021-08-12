@@ -11,4 +11,5 @@ export const dispatchTypes = {
   setAmountTransfer: 'SET_AMOUNT_TRANSFER',
   setTransfer: 'SET_TRANSFER',
   setStatusTransfer: 'SET_STATUS_TRANSFER',
+  setAllHistory: 'SET_ALL_TRANSACTIONS',
 };
