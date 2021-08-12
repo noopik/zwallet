@@ -49,7 +49,7 @@ const CreatePinPage = () => {
         setIsShowModal(true);
       })
       .catch((err) => {
-        console.log('NO');
+        // console.log('NO');
       });
   };
   // END = SEND ACTION PIN
@@ -69,7 +69,7 @@ const CreatePinPage = () => {
         }
       )
       .then((res) => {
-        console.log(res);
+        // console.log(res);
         // return;
         history.push(`/dashboard`);
       })

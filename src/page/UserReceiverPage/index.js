@@ -4,6 +4,7 @@ import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 import { useHistory, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
+import { AVAUserDefault } from '../../assets';
 import { AlertValidationForm, Cardwrapper, Input } from '../../components';
 import Button from '../../components/atoms/Button';
 import { customMedia } from '../../components/Layouting/BreakPoints';
@@ -23,7 +24,7 @@ const UserReceiverPage = () => {
   const history = useHistory();
 
   useEffect(() => {
-    document.title = 'Tranfer to Samuel Suhu';
+    document.title = 'Tranfer';
   });
 
   // START = GET USER RECEIVER
@@ -60,15 +61,19 @@ const UserReceiverPage = () => {
     if (parseInt(valueAmountRequest) > parseInt(amount)) {
       return toastify('Upps, saldo tidak mencukupi', 'error');
     }
+    let today = new Date();
+    const dd = String(today.getDate()).padStart(2, '0');
+    const mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+    const yyyy = today.getFullYear();
+    today = mm + '/' + dd + '/' + yyyy;
     const dataSend = {
       sender: idSender,
       receiver: getIdUserReceiver,
       amount: data.amount,
       balanceLeft: amount - valueAmountRequest,
-      date: new Date(),
+      date: today,
       notes: data.notes,
     };
-    // console.log(dataSend);
     dispatch({ type: dispatchTypes.setTransfer, payload: dataSend });
     // console.log(data);
     history.push(
@@ -98,7 +103,12 @@ const UserReceiverPage = () => {
         <Cardwrapper>
           <div className="user-profile-receiver">
             <div className="avatar">
-              <img src={userReceiver.avatar} alt="username" />
+              <img
+                src={
+                  userReceiver?.avatar ? userReceiver?.avatar : AVAUserDefault
+                }
+                alt="username"
+              />
             </div>
             <div className="description">
               <h2 className="text-heading">{userReceiver.username}</h2>

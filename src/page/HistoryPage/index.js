@@ -1,12 +1,18 @@
 import React, { useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 import { CardProfileUser, Cardwrapper } from '../../components';
 
 const HistoryPage = () => {
-  useEffect(() => {
-    document.title = 'Nopik | Transaction History';
-  });
+  const username = localStorage.getItem('username');
+  const historyState = useSelector((state) => state.historyReducer);
 
+  // console.log('historyState', historyState?.data);
+
+  useEffect(() => {
+    document.title = `${username} | Transaction History`;
+  });
+  // console.log(historyState);
   return (
     <Cardwrapper>
       <StyledHistoryPage>
@@ -15,21 +21,17 @@ const HistoryPage = () => {
         </div>
         <div className="body-section">
           <div className="date-section">
-            <h3 className="text-subheading">This Week</h3>
             <div className="body">
-              <CardProfileUser />
-              <CardProfileUser />
-              <CardProfileUser />
-              <CardProfileUser />
-              <CardProfileUser />
-            </div>
-          </div>
-          <div className="date-section">
-            <h3 className="text-subheading">This Month</h3>
-            <div className="body">
-              <CardProfileUser />
-              <CardProfileUser />
-              <CardProfileUser />
+              {historyState?.data &&
+                historyState?.data.map((item) => (
+                  <CardProfileUser
+                    avatar={item.avatar}
+                    username={item.username}
+                    typeTransaction={`${item.type} | ${item.description}`}
+                    amount={item.amount}
+                  />
+                ))}
+              {!historyState?.data && <h1>No history transaction</h1>}
             </div>
           </div>
         </div>

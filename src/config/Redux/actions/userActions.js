@@ -101,7 +101,7 @@ export const setPinUser = (data, history) => (dispatch) => {
       history.push(`/success-pin`);
     })
     .catch((error) => {
-      toastify(error.response.data.message, "error");
+      toastify(error.response.data.message, 'error');
     });
 };
 
@@ -120,10 +120,10 @@ export const forgotPasswordUser = (data) => (dispatch) => {
         payload: dataUser,
       });
       //   history.push(`/new-password`);
-      toastify("success sent reset password email", "info");
+      toastify('success sent reset password email', 'info');
     })
     .catch((error) => {
-    toastify(error.response.data.message, "error");
+      toastify(error.response.data.message, 'error');
     });
 };
 export const resetPasswordUser = (data, token, history) => (dispatch) => {
@@ -145,15 +145,15 @@ export const resetPasswordUser = (data, token, history) => (dispatch) => {
         payload: dataUser,
       });
       //   history.push(`/new-password`);
-       toastify("success reset password", "info");
+      toastify('success reset password', 'info');
       history.push(`/login`);
     })
     .catch((error) => {
-      toastify(error.response.data.message, "error");
+      toastify(error.response.data.message, 'error');
     });
 };
 
-export const updatePhoneNumber = (idUser, data, token) => {
+export const updatePhoneNumber = (idUser, data, token, history) => {
   axios
     .patch(`${process.env.REACT_APP_BACKEND_API}/users/${idUser}`, data, {
       headers: {
@@ -163,6 +163,7 @@ export const updatePhoneNumber = (idUser, data, token) => {
     .then((result) => {
       // console.log(result);
       localStorage.setItem('phone', data.phone);
+      history.push(`/user/profile/info`);
       return toastify('Success updated password', 'info');
     })
     .catch((err) => {

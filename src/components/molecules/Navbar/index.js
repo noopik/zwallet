@@ -1,5 +1,7 @@
 import PropTypes from 'prop-types';
 import React, { useState } from 'react';
+import { useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
 import { AVAUserDefault, ICBell } from '../../../assets';
@@ -8,13 +10,22 @@ import { customMedia } from '../../Layouting/BreakPoints';
 import NotificationPopup from '../NotificationPopup';
 
 const Navbar = ({ className }) => {
+  const [avatar, setAvatar] = useState(AVAUserDefault);
   const [setNotification, setShowNotification] = useState(false);
 
   const history = useHistory();
   const avaUser = localStorage.getItem('avatar');
   const username = localStorage.getItem('username');
   const phone = localStorage.getItem('phone');
-  // console.log(typeof avaUser);
+  const userState = useSelector((state) => state.userReducer);
+
+  // START = CONDITION AVATAR CHANGES
+  const avatarState = userState?.data?.avatar;
+  // console.log(avatarState);
+  useEffect(() => {
+    setAvatar(avatarState);
+  }, [avatarState, avaUser]);
+  // START = CONDITION AVATAR CHANGES
 
   return (
     <>
@@ -29,10 +40,7 @@ const Navbar = ({ className }) => {
               }}
             >
               <div className="image-wrapper">
-                <img
-                  src={avaUser === 'null' ? AVAUserDefault : avaUser}
-                  alt="user"
-                />
+                <img src={avatar} alt="user" />
               </div>
               <div className="profile-identity">
                 <h3 className="username">{username}</h3>
