@@ -83,7 +83,7 @@ const ConfirmationTransferPage = () => {
           // console.log(res.data);
           localStorage.setItem('amount', transferReducer.balanceLeft);
           dispath({ type: dispatchTypes.setStatusTransfer, payload: true });
-          history.push(`/${username}/status-transfer`);
+          history.push(`/status-transfer`);
         })
         .catch((err) => {
           console.log(err.response);

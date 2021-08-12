@@ -36,7 +36,7 @@ const Navbar = ({ className }) => {
             <div
               className="user-profile"
               onClick={() => {
-                return history.push(`/${username}/profile`);
+                return history.push(`/profile`);
               }}
             >
               <div className="image-wrapper">

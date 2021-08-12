@@ -18,6 +18,7 @@ const ProfileUserPage = () => {
   const phone = localStorage.getItem('phone');
   const userId = localStorage.getItem('id');
   const token = localStorage.getItem('token');
+  const role = localStorage.getItem("role");
   const dispatch = useDispatch();
   const [avatarLocalState, setAvatarLocalState] = useState(AVAUserDefault);
 
@@ -152,8 +153,11 @@ const ProfileUserPage = () => {
           <div className="body">
             <div
               className="item-menu"
-              onClick={() => {
-                history.push(`/${username}/profile/info`);
+              onClick={() => {if (role === "ADMIN") {
+                history.push(`/admin/profile/info`);
+              } else if (role === "MEMBER") {
+                history.push(`/profile/info`);
+              }
               }}
             >
               <p className="text-heading">Personal Information</p>
@@ -162,7 +166,11 @@ const ProfileUserPage = () => {
             <div
               className="item-menu"
               onClick={() => {
-                history.push(`/${username}/profile/password`);
+               if (role === "ADMIN") {
+                 history.push(`/admin/profile/password`);
+               } else if (role === "MEMBER") {
+                 history.push(`/profile/password`);
+               }
               }}
             >
               <p className="text-heading">Change Password</p>
@@ -170,8 +178,11 @@ const ProfileUserPage = () => {
             </div>
             <div
               className="item-menu"
-              onClick={() => {
-                history.push(`/${username}/profile/change-pin`);
+              onClick={() => {if (role === "ADMIN") {
+                history.push(`/admin/profile/change-pin`);
+              } else if (role === "MEMBER") {
+                history.push(`/profile/change-pin`);
+              };
               }}
             >
               <p className="text-heading">Change PIN</p>

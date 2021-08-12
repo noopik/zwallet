@@ -1,13 +1,19 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { useHistory } from "react-router-dom";
 import { Cardwrapper, HeadingContent, SmallCard } from '../../components';
 import { Styledpersonal } from './Styledpersonal';
 
 const PersonalInfo = () => {
+    const history = useHistory();
   const username = localStorage.getItem('username');
   const email = localStorage.getItem('email');
   const phone = localStorage.getItem('phone');
-
+    const role = localStorage.getItem("role");
+  const onPhone = () =>{ if (role === "ADMIN") {
+    history.push(`/admin/profile/add-phone-number`);
+  } else if (role === "MEMBER") {
+    history.push(`/profile/add-phone-number`);
+  }}
   return (
     <Cardwrapper>
       <Styledpersonal>
@@ -36,12 +42,9 @@ const PersonalInfo = () => {
             <h4 className="content">{phone}</h4>
           </div>
           <div className="text-right">
-            <Link
-              to={`/${username}/profile/add-phone-number`}
-              style={{ textDecoration: 'none' }}
-            >
-              <p className="manage">Manage</p>
-            </Link>
+           
+              <p className="manage"onClick={()=>onPhone()}>Manage</p>
+  
           </div>
         </SmallCard>
       </Styledpersonal>

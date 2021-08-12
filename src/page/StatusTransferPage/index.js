@@ -200,7 +200,7 @@ const StatusTransferPage = () => {
             primary="primary"
             children="Back to Home"
             onClick={() => {
-              return history.push(`/${username}/dashboard`);
+              return history.push(`/dashboard`);
             }}
           />
         </div>

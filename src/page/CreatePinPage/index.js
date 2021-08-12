@@ -71,10 +71,10 @@ const CreatePinPage = () => {
       .then((res) => {
         // console.log(res);
         // return;
-        history.push(`/${username}/dashboard`);
+        history.push(`/dashboard`);
       })
       .catch((err) => {
-        history.push(`/${username}/dashboard`);
+        history.push(`/dashboard`);
         console.log(err.response);
       });
   };
