@@ -18,6 +18,10 @@ const HistoryPage = () => {
       <StyledHistoryPage>
         <div className="heading-section">
           <h1 className="text-heading">Transcation History</h1>
+          <div className="sort-btn">
+              <button className="upward"><i class="fa fa-sort-asc" aria-hidden="true"></i></button>
+              <button  className="downward"><i class="fa fa-sort-desc" aria-hidden="true"></i></button>
+          </div>
         </div>
         <div className="body-section">
           <div className="date-section">
@@ -46,6 +50,35 @@ const StyledHistoryPage = styled.div`
   padding: 30px;
   .heading-section {
     margin-bottom: 30px;
+    display: flex;
+
+      .sort-btn{   
+        margin-left: 445px;
+        display: flex;
+        align-items: flex-end;
+        flex-direction: column;
+        height: 50px;
+        width: 20px;
+        .upward{
+         
+          outline: none;
+          height: 9px;
+          width: 20px;
+          background: none;
+          border: none;
+        }
+        .downward{
+      
+          outline: none;
+          background: none;
+          height: 5px;
+          width: 20px;
+          border: none;
+        }
+        .fa{
+          color: #7A7886
+        }
+      }
   }
   .body-section {
     display: flex;
