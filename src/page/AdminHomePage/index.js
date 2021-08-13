@@ -1,26 +1,31 @@
 import React, { useEffect } from 'react';
-import { Cardwrapper, SmallCard, HeadingContent } from '../../components';
-import { StyledAdmin } from './StyledAdmin';
-import { AVAJessicaMera } from '../../assets';
-import { getAllActivity } from '../../config/Redux/actions/dataAdminActions';
 import { useDispatch, useSelector } from 'react-redux';
+import { Cardwrapper, HeadingContent, SmallCard } from '../../components';
+import { getAllActivity } from '../../config/Redux/actions/dataAdminActions';
+import { StyledAdmin } from './StyledAdmin';
 
 const AdminHomePage = () => {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getAllActivity())
-  }, [dispatch])
+    dispatch(getAllActivity());
+  }, [dispatch]);
 
-  const { allData, meta } = useSelector(state => state.dataAdminReducer)
+  const { allData, meta } = useSelector((state) => state.dataAdminReducer);
 
-  let date = new Date()
-  date = date.getDate() +
-    "/" + (date.getMonth() + 1) +
-    "/" + date.getFullYear() +
-    " " + date.getHours() +
-    ":" + date.getMinutes() +
-    ":" + date.getSeconds();
+  let date = new Date();
+  date =
+    date.getDate() +
+    '/' +
+    (date.getMonth() + 1) +
+    '/' +
+    date.getFullYear() +
+    ' ' +
+    date.getHours() +
+    ':' +
+    date.getMinutes() +
+    ':' +
+    date.getSeconds();
 
   return (
     <StyledAdmin>
@@ -38,7 +43,9 @@ const AdminHomePage = () => {
           <p className="text-section">
             Amount Total Transaction <br />
             Update: {date}
-            <h4 className="balance-amount">Rp. {meta ? meta.totalAmount : 0}</h4>
+            <h4 className="balance-amount">
+              Rp. {meta ? meta.totalAmount : 0}
+            </h4>
             Rp {meta ? meta.totalAmount : 0}
           </p>
         </div>
@@ -55,24 +62,28 @@ const AdminHomePage = () => {
         <div className="text-wrapper">
           <HeadingContent>Total Transaction History</HeadingContent>
         </div>
-        {allData && allData.map(item => (
-          <SmallCard className="card-profile account">
-            <div className="wrapper-profile">
-              <div className="image-wrapper">
-                <img src={item.avatar} alt="" />
+        {allData &&
+          allData.map((item) => (
+            <SmallCard className="card-profile account">
+              <div className="wrapper-profile">
+                <div className="image-wrapper">
+                  <img src={item.avatar} alt="" />
+                </div>
+                <div className="detail-profile-wrap">
+                  <h5 className="text-name">{item.usernameTransfer}</h5>
+                  <p className="detail">
+                    Transfer to <b>Rp. {item.amount}</b> to {item.username} at{' '}
+                    {item.updatedAt}{' '}
+                  </p>
+                </div>
+                <div className="status-transfer">
+                  <mark>
+                    {item.status === 'success' ? 'Success' : 'Failed'}
+                  </mark>
+                </div>
               </div>
-              <div className="detail-profile-wrap">
-                <h5 className="text-name">{item.usernameTransfer}</h5>
-                <p className="detail">
-                  Transfer to <b>Rp. {item.amount}</b> to {item.username} at {item.updatedAt}{' '}
-                </p>
-              </div>
-              <div className="status-transfer">
-                <mark>{item.status === "success" ? "Success" : "Failed"}</mark>
-              </div>
-            </div>
-          </SmallCard>
-        ))}
+            </SmallCard>
+          ))}
       </Cardwrapper>
     </StyledAdmin>
   );

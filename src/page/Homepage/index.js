@@ -76,14 +76,17 @@ const Homepage = () => {
 
   useEffect(() => {
     axios
-      .get(`${process.env.REACT_APP_BACKEND_API}/transactions/history/${id}`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      })
+      .get(
+        `${process.env.REACT_APP_BACKEND_API}/transactions/history/${id}?perPage=3`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      )
       .then((res) => {
         setResultHistory(res.data.data);
-        // console.log(res.data);
+        console.log(res.data);
         const sendData = {
           data: res.data.data,
         };

@@ -1,13 +1,13 @@
-import React from 'react';
-import styled from 'styled-components';
-import { CardProfileUser, Cardwrapper, HeadingContent } from '../../components';
-import { useForm } from 'react-hook-form';
-import { useEffect } from 'react';
-import { useState } from 'react';
-import axios from 'axios';
-import { AVAUserDefault } from '../../assets';
 import { makeStyles } from '@material-ui/core/styles';
+import FilterListIcon from '@material-ui/icons/FilterList';
 import Pagination from '@material-ui/lab/Pagination';
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
+import { useForm } from 'react-hook-form';
+import styled from 'styled-components';
+import { AVAUserDefault } from '../../assets';
+import { CardProfileUser, Cardwrapper, HeadingContent } from '../../components';
+
 // import { useHistory } from 'react-router-dom';
 
 const SearchReceiverPage = () => {
@@ -38,9 +38,9 @@ const SearchReceiverPage = () => {
 
   // START = SEARCHING FEATURE
   const actionSearch = () => {};
+  const keyword = getValues('searching');
 
   useEffect(() => {
-    const keyword = getValues('searching');
     axios
       .get(
         `${process.env.REACT_APP_BACKEND_API}/users?search=${keyword}&perPage=5&page=1`,
@@ -124,10 +124,34 @@ const SearchReceiverPage = () => {
 
   // END = PAGINATION
 
+  // START = SORT LOGIC
+  const [sorting, setSorting] = useState('ASC');
+
+  const actionSort = () => {
+    sorting === 'ASC' ? setSorting('DESC') : setSorting('ASC');
+    axios
+      .get(
+        `${process.env.REACT_APP_BACKEND_API}/users?perPage=5&order=${sorting}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      )
+      .then((res) => {
+        const data = res.data.data;
+        setSearchAllResult(data);
+      })
+      .catch((err) => {
+        console.log(err.response);
+      });
+  };
+  // END = SORT LOGIC
+
   return (
     <>
       <Cardwrapper>
-        <StyledSearchPage>
+        <StyledSearchPage sorting={sorting}>
           <HeadingContent>Search Receiver</HeadingContent>
           <div className="search-section" onClick={actionSearch}>
             <svg
@@ -163,6 +187,9 @@ const SearchReceiverPage = () => {
                 })}
               />
             </form>
+          </div>
+          <div className="sort-btn" onClick={actionSort}>
+            <FilterListIcon className="btn-sort" />
           </div>
           <div className="body-section">
             {searchAllResult.length > 0 &&
@@ -220,5 +247,16 @@ const StyledSearchPage = styled.div`
     flex-direction: column;
     gap: 2rem;
     /* background-color: green; */
+  }
+  .sort-btn {
+    text-align: right;
+    .btn-sort {
+      transform: ${({ sorting }) =>
+        sorting === 'ASC' ? 'rotate(0deg)' : 'rotate(180deg)'};
+      &:hover {
+        cursor: pointer;
+        opacity: 0.5;
+      }
+    }
   }
 `;
