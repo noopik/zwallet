@@ -9,6 +9,7 @@ export const registerUser = (data, history) => (dispatch) => {
   axios
     .post(`${process.env.REACT_APP_BACKEND_API}/auth/register`, data)
     .then((result) => {
+      // console.log(result);
       toastify(
         'Succes Register. Please login and check email to verification account',
         'info'
@@ -24,6 +25,7 @@ export const registerUser = (data, history) => (dispatch) => {
       history.push(`/login`);
     })
     .catch((error) => {
+      // console.log(error);
       dispatch(showLoading(false));
       if (error.response.data.status === 404) {
         return toastify('Email alredy exists', 'error');
@@ -33,11 +35,12 @@ export const registerUser = (data, history) => (dispatch) => {
 };
 
 export const loginUser = (data, history) => (dispatch) => {
-  // console.log(data);
+  console.log('data masuk', data);
   dispatch(showLoading(true));
   axios
     .post(`${process.env.REACT_APP_BACKEND_API}/auth/login`, data)
     .then((result) => {
+      console.log(result);
       dispatch(showLoading(false));
       const token = result.data.data.token;
       const id = result.data.data.id;
@@ -81,6 +84,7 @@ export const loginUser = (data, history) => (dispatch) => {
       }
     })
     .catch((error) => {
+      console.log(error);
       dispatch(showLoading(false));
       toastify(error.response.data.message, 'error');
     });
@@ -107,6 +111,7 @@ export const setPinUser = (data, history) => (dispatch) => {
 };
 
 export const forgotPasswordUser = (data) => (dispatch) => {
+  // console.log('send email', data);
   axios
     .post(`${process.env.REACT_APP_BACKEND_API}/auth/forgotpassword`, data)
     .then((result) => {
@@ -124,11 +129,12 @@ export const forgotPasswordUser = (data) => (dispatch) => {
       toastify('success sent reset password email', 'info');
     })
     .catch((error) => {
+      // console.log('error', error.response);
       toastify(error.response.data.message, 'error');
     });
 };
 export const resetPasswordUser = (data, token, history) => (dispatch) => {
-  // console.log(data);
+  // console.log('data masuk', data);
   axios
     .post(
       `${process.env.REACT_APP_BACKEND_API}/auth/resetPassword/${token}`,
@@ -150,6 +156,7 @@ export const resetPasswordUser = (data, token, history) => (dispatch) => {
       history.push(`/login`);
     })
     .catch((error) => {
+      // console.log('error', error);
       toastify(error.response.data.message, 'error');
     });
 };

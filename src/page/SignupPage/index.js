@@ -66,6 +66,7 @@ const SignupPage = () => {
             }}
             validationSchema={validate}
             onSubmit={(values, { resetForm }) => {
+              // console.log(values);
               dispatch(registerUser(values, history));
               resetForm();
             }}
@@ -146,7 +147,7 @@ const SignupPage = () => {
             Already have an account ? Let's{' '}
             <Link
               to="/login"
-              classname="link"
+              className="link"
               style={{ textDecoration: 'none' }}
             >
               {' '}
