@@ -25,18 +25,18 @@ const Button = ({
         <path
           d="M14 22.1663V5.83301"
           stroke="#ffffff"
-          stroke-opacity="0.8"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
+          strokeOpacity="0.8"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
         />
         <path
           d="M5.83333 13.9997L14 5.83301L22.1667 13.9997"
           stroke="#ffffff"
-          stroke-opacity="0.8"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
+          strokeOpacity="0.8"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
         />
       </svg>
     ),
@@ -51,23 +51,22 @@ const Button = ({
         <path
           d="M14 5.83301V22.1663"
           stroke="#ffffff"
-          stroke-opacity="0.8"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
+          strokeOpacity="0.8"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
         />
         <path
           d="M5.83333 14H22.1667"
           stroke="#ffffff"
-          stroke-opacity="0.8"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
+          strokeOpacity="0.8"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
         />
       </svg>
     ),
   };
-
   return (
     <StyledButton
       disabled={disabled}
