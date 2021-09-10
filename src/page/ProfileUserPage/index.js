@@ -18,7 +18,7 @@ const ProfileUserPage = () => {
   const phone = localStorage.getItem('phone');
   const userId = localStorage.getItem('id');
   const token = localStorage.getItem('token');
-  const role = localStorage.getItem("role");
+  const role = localStorage.getItem('role');
   const dispatch = useDispatch();
   const [avatarLocalState, setAvatarLocalState] = useState(AVAUserDefault);
 
@@ -118,10 +118,10 @@ const ProfileUserPage = () => {
                   <path
                     d="M17 3.0003C17.2626 2.73766 17.5744 2.52932 17.9176 2.38718C18.2608 2.24503 18.6286 2.17188 19 2.17188C19.3714 2.17187 19.7392 2.24503 20.0824 2.38718C20.4256 2.52932 20.7374 2.73766 21 3.0003C21.2626 3.26295 21.471 3.57475 21.6131 3.91791C21.7553 4.26107 21.8284 4.62887 21.8284 5.0003C21.8284 5.37174 21.7553 5.73953 21.6131 6.08269C21.471 6.42585 21.2626 6.73766 21 7.0003L7.5 20.5003L2 22.0003L3.5 16.5003L17 3.0003Z"
                     stroke="#A9A9A9"
-                    stroke-opacity="0.6"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
+                    strokeOpacity="0.6"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
                   />
                 </svg>
                 <div>Change Profile</div>
@@ -153,11 +153,12 @@ const ProfileUserPage = () => {
           <div className="body">
             <div
               className="item-menu"
-              onClick={() => {if (role === "ADMIN") {
-                history.push(`/admin/profile/info`);
-              } else if (role === "MEMBER") {
-                history.push(`/profile/info`);
-              }
+              onClick={() => {
+                if (role === 'ADMIN') {
+                  history.push(`/admin/profile/info`);
+                } else if (role === 'MEMBER') {
+                  history.push(`/profile/info`);
+                }
               }}
             >
               <p className="text-heading">Personal Information</p>
@@ -166,11 +167,11 @@ const ProfileUserPage = () => {
             <div
               className="item-menu"
               onClick={() => {
-               if (role === "ADMIN") {
-                 history.push(`/admin/profile/password`);
-               } else if (role === "MEMBER") {
-                 history.push(`/profile/password`);
-               }
+                if (role === 'ADMIN') {
+                  history.push(`/admin/profile/password`);
+                } else if (role === 'MEMBER') {
+                  history.push(`/profile/password`);
+                }
               }}
             >
               <p className="text-heading">Change Password</p>
@@ -178,11 +179,12 @@ const ProfileUserPage = () => {
             </div>
             <div
               className="item-menu"
-              onClick={() => {if (role === "ADMIN") {
-                history.push(`/admin/profile/change-pin`);
-              } else if (role === "MEMBER") {
-                history.push(`/profile/change-pin`);
-              };
+              onClick={() => {
+                if (role === 'ADMIN') {
+                  history.push(`/admin/profile/change-pin`);
+                } else if (role === 'MEMBER') {
+                  history.push(`/profile/change-pin`);
+                }
               }}
             >
               <p className="text-heading">Change PIN</p>
