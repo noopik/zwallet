@@ -10,7 +10,7 @@ import { customMedia } from '../../Layouting/BreakPoints';
 import NotificationPopup from '../NotificationPopup';
 
 const Navbar = ({ className }) => {
-  const [avatar, setAvatar] = useState(AVAUserDefault);
+  const [avatar, setAvatar] = useState();
   const [setNotification, setShowNotification] = useState(false);
 
   const history = useHistory();
@@ -21,9 +21,9 @@ const Navbar = ({ className }) => {
 
   // START = CONDITION AVATAR CHANGES
   const avatarState = userState?.data?.avatar;
-  // console.log(avatarState);
+  // console.log(userState);
   useEffect(() => {
-    const changeAvatar = avatarState ? avatarState : avaUser;
+    const changeAvatar = avatarState ? avatarState : AVAUserDefault;
     setAvatar(changeAvatar);
   }, [avatarState, avaUser]);
   // START = CONDITION AVATAR CHANGES

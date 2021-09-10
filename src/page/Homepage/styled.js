@@ -26,6 +26,9 @@ export const StyledDashboard = styled.main`
         line-height: 31px;
         color: #e0e0e0;
         margin: 0;
+        .add-phone-number {
+          color: white;
+        }
       }
       .balance-amount {
         font-family: Nunito Sans;
@@ -93,7 +96,7 @@ export const StyledDashboard = styled.main`
           }
         }
       }
-      .body-chart{
+      .body-chart {
         margin-top: 80px;
       }
     }
@@ -125,7 +128,7 @@ export const StyledDashboard = styled.main`
         flex-direction: column;
         gap: 40px;
       }
-      .body-chart{
+      .body-chart {
         width: 100px;
         height: 100px;
         background: black;

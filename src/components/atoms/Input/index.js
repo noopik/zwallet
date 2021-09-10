@@ -6,6 +6,7 @@ import { ICEyeClose, ICEyeOpen } from '../../../assets';
 import { colors } from '../../../utils';
 
 const Input = (props) => {
+  // const { ...rest } = props;
   const conditionalIcon = {
     pen: (
       <svg
@@ -117,6 +118,7 @@ const Input = (props) => {
   const [field] = useField(props);
 
   return (
+    // <div {...rest}>
     <StyledInput className={props.className} active={props.active}>
       <label htmlFor={field.name}>{conditionalIcon[props.icon]}</label>
       {props.icon === 'phone' && <p className="idphone">+62</p>}
@@ -128,6 +130,7 @@ const Input = (props) => {
         </div>
       )}
     </StyledInput>
+    // </div>
   );
 };
 
