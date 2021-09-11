@@ -1,7 +1,6 @@
 import AttachFileIcon from '@material-ui/icons/AttachFile';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
@@ -21,6 +20,7 @@ const ProfileUserPage = () => {
   const role = localStorage.getItem('role');
   const dispatch = useDispatch();
   const [avatarLocalState, setAvatarLocalState] = useState(AVAUserDefault);
+  const [updateAvatar, setUpdateAvatar] = useState();
 
   useEffect(() => {
     document.title = `Zwallet | ${username}`;
@@ -28,15 +28,6 @@ const ProfileUserPage = () => {
     setAvatarLocalState(avatar);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [avatar]);
-
-  // START = HANDLE FORM
-  const {
-    register,
-    getValues,
-    // formState: { errors },
-  } = useForm();
-
-  // END = HANDLE FORM
 
   // START = LOGOUT ACTION
   const logoutAction = () => {
@@ -50,11 +41,10 @@ const ProfileUserPage = () => {
   const actionUpload = () => {
     changeAvatar ? setChangeAvatar(false) : setChangeAvatar(true);
   };
-  const updateAvatar = (data) => {
-    const changeImage = getValues('avatar')[0];
-    // console.log(changeImage);
+  const actionUpdateAvatar = () => {
+    // console.log(updateAvatar);
     const formData = new FormData();
-    formData.append('avatar', changeImage);
+    formData.append('avatar', updateAvatar);
     axios
       .patch(
         `${process.env.REACT_APP_BACKEND_API}/users/avatar/${userId}`,
@@ -128,7 +118,11 @@ const ProfileUserPage = () => {
               </div>
               {changeAvatar && (
                 <div className="form-input-avatar">
-                  <input type="file" {...register('avatar')} />
+                  <input
+                    type="file"
+                    name="avatar"
+                    onChange={(e) => setUpdateAvatar(e.target.files[0])}
+                  />
                   <div className="custom-row">
                     <AttachFileIcon />
                     <p>Select Image</p>
@@ -137,7 +131,7 @@ const ProfileUserPage = () => {
                     <button
                       type="submit"
                       className="btn-upload"
-                      onClick={updateAvatar}
+                      onClick={actionUpdateAvatar}
                     >
                       Upload
                     </button>

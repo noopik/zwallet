@@ -54,30 +54,30 @@ const MenuAsideLeft = ({ active }) => {
                   <path
                     d="M11.6667 3.5H3.5V11.6667H11.6667V3.5Z"
                     stroke="#3A3D42"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
                   />
                   <path
                     d="M24.5 3.5H16.3333V11.6667H24.5V3.5Z"
                     stroke="#3A3D42"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
                   />
                   <path
                     d="M24.5 16.333H16.3333V24.4997H24.5V16.333Z"
                     stroke="#3A3D42"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
                   />
                   <path
                     d="M11.6667 16.333H3.5V24.4997H11.6667V16.333Z"
                     stroke="#3A3D42"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
                   />
                 </svg>
                 <h2 className="title-menu">Dashboard</h2>

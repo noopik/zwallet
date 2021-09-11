@@ -9,6 +9,7 @@ import { Bar } from 'react-chartjs-2';
 import axios from 'axios';
 import { useDispatch } from 'react-redux';
 import { dispatchTypes } from '../../utils/dispatchType';
+import { moneyFormatter } from '../../utils';
 
 const Homepage = () => {
   const history = useHistory();
@@ -104,8 +105,21 @@ const Homepage = () => {
       <div className="header-section">
         <div className="balance-wrapper">
           <h3 className="text-section">Balance</h3>
-          <h1 className="balance-amount">Rp. {amount}</h1>
-          <p className="text-section">{phone}</p>
+          <h1 className="balance-amount">
+            Rp. {moneyFormatter.format(amount)}
+          </h1>
+          <p className="text-section">
+            {phone === 'null' ? (
+              <Link
+                to="/profile/add-phone-number"
+                className="add-phone-number anchor"
+              >
+                Add phone number
+              </Link>
+            ) : (
+              phone
+            )}
+          </p>
         </div>
         <div className="button-action-wrapper">
           <Button

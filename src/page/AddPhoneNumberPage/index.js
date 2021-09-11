@@ -1,8 +1,9 @@
 import axios from 'axios';
+import { Form, Formik } from 'formik';
 import React, { useEffect, useState } from 'react';
-import { useForm } from 'react-hook-form';
 import { useHistory } from 'react-router-dom';
-import { toastify } from '../../../src/utils';
+import * as Yup from 'yup';
+import { phoneRegExp, toastify } from '../../../src/utils';
 import { ICTrash } from '../../assets';
 import {
   AlertValidationForm,
@@ -12,49 +13,28 @@ import {
   Input,
 } from '../../components';
 import { updatePhoneNumber } from '../../config/Redux/actions/userActions';
-import { patternNumber } from '../../utils';
 import { StyledPhone } from './StyledPhone';
 
 const AddPhoneNumberPage = () => {
   const history = useHistory();
-  const [handleDisabledButton, setHandleDisabledButton] = useState(true);
   const idUser = localStorage.getItem('id');
   const token = localStorage.getItem('token');
   const role = localStorage.getItem('role');
   const username = localStorage.getItem('username');
   const phone = localStorage.getItem('phone');
   const [userPhone, setUserPhone] = useState(phone);
-
-  // START = HANDLE FORM
-  const {
-    register,
-    handleSubmit,
-    watch,
-    getValues,
-    formState: { errors },
-  } = useForm();
-
-  const onSubmit = (data) => {
-    const sendDataPhone = {
-      phone: `62${data.phone}`,
-    };
-    updatePhoneNumber(idUser, sendDataPhone, token, history, role);
-  };
-  // END = HANDLE FORM
-
-  useEffect(() => {
-    document.title = username | 'Add phone number';
+  const validate = Yup.object({
+    phone: Yup.string()
+      .required('Phone number is required')
+      .matches(phoneRegExp, 'Phone number is not valid')
+      .min(9, 'Password must be at least 11 charaters')
+      .max(11, 'Password must be less than 13 charaters')
+      .nullable(),
   });
 
   useEffect(() => {
-    const value = getValues();
-    if (value.phone) {
-      setHandleDisabledButton(false);
-    } else {
-      setHandleDisabledButton(true);
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [watch('phone')]);
+    document.title = username + ' | Add phone number';
+  });
 
   const actionTrash = () => {
     const sendData = {
@@ -69,7 +49,7 @@ const AddPhoneNumberPage = () => {
       .then((res) => {
         localStorage.removeItem('phone');
         setUserPhone('');
-        return toastify(res.data.message, 'success');
+        return toastify('Success delete phone number', 'success');
       })
       .catch((err) => {
         console.log(err.response);
@@ -88,35 +68,57 @@ const AddPhoneNumberPage = () => {
           </p>
         </div>
         {!userPhone && (
-          <form onSubmit={handleSubmit(onSubmit)}>
-            <div className="form-input">
-              <Input
-                icon="phone"
-                type="text"
-                id="phone"
-                name="phone"
-                placeholder="Enter your phone number"
-                {...register('phone', {
-                  required: true,
-                  minLength: 9,
-                  pattern: patternNumber,
-                })}
-              />
-              {errors.phone && (
-                <AlertValidationForm message="Number phone must be a number and min 11 character" />
-              )}
-            </div>
-            <div className="btn-wrapper">
-              <Button
-                type="submit"
-                primary="primary"
-                className="btn"
-                disabled={handleDisabledButton}
-              >
-                Add Phone Number
-              </Button>
-            </div>
-          </form>
+          <Formik
+            initialValues={{
+              phone,
+            }}
+            validationSchema={validate}
+            onSubmit={(values, { resetForm }) => {
+              const sendDataPhone = {
+                phone: `62${values.phone}`,
+              };
+              // console.log('sendDataPhone', sendDataPhone);
+              updatePhoneNumber(idUser, sendDataPhone, token, history, role);
+              resetForm();
+            }}
+          >
+            {({
+              values,
+              errors,
+              touched,
+              handleChange,
+              handleBlur,
+              handleSubmit,
+            }) => (
+              <Form onSubmit={handleSubmit}>
+                <div className="form-input">
+                  <Input
+                    icon="phone"
+                    type="text"
+                    id="phone"
+                    name="phone"
+                    placeholder="Enter your phone number"
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    value={values.phone}
+                  />
+                  {errors.phone && touched.phone && errors.phone && (
+                    <AlertValidationForm message={errors.phone} />
+                  )}
+                </div>
+                <div className="btn-wrapper">
+                  <Button
+                    type="submit"
+                    primary="primary"
+                    className="btn"
+                    // disabled={handleDisabledButton}
+                  >
+                    Add Phone Number
+                  </Button>
+                </div>
+              </Form>
+            )}
+          </Formik>
         )}
         {userPhone && (
           <Cardwrapper>

@@ -3,7 +3,6 @@ import FilterListIcon from '@material-ui/icons/FilterList';
 import Pagination from '@material-ui/lab/Pagination';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import { useForm } from 'react-hook-form';
 import styled from 'styled-components';
 import { AVAUserDefault } from '../../assets';
 import { CardProfileUser, Cardwrapper, HeadingContent } from '../../components';
@@ -13,23 +12,13 @@ import { CardProfileUser, Cardwrapper, HeadingContent } from '../../components';
 const SearchReceiverPage = () => {
   const [searchAllResult, setSearchAllResult] = useState([]);
   const [paginationState, setPaginationState] = useState();
+  const [currentPage, setCurrentPage] = useState();
+  const [searchKeyword, setSerchKeyword] = useState('');
   // const [searchResult, setSearchResult] = useState([]);
   const token = localStorage.getItem('token');
   // const history = useHistory();
 
   // START = SEARCHING FEATURE
-  const {
-    register,
-    handleSubmit,
-    watch,
-    getValues,
-    // formState: { errors },
-  } = useForm();
-
-  const onSubmit = (data) => {
-    // console.log(data);/
-    return;
-  };
 
   // END = SEARCHING FEATURE
   useEffect(() => {
@@ -37,13 +26,10 @@ const SearchReceiverPage = () => {
   });
 
   // START = SEARCHING FEATURE
-  const actionSearch = () => {};
-  const keyword = getValues('searching');
-
-  useEffect(() => {
+  const actionSearch = () => {
     axios
       .get(
-        `${process.env.REACT_APP_BACKEND_API}/users?search=${keyword}&perPage=5&page=1`,
+        `${process.env.REACT_APP_BACKEND_API}/users?search=${searchKeyword}&perPage=5&page=1`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -57,10 +43,15 @@ const SearchReceiverPage = () => {
         setSearchAllResult(data);
       })
       .catch((err) => {
-        console.log(err.resonse);
+        // console.log(err.resonse);
       });
+  };
+
+  useEffect(() => {
+    actionSearch();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [watch('searching')]);
+  }, [searchKeyword]);
+
   // END = SEARCHING FEATURE
   // START = SEARCHING FEATURE
 
@@ -83,7 +74,6 @@ const SearchReceiverPage = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   // END = SEARCHING FEATURE
-  // console.log(watch('searching'));
 
   // START = PAGINATION
   const useStyles = makeStyles((theme) => ({
@@ -97,6 +87,7 @@ const SearchReceiverPage = () => {
   function PaginationOutlined() {
     const classes = useStyles();
     const handlePagination = (event, value) => {
+      setCurrentPage(value);
       axios
         .get(
           `${process.env.REACT_APP_BACKEND_API}/users?perPage=5&page=${value}`,
@@ -115,6 +106,7 @@ const SearchReceiverPage = () => {
       <div className={classes.root}>
         <Pagination
           count={paginationState?.totalPage}
+          page={currentPage}
           variant="outlined"
           onChange={handlePagination}
         />
@@ -165,26 +157,25 @@ const SearchReceiverPage = () => {
               <path
                 d="M15 16L20 21"
                 stroke="#A9A9A9"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
               />
               <path
                 d="M10 18C13.866 18 17 14.866 17 11C17 7.13401 13.866 4 10 4C6.13401 4 3 7.13401 3 11C3 14.866 6.13401 18 10 18Z"
                 stroke="#A9A9A9"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
               />
             </svg>
-            <form onSubmit={handleSubmit(onSubmit)}>
+            <form>
               <input
                 className="input-search"
                 placeholder="Mencari saya?"
                 type="text"
-                {...register('searching', {
-                  minLength: 1,
-                })}
+                name="search"
+                onChange={(e) => setSerchKeyword(e.target.value)}
               />
             </form>
           </div>
@@ -193,9 +184,10 @@ const SearchReceiverPage = () => {
           </div>
           <div className="body-section">
             {searchAllResult.length > 0 &&
-              searchAllResult.map((item) => {
+              searchAllResult.map((item, index) => {
                 return (
                   <CardProfileUser
+                    key={index}
                     avatar={item.avatar ? item.avatar : AVAUserDefault}
                     typeTransaction={item.phone}
                     link={`search-receiver/${item.id}`}

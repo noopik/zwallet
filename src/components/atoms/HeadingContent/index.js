@@ -16,7 +16,7 @@ HeadingContent.propTypes = {
 };
 
 HeadingContent.defaultProps = {
-  children: 'Title Hading',
+  children: <p>'Title Hading'</p>,
 };
 
 export default HeadingContent;
