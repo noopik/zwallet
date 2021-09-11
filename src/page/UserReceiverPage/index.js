@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { Form, Formik } from 'formik';
 import React, { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 import * as Yup from 'yup';
@@ -13,9 +13,11 @@ import { toastify } from '../../utils';
 import { dispatchTypes } from '../../utils/dispatchType';
 
 const UserReceiverPage = () => {
+  const userState = useSelector((state) => state.userReducer.data);
+  const { amount: saldo } = userState;
   const location = useLocation();
   const getIdUserReceiver = location.pathname.split('/')[2];
-  console.log('getIdUserReceiver', getIdUserReceiver);
+  // console.log('getIdUserReceiver', getIdUserReceiver);
   const token = localStorage.getItem('token');
   const idSender = localStorage.getItem('id');
   const [userReceiver, setUserReceiver] = useState({});
@@ -32,7 +34,7 @@ const UserReceiverPage = () => {
         (value) => value > 1000
       )
       .nullable(),
-    notes: Yup.string().nullable(),
+    notes: Yup.string().required('Notes Required').nullable(),
   });
   useEffect(() => {
     document.title = 'Tranfer';
@@ -47,7 +49,7 @@ const UserReceiverPage = () => {
         },
       })
       .then((res) => {
-        console.log('USER RECEIVER:', res);
+        // console.log('USER RECEIVER:', res);
         setUserReceiver(res.data.data[0]);
       })
       .catch((err) => {
@@ -60,9 +62,8 @@ const UserReceiverPage = () => {
   // START = HANDLE FORM
 
   const actionSubmitForm = (data) => {
-    const amount = localStorage.getItem('amount');
     const valueAmountRequest = data.amount;
-    if (parseInt(valueAmountRequest) > parseInt(amount)) {
+    if (parseInt(valueAmountRequest) > parseInt(saldo)) {
       return toastify('Upps, saldo tidak mencukupi', 'error');
     }
     let today = new Date();
@@ -74,7 +75,7 @@ const UserReceiverPage = () => {
       sender: idSender,
       receiver: getIdUserReceiver,
       amount: data.amount,
-      balanceLeft: amount - valueAmountRequest,
+      balanceLeft: saldo - valueAmountRequest,
       date: today,
       notes: data.notes,
     };
@@ -173,7 +174,10 @@ const UserReceiverPage = () => {
                     value={values.notes}
                   />
                   {errors.notes && touched.notes && errors.notes && (
-                    <AlertValidationForm message={errors.notes} />
+                    <AlertValidationForm
+                      className="error"
+                      message={errors.notes}
+                    />
                   )}
                 </div>
                 <div className="btn-wrapper">
@@ -272,7 +276,12 @@ const StyledUserReceiverPage = styled.div`
       .notes-wrapper {
         /* background-color: yellow; */
         display: flex;
+        flex-direction: column;
         justify-content: center;
+        align-items: center;
+        .error {
+          width: max-content;
+        }
         .input {
           /* background-color: pink; */
           width: 30%;

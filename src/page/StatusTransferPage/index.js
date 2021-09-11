@@ -69,7 +69,7 @@ const StatusTransferPage = () => {
       });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-  console.log(dataReceiverPDF);
+  // console.log(dataReceiverPDF);
   const getPdf = () => {
     // You'll need to make your image into a Data URL
     // Use http://dataurl.net/#dataurlmaker

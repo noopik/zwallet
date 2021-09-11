@@ -62,6 +62,27 @@ export const userReducer = (state = initialData, action) => {
         message: action.payload.message,
         status: action.payload.status,
       };
+    case dispatchTypes.setUserLogout:
+      return {
+        ...state,
+        state: initialData,
+      };
+    case dispatchTypes.updatePinUser:
+      return {
+        ...state,
+        data: {
+          ...state.data,
+          pin: action.payload.pin,
+        },
+      };
+    case dispatchTypes.updateAmountSaldo:
+      return {
+        ...state,
+        data: {
+          ...state.data,
+          amount: action.payload,
+        },
+      };
     default:
       return state;
   }

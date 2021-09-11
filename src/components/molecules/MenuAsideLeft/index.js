@@ -1,13 +1,16 @@
 import PropTypes from 'prop-types';
 import React from 'react';
+import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
+import { dispatchTypes } from '../../../utils/dispatchType';
 import { Cardwrapper } from '../../atoms';
 import { customMedia } from '../../Layouting/BreakPoints';
 
 const MenuAsideLeft = ({ active }) => {
   const history = useHistory();
   const isAdmin = localStorage.getItem('role');
+  const dispatch = useDispatch();
 
   const actionMenu = (menu) => {
     if (isAdmin === 'MEMBER') {
@@ -27,6 +30,7 @@ const MenuAsideLeft = ({ active }) => {
   };
   // END = LIST OF MENU
   const logoutAction = () => {
+    dispatch({ type: dispatchTypes.setUserLogout });
     localStorage.removeItem('isAuth');
     history.push('/');
   };

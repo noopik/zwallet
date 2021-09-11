@@ -9,7 +9,6 @@ const Cardwrapper = ({ children, className }) => {
 };
 
 Cardwrapper.propTypes = {
-  children: PropTypes.object.isRequired,
   className: PropTypes.string,
 };
 

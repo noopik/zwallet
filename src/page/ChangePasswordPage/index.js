@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { Form, Formik } from 'formik';
 import React, { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 import * as Yup from 'yup';
 import {
   AlertValidationForm,
@@ -13,9 +14,9 @@ import { toastify } from '../../utils';
 import { StyledChange } from './StyledChange';
 
 const ChangePasswordPage = () => {
-  const idUser = localStorage.getItem('id');
+  const userState = useSelector((state) => state.userReducer.data);
+  const { username, id: idUser, email } = userState;
   const token = localStorage.getItem('token');
-  const username = localStorage.getItem('username');
   const validate = Yup.object({
     currentPassword: Yup.string()
       .min(8, 'Password must be at least 8 charaters')
@@ -39,21 +40,40 @@ const ChangePasswordPage = () => {
   });
 
   // START = SEND DATA FUNCTION
-  const onSubmit = (newPassword) => {
-    const dataSend = { phone: newPassword };
+  const actionUpdatePassword = (currentPassword, newPassword) => {
+    // START = Check Current Password
     axios
-      .patch(`${process.env.REACT_APP_BACKEND_API}/users/${idUser}`, dataSend, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
+      .post(`${process.env.REACT_APP_BACKEND_API}/auth/login`, {
+        email,
+        password: currentPassword,
       })
       .then(() => {
-        toastify('Success update password', 'success');
+        const dataSend = { phone: newPassword };
+        axios
+          .patch(
+            `${process.env.REACT_APP_BACKEND_API}/users/${idUser}`,
+            dataSend,
+            {
+              headers: {
+                Authorization: `Bearer ${token}`,
+              },
+            }
+          )
+          .then(() => {
+            toastify('Success update password', 'success');
+          })
+          .catch(() => {
+            toastify('Failed to update password', 'failed');
+          });
       })
-      .catch(() => {
-        toastify('Failed to update password', 'failed');
+      .catch((error) => {
+        // console.log(error.response);
+        if (error.response.data.message === 'password wrong') {
+          return toastify('Current password is wrong!', 'error');
+        }
+        return toastify(error.response.data.message, 'error');
       });
-    // history.push('/createpin');
+    // END = Check Current Password
   };
   // END = SEND DATA FUNCTION
 
@@ -76,7 +96,10 @@ const ChangePasswordPage = () => {
           validationSchema={validate}
           onSubmit={(values, { resetForm }) => {
             // console.log(values.confirmNewPassword);
-            onSubmit(values.confirmNewPassword);
+            actionUpdatePassword(
+              values.currentPassword,
+              values.confirmNewPassword
+            );
             resetForm();
           }}
         >
