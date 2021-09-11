@@ -1,3 +1,45 @@
+import React from 'react'
+import styled from 'styled-components'
+import { SuccessLogo } from '../../assets'
+import { useHistory } from "react-router-dom";
+   
+const VerifiedEmailSuccess = () => {
+     const history = useHistory();
+      const username = localStorage.getItem("username");
+        const onSubmit = () => {
+          history.push('/login');
+          return;
+        };
+    return (
+
+            <Styles>
+                <div className="inner-wrap">
+                <div class="logo">
+                    Zwallet
+                </div>
+        
+                <h1>
+                    Congratulation {username}!  <br />  
+                    Your account has been 
+                    successfully <br /> activated             
+                </h1>
+        
+                <div class="centerImage">
+                    <img src={SuccessLogo} alt=""/>
+                </div>
+        
+                <div class="text">
+                Now you can enjoy all the features of Zwallet.<br/>
+                Click the button below to start the adventure
+                </div>
+           
+                    <input type="button" name="" id="" value="Start Journey" class="Btn" onClick={()=>onSubmit()}></input>
+        
+                </div>
+                <div class="footer"></div>
+             
+            </Styles>
+=======
 import React from 'react';
 import styled from 'styled-components';
 import { SuccessLogo } from '../../assets';

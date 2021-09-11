@@ -9,6 +9,7 @@ export const registerUser = (data, history) => (dispatch) => {
   axios
     .post(`${process.env.REACT_APP_BACKEND_API}/auth/register`, data)
     .then((result) => {
+            const username = result.data.data.username;
       // console.log(result);
       toastify(
         'Succes Register. Please login and check email to verification account',
@@ -20,6 +21,7 @@ export const registerUser = (data, history) => (dispatch) => {
         message: result.data.message,
         status: result.data.status,
       };
+      localStorage.setItem("username", username);
       dispatch({ type: dispatchTypes.postRegisterUser, payload: dataUser });
       dispatch(showLoading(false));
       history.push(`/login`);
