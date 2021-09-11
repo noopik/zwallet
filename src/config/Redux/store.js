@@ -9,10 +9,20 @@ const persistConfig = {
   key: 'root',
   storage,
 };
-
 const persistedReducer = persistReducer(persistConfig, reducer);
 
-const store = createStore(persistedReducer, applyMiddleware(thunk, logger));
+let middleware = [thunk];
+
+if (process.env.NODE_ENV !== 'production') {
+  let b = require(logger);
+  middleware = [...middleware, b];
+} else {
+  middleware = [...middleware];
+}
+
+const createStoreWithMiddleware = applyMiddleware(...middleware);
+
+const store = createStore(persistedReducer, createStoreWithMiddleware);
 
 const persistor = persistStore(store);
 
