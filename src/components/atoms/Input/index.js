@@ -169,7 +169,7 @@ const StyledInput = styled.div`
     }
   }
   input {
-    width: 100%;
+    width: 100% !important;
     height: 23px;
     border: none;
     outline: none;

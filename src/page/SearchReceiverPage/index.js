@@ -184,9 +184,10 @@ const SearchReceiverPage = () => {
           </div>
           <div className="body-section">
             {searchAllResult.length > 0 &&
-              searchAllResult.map((item) => {
+              searchAllResult.map((item, index) => {
                 return (
                   <CardProfileUser
+                    key={index}
                     avatar={item.avatar ? item.avatar : AVAUserDefault}
                     typeTransaction={item.phone}
                     link={`search-receiver/${item.id}`}

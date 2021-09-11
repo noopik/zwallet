@@ -51,6 +51,7 @@ CardProfileUser.defaultProps = {
   avatar: AVAUserDefault,
   username: '...',
   typeTransaction: '...',
+  amount: '50000',
 };
 
 export default CardProfileUser;

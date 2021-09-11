@@ -19,14 +19,13 @@ const UserReceiverPage = () => {
   const token = localStorage.getItem('token');
   const idSender = localStorage.getItem('id');
   const [userReceiver, setUserReceiver] = useState({});
-  const [amountTransfer, setAmountTransfer] = useState(0.0);
   // const [amountAvailable, setAmountAvailable] = useState(false);
   // const username = localStorage.getItem('username');
   const dispatch = useDispatch();
   const history = useHistory();
   const validate = Yup.object({
     amount: Yup.number()
-      .required('ERROR: The number is required!')
+      .required('The number is required!')
       .test(
         'Is positive?',
         'The number must be greater than 1000  IDR!',
@@ -113,7 +112,7 @@ const UserReceiverPage = () => {
         <div className="body-section">
           <Formik
             initialValues={{
-              amount: '',
+              amount: 0,
               notes: '',
             }}
             validationSchema={validate}
@@ -151,8 +150,17 @@ const UserReceiverPage = () => {
                     <AlertValidationForm message={errors.amount} />
                   )}
                 </div>
-                <p className="text-heading summary">
-                  Rp. {amountTransfer} Available
+                <p
+                  className={`text-heading summary ${
+                    errors.amount && touched.amount && errors.amount
+                      ? 'error'
+                      : ''
+                  }`}
+                >
+                  Rp. {values.amount}{' '}
+                  {errors.amount && touched.amount && errors.amount
+                    ? 'Not Available'
+                    : 'Available'}
                 </p>
                 <div className="notes-wrapper">
                   <Input
@@ -257,6 +265,9 @@ const StyledUserReceiverPage = styled.div`
       p.summary {
         text-align: center;
         margin-bottom: 60px;
+        &.error {
+          color: red;
+        }
       }
       .notes-wrapper {
         /* background-color: yellow; */
@@ -265,9 +276,6 @@ const StyledUserReceiverPage = styled.div`
         .input {
           /* background-color: pink; */
           width: 30%;
-          &.input {
-            /* width: 100%; */
-          }
         }
       }
       .btn-wrapper {
