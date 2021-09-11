@@ -1,7 +1,7 @@
 import AttachFileIcon from '@material-ui/icons/AttachFile';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
 import { AVAUserDefault, ICArrowLeft } from '../../assets';
@@ -11,11 +11,9 @@ import { toastify } from '../../utils';
 import { dispatchTypes } from '../../utils/dispatchType';
 
 const ProfileUserPage = () => {
+  const userState = useSelector((state) => state.userReducer.data);
+  const { avatar, username, phone, id: userId } = userState;
   const history = useHistory();
-  const avatar = localStorage.getItem('avatar');
-  const username = localStorage.getItem('username');
-  const phone = localStorage.getItem('phone');
-  const userId = localStorage.getItem('id');
   const token = localStorage.getItem('token');
   const role = localStorage.getItem('role');
   const dispatch = useDispatch();
@@ -31,6 +29,7 @@ const ProfileUserPage = () => {
 
   // START = LOGOUT ACTION
   const logoutAction = () => {
+    dispatch({ type: dispatchTypes.setUserLogout });
     localStorage.removeItem('isAuth');
     history.push('/');
   };

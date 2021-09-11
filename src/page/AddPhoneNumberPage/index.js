@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { Form, Formik } from 'formik';
 import React, { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import * as Yup from 'yup';
 import { phoneRegExp, toastify } from '../../../src/utils';
@@ -16,12 +17,11 @@ import { updatePhoneNumber } from '../../config/Redux/actions/userActions';
 import { StyledPhone } from './StyledPhone';
 
 const AddPhoneNumberPage = () => {
+  const userState = useSelector((state) => state.userReducer.data);
+  const { username, phone, id: idUser } = userState;
   const history = useHistory();
-  const idUser = localStorage.getItem('id');
   const token = localStorage.getItem('token');
   const role = localStorage.getItem('role');
-  const username = localStorage.getItem('username');
-  const phone = localStorage.getItem('phone');
   const [userPhone, setUserPhone] = useState(phone);
   const validate = Yup.object({
     phone: Yup.string()
@@ -56,7 +56,6 @@ const AddPhoneNumberPage = () => {
         return toastify(err.response.data.message, 'error');
       });
   };
-
   return (
     <Cardwrapper>
       <StyledPhone>
@@ -70,7 +69,7 @@ const AddPhoneNumberPage = () => {
         {!userPhone && (
           <Formik
             initialValues={{
-              phone,
+              phone: phone,
             }}
             validationSchema={validate}
             onSubmit={(values, { resetForm }) => {

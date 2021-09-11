@@ -14,7 +14,7 @@ const HistoryPage = () => {
   useEffect(() => {
     document.title = `${username} | Transaction History`;
   });
-  console.log('sorting BEFORE', sorting);
+  // console.log('sorting BEFORE', sorting);
 
   // START = SORT LOGIC
   const actionSort = () => {
@@ -29,9 +29,9 @@ const HistoryPage = () => {
         }
       )
       .then((res) => {
-        console.log(res);
+        // console.log(res);
         const data = res.data.data;
-        console.log('DAATA SORT', data);
+        // console.log('DAATA SORT', data);
         setDataHistory(data);
       })
       .catch((err) => {

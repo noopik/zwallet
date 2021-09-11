@@ -12,7 +12,7 @@ const HeadingContent = ({ className, children }) => {
 
 HeadingContent.propTypes = {
   className: PropTypes.string,
-  children: PropTypes.element.isRequired,
+  children: PropTypes.string.isRequired,
 };
 
 HeadingContent.defaultProps = {

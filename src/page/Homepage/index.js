@@ -7,17 +7,15 @@ import Button from '../../components/atoms/Button';
 import { StyledDashboard } from './styled';
 import { Bar } from 'react-chartjs-2';
 import axios from 'axios';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { dispatchTypes } from '../../utils/dispatchType';
 import { moneyFormatter } from '../../utils';
 
 const Homepage = () => {
-  const history = useHistory();
-  const amount = localStorage.getItem('amount');
-  const phone = localStorage.getItem('phone');
-  const username = localStorage.getItem('username');
+  const userState = useSelector((state) => state.userReducer.data);
+  const { amount, phone, username, id } = userState;
   const token = localStorage.getItem('token');
-  const id = localStorage.getItem('id');
+  const history = useHistory();
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -87,7 +85,7 @@ const Homepage = () => {
       )
       .then((res) => {
         setResultHistory(res.data.data);
-        console.log(res.data);
+        // console.log(res.data);
         const sendData = {
           data: res.data.data,
         };
@@ -173,12 +171,14 @@ const Homepage = () => {
           <div className="body">
             {/* <h1>History empty</h1> */}
             {resultHistory &&
-              resultHistory.map((item) => {
+              resultHistory.map((item, index) => {
                 return (
                   <CardProfileUser
+                    key={index}
                     username={item.username}
                     avatar={item.avatar}
                     typeTransaction={item.type}
+                    amount={item.amount}
                   />
                 );
               })}

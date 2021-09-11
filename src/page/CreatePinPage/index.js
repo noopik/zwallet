@@ -2,20 +2,23 @@ import axios from 'axios';
 import { Form, Formik } from 'formik';
 import React, { useEffect, useState } from 'react';
 import PinInput from 'react-pin-input';
+import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
 import { Button, ModalBank, SidebarAuth } from '../../components';
 import { customMedia } from '../../components/Layouting/BreakPoints';
+import { dispatchTypes } from '../../utils/dispatchType';
 
 const CreatePinPage = () => {
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
+  const userState = useSelector((state) => state.userReducer.data);
+  const { id } = userState;
+
   const history = useHistory();
   const [handleDisabledButton, setHandleDisabledButton] = useState(true);
   const [inputValuePin, setInputValuePin] = useState();
   const [isShowModal, setIsShowModal] = useState(false);
   const token = localStorage.getItem('token');
-  // const username = localStorage.getItem('username');
-  const id = localStorage.getItem('id');
 
   useEffect(() => {
     document.title = 'Zwallet | Create Pin';
@@ -33,6 +36,7 @@ const CreatePinPage = () => {
         },
       })
       .then((res) => {
+        dispatch({ type: dispatchTypes.updatePinUser, payload: data });
         setIsShowModal(true);
       })
       .catch((err) => {
