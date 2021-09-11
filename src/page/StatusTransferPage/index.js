@@ -1,5 +1,8 @@
+import axios from 'axios';
 import { jsPDF } from 'jspdf';
 import React from 'react';
+import { useState } from 'react';
+import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import {
@@ -16,9 +19,57 @@ const StatusTransferPage = () => {
   const history = useHistory();
   const transferState = useSelector((state) => state.transferReducer);
   const username = localStorage.getItem('username');
+  const token = localStorage.getItem('token');
   const avatar = localStorage.getItem('avatar');
   const phone = localStorage.getItem('phone');
+  const idReceiver = transferState?.receiver;
+  const idSender = transferState?.sender;
+  const [dataReceiverPDF, setDataReceiverPDF] = useState({
+    username: '',
+    phone: '',
+    idTransaction: '',
+  });
 
+  useEffect(() => {
+    // GET RECEIVER
+    axios
+      .get(`${process.env.REACT_APP_BACKEND_API}/users/${idReceiver}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((res) => {
+        // console.log(res);
+        const result = res.data.data[0];
+        const { username, phone } = result;
+        // GET HISTORY
+        axios
+          .get(
+            `${process.env.REACT_APP_BACKEND_API}/transactions/history/${idSender}?orderBy=createdAt&perPage=1`,
+            {
+              headers: {
+                Authorization: `Bearer ${token}`,
+              },
+            }
+          )
+          .then((res) => {
+            const idTransaction = res.data.data[0].id;
+            setDataReceiverPDF({
+              username,
+              phone,
+              idTransaction,
+            });
+          })
+          .catch((err) => {
+            console.log(err.response);
+          });
+      })
+      .catch((err) => {
+        console.log(err.response);
+      });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+  // console.log(dataReceiverPDF);
   const getPdf = () => {
     // You'll need to make your image into a Data URL
     // Use http://dataurl.net/#dataurlmaker
@@ -39,9 +90,9 @@ const StatusTransferPage = () => {
     doc.setTextColor(255, 255, 255);
     doc.text(105, 25, 'INVOICE', 'center');
 
-    doc.setFontSize(30);
+    doc.setFontSize(10);
     doc.setTextColor(255, 255, 255);
-    doc.text(195, 25, 'id', 'right');
+    doc.text(195, 25, `${dataReceiverPDF.idTransaction}`, 'right');
 
     doc.setFontSize(20);
     // doc.setFontType("normal");
@@ -83,17 +134,17 @@ const StatusTransferPage = () => {
     doc.setFontSize(20);
     // doc.setFontType("normal");
     doc.setTextColor(0, 0, 0);
-    doc.text(195, 150, 'username', 'right');
+    doc.text(195, 150, `${dataReceiverPDF.username}`, 'right');
 
     doc.setFontSize(20);
     // doc.setFontType("normal");
     doc.setTextColor(192, 192, 192);
-    doc.text(15, 160, 'Phone number', 'left');
+    doc.text(15, 160, 'phone', 'left');
 
     doc.setFontSize(20);
     // doc.setFontType("normal");
     doc.setTextColor(0, 0, 0);
-    doc.text(195, 160, 'phone', 'right');
+    doc.text(195, 160, `${dataReceiverPDF.phone}`, 'right');
 
     doc.setDrawColor(145, 145, 145);
     doc.line(5, 175, 205, 175);
@@ -124,10 +175,10 @@ const StatusTransferPage = () => {
     doc.setTextColor(255, 255, 255);
     doc.text(105, 285, '© Zwallet Finance Solution', 'center');
 
-    doc.save('a4.pdf');
+    doc.save(`${transferState.date}-${dataReceiverPDF.idTransaction}.pdf`);
   };
   // const [statusTransfer, setStatusTransfer] = useState(true);
-  // // console.log(setStatusTransfer);
+
   return (
     <Cardwrapper>
       <StyleStatus>
@@ -200,7 +251,7 @@ const StatusTransferPage = () => {
             primary="primary"
             children="Back to Home"
             onClick={() => {
-              return history.push(`/${username}/dashboard`);
+              return history.push(`/dashboard`);
             }}
           />
         </div>

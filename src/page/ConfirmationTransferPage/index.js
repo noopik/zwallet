@@ -17,14 +17,15 @@ import { colors, toastify } from '../../utils';
 import { dispatchTypes } from '../../utils/dispatchType';
 
 const ConfirmationTransferPage = () => {
+  const userState = useSelector((state) => state.userReducer.data);
+  const { pin: pinUser, username, id } = userState;
   const transferReducer = useSelector((state) => state.transferReducer);
   // console.log(transferReducer);
   const [isShowModal, setIsShowModal] = useState(false);
   const history = useHistory();
   const dispath = useDispatch();
   const token = localStorage.getItem('token');
-  const username = localStorage.getItem('username');
-  const pin = localStorage.getItem('pin');
+  // const pin = localStorage.getItem('pin');
   const [userReceiver, setUserReceiver] = useState({});
   const [valuePinInput, setValuePinInput] = useState();
 
@@ -61,12 +62,12 @@ const ConfirmationTransferPage = () => {
   // VALIDATE PIN
   const checkPinAction = () => {
     const sendToServer = {
-      idUserTransfer: transferReducer.sender,
+      idUserTransfer: id,
       idUserTopup: transferReducer.receiver,
       amount: transferReducer.amount,
       description: transferReducer.notes,
     };
-    if (valuePinInput !== pin) {
+    if (valuePinInput !== pinUser) {
       return toastify('Pin wrong', 'error');
     } else {
       axios
@@ -80,12 +81,19 @@ const ConfirmationTransferPage = () => {
           }
         )
         .then((res) => {
-          console.log(res.data);
-          localStorage.setItem('amount', transferReducer.balanceLeft);
+          // console.log(res.data);
+          // localStorage.setItem('amount', transferReducer.balanceLeft);
+          dispath({
+            type: dispatchTypes.updateAmountSaldo,
+            payload: transferReducer.balanceLeft,
+          });
           dispath({ type: dispatchTypes.setStatusTransfer, payload: true });
-          history.push(`/${username}/status-transfer`);
+          history.push(`/status-transfer`);
         })
         .catch((err) => {
+          if (err.response.data.message === 'description cannot be null') {
+            return toastify('Sorry attach a note or message', 'error');
+          }
           console.log(err.response);
         });
     }

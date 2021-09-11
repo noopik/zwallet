@@ -1,5 +1,5 @@
-import PropTypes from 'prop-types';
 import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
 import { AVAUserDefault, ICBell } from '../../../assets';
@@ -7,58 +7,48 @@ import { LogoBrand } from '../../atoms';
 import { customMedia } from '../../Layouting/BreakPoints';
 import NotificationPopup from '../NotificationPopup';
 
-const Navbar = ({ className }) => {
+const Navbar = () => {
+  const userState = useSelector((state) => state.userReducer.data);
+  const { avatar, username, phone } = userState;
   const [setNotification, setShowNotification] = useState(false);
-
   const history = useHistory();
-  const avaUser = localStorage.getItem('avatar');
-  const username = localStorage.getItem('username');
-  const phone = localStorage.getItem('phone');
-  // console.log(typeof avaUser);
 
   return (
-    <>
-      <NavbarStyling>
-        <div className="custom-container">
-          <LogoBrand />
-          <div className="navigation-user-right">
-            <div
-              className="user-profile"
-              onClick={() => {
-                return history.push(`/${username}/profile`);
-              }}
-            >
-              <div className="image-wrapper">
-                <img
-                  src={avaUser === 'null' ? AVAUserDefault : avaUser}
-                  alt="user"
-                />
-              </div>
-              <div className="profile-identity">
-                <h3 className="username">{username}</h3>
-                <p className="phone-number">{phone === 'null' ? '' : phone}</p>
-              </div>
+    <NavbarStyling>
+      <div className="custom-container">
+        <LogoBrand />
+        <div className="navigation-user-right">
+          <div
+            className="user-profile"
+            onClick={() => {
+              return history.push(`/profile`);
+            }}
+          >
+            <div className="image-wrapper">
+              <img src={avatar ? avatar : AVAUserDefault} alt="user" />
             </div>
-            <div
-              className="icon-wrapper"
-              onClick={() => setShowNotification(true)}
-            >
-              <img src={ICBell} alt="Icon bell" />
+            <div className="profile-identity">
+              <h3 className="username">{username}</h3>
+              <p className="phone-number">{phone === 'null' ? '' : phone}</p>
             </div>
           </div>
+          <div
+            className="icon-wrapper"
+            onClick={() => setShowNotification(true)}
+          >
+            <img src={ICBell} alt="Icon bell" />
+          </div>
         </div>
-        <NotificationPopup
-          showPopup={setNotification}
-          closePopup={() => setShowNotification(false)}
-        />
-      </NavbarStyling>
-    </>
+      </div>
+      <NotificationPopup
+        showPopup={setNotification}
+        closePopup={() => setShowNotification(false)}
+      />
+    </NavbarStyling>
   );
 };
 
-Navbar.propTypes = {
-  className: PropTypes.string,
-};
+Navbar.propTypes = {};
 
 export default Navbar;
 

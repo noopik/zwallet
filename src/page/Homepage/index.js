@@ -7,16 +7,15 @@ import Button from '../../components/atoms/Button';
 import { StyledDashboard } from './styled';
 import { Bar } from 'react-chartjs-2';
 import axios from 'axios';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { dispatchTypes } from '../../utils/dispatchType';
+import { moneyFormatter } from '../../utils';
 
 const Homepage = () => {
-  const history = useHistory();
-  const amount = localStorage.getItem('amount');
-  const phone = localStorage.getItem('phone');
-  const username = localStorage.getItem('username');
+  const userState = useSelector((state) => state.userReducer.data);
+  const { amount, phone, username, id } = userState;
   const token = localStorage.getItem('token');
-  const id = localStorage.getItem('id');
+  const history = useHistory();
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -76,21 +75,24 @@ const Homepage = () => {
 
   useEffect(() => {
     axios
-      .get(`${process.env.REACT_APP_BACKEND_API}/transactions/history/${id}`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      })
+      .get(
+        `${process.env.REACT_APP_BACKEND_API}/transactions/history/${id}?perPage=3`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      )
       .then((res) => {
         setResultHistory(res.data.data);
-        console.log(res.data);
+        // console.log(res.data);
         const sendData = {
           data: res.data.data,
         };
         dispatch({ type: dispatchTypes.setAllHistory, payload: sendData });
       })
       .catch((err) => {
-        console.log(err.response);
+        // console.log(err.response);
       });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -101,15 +103,28 @@ const Homepage = () => {
       <div className="header-section">
         <div className="balance-wrapper">
           <h3 className="text-section">Balance</h3>
-          <h1 className="balance-amount">Rp. {amount}</h1>
-          <p className="text-section">{phone}</p>
+          <h1 className="balance-amount">
+            Rp. {moneyFormatter.format(amount)}
+          </h1>
+          <p className="text-section">
+            {phone === 'null' ? (
+              <Link
+                to="/profile/add-phone-number"
+                className="add-phone-number anchor"
+              >
+                Add phone number
+              </Link>
+            ) : (
+              phone
+            )}
+          </p>
         </div>
         <div className="button-action-wrapper">
           <Button
             primary
             icon="transfer"
             onClick={() => {
-              return history.push(`/${username}/search-receiver`);
+              return history.push(`/search-receiver`);
             }}
           >
             Transfer
@@ -149,19 +164,21 @@ const Homepage = () => {
         <div className="history-wrapper card">
           <div className="heading">
             <h2 className="text-heading">Transaction History</h2>
-            <Link className="anchor" to={`/${username}/history`}>
+            <Link className="anchor" to={`/history`}>
               <p className="text-link">See all</p>
             </Link>
           </div>
           <div className="body">
             {/* <h1>History empty</h1> */}
             {resultHistory &&
-              resultHistory.map((item) => {
+              resultHistory.map((item, index) => {
                 return (
                   <CardProfileUser
+                    key={index}
                     username={item.username}
                     avatar={item.avatar}
                     typeTransaction={item.type}
+                    amount={item.amount}
                   />
                 );
               })}

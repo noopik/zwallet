@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { customMedia } from '../../components/Layouting/BreakPoints';
 import { colors } from '../../utils';
 
-export const LandingPageStyles = styled.body`
+export const LandingPageStyles = styled.div`
   padding-top: 100px;
 
   /* START = BG LAYER  */

@@ -1,6 +1,9 @@
+import { Form, Formik } from 'formik';
 import React, { useEffect, useState } from 'react';
-import { useForm } from 'react-hook-form';
+import { useDispatch } from 'react-redux';
+import { useHistory, useParams } from 'react-router-dom';
 import styled from 'styled-components';
+import * as Yup from 'yup';
 import {
   AlertValidationForm,
   Button,
@@ -9,53 +12,25 @@ import {
 } from '../../components';
 import { customMedia } from '../../components/Layouting/BreakPoints';
 import { resetPasswordUser } from '../../config/Redux/actions/userActions';
-import { useDispatch } from 'react-redux';
-import { useHistory, useParams } from 'react-router-dom';
 
 const ForgotPasswordPage = () => {
   const dispatch = useDispatch();
   const history = useHistory();
-  const [handleDisabledButton, setHandleDisabledButton] = useState(true);
   const [isShowNewPassword, setIsShowNewPassword] = useState(false);
   const [isShowVerifyPassword, setIsShowVerifyPassword] = useState(false);
-
+  const validate = Yup.object({
+    password: Yup.string()
+      .min(8, 'Password must be at least 8 charaters')
+      .required('Password is required'),
+    confirmPassword: Yup.string()
+      .oneOf([Yup.ref('password'), null], 'Password must match')
+      .required('Confirm password is required'),
+  });
   let { token } = useParams();
-
-  const {
-    register,
-    handleSubmit,
-    watch,
-    getValues,
-    formState: { errors },
-  } = useForm();
 
   useEffect(() => {
     document.title = 'Zwallet | Create New Password';
   });
-
-  useEffect(() => {
-    const value = getValues();
-    if (value.password && value.verifyPassword) {
-      setHandleDisabledButton(false);
-    } else {
-      setHandleDisabledButton(true);
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [watch('password'), watch('verifyPassword')]);
-
-  //   BUTTON ACTION HANDLING
-  const onSubmit = (data) => {
-    // CHECKING PASSWORD MUST BE SAME
-    if (data.password !== data.verifyPassword) {
-      alert('Tidak sama');
-      return;
-    }
-    // console.log("sama");
-    const setPassword = { newPassword: data.password };
-    dispatch(resetPasswordUser(setPassword, token, history));
-
-    return;
-  };
 
   // ACTION SHOW PASSWORD
   const actionNewPassword = () => {
@@ -86,49 +61,80 @@ const ForgotPasswordPage = () => {
             account. Type your password twice so we can confirm your <br />
             new passsword.
           </h6>
-          <form onSubmit={handleSubmit(onSubmit)}>
-            <div className="form-input">
-              <Input
-                icon="lock"
-                name="password"
-                id="password"
-                placeholder="Create new password"
-                type={isShowNewPassword ? 'text' : 'password'}
-                showPassword={isShowNewPassword}
-                actionShowPassword={actionNewPassword}
-                {...register('password', {
-                  required: true,
-                })}
-              />
-              {errors.password && (
-                <AlertValidationForm message="Required Password" />
-              )}
-            </div>
-            <div className="form-input">
-              <Input
-                icon="lock"
-                type={isShowVerifyPassword ? 'text' : 'password'}
-                showPassword={isShowVerifyPassword}
-                actionShowPassword={actionVerifyPassword}
-                name="verifyPassword"
-                placeholder="Create new password"
-                {...register('verifyPassword', {
-                  required: true,
-                })}
-              />
-              {errors.password && (
-                <AlertValidationForm message="Email invalid" />
-              )}
-            </div>
-            <Button
-              type="submit"
-              primary
-              disabled={handleDisabledButton}
-              className="button-login"
-            >
-              Reset password
-            </Button>
-          </form>
+          <Formik
+            initialValues={{
+              password: '',
+              confirmPassword: '',
+            }}
+            validationSchema={validate}
+            onSubmit={(values, { resetForm }) => {
+              // console.log(values);
+              const setPassword = { newPassword: values.password };
+              dispatch(resetPasswordUser(setPassword, token, history));
+              resetForm();
+            }}
+          >
+            {({
+              values,
+              errors,
+              touched,
+              handleChange,
+              handleBlur,
+              handleSubmit,
+              isValid,
+            }) => (
+              <Form onSubmit={handleSubmit}>
+                <div className="form-input">
+                  <Input
+                    icon="lock"
+                    type={isShowNewPassword ? 'text' : 'password'}
+                    showPassword={isShowNewPassword}
+                    actionShowPassword={actionNewPassword}
+                    label="password"
+                    name="password"
+                    placeholder="Create your password"
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    value={values.password}
+                  />
+                  {errors.password && touched.password && errors.password && (
+                    <AlertValidationForm message={errors.password} />
+                  )}
+                </div>
+                <div className="form-input">
+                  <Input
+                    icon="lock"
+                    type={isShowVerifyPassword ? 'text' : 'password'}
+                    showPassword={isShowVerifyPassword}
+                    actionShowPassword={actionVerifyPassword}
+                    label="confirmPassword"
+                    name="confirmPassword"
+                    placeholder="Confirm your password"
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    value={values.confirmPassword}
+                  />
+                  {errors.confirmPassword &&
+                    touched.confirmPassword &&
+                    errors.confirmPassword && (
+                      <AlertValidationForm message={errors.confirmPassword} />
+                    )}
+                </div>
+                <Button
+                  type="submit"
+                  primary
+                  disabled={
+                    !isValid ||
+                    (Object.keys(touched).length === 0 &&
+                      touched.constructor === Object)
+                  }
+                  className="button-login"
+                >
+                  Reset password
+                </Button>
+              </Form>
+            )}
+          </Formik>
         </div>
       </div>
     </Styles>

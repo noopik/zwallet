@@ -4,27 +4,29 @@ import PinInput from 'react-pin-input';
 import { Button, Cardwrapper, HeadingContent } from '../../components';
 import { StylesPinChange } from './StylesPinChange';
 import { toastify } from '../../utils';
+import { dispatchTypes } from '../../utils/dispatchType';
+import { useDispatch, useSelector } from 'react-redux';
 
 const ChangePinPage = () => {
-  const username = localStorage.getItem('username');
+  const userState = useSelector((state) => state.userReducer.data);
+  const { username, id: idUser } = userState;
   const token = localStorage.getItem('token');
-  const idUser = localStorage.getItem('id');
-
+  const dispatch = useDispatch();
   const [handleDisabledButton, setHandleDisabledButton] = useState(true);
   const [inputValuePin, setInputValuePin] = useState();
 
   const handleSubmit = () => {
-    // console.log(inputValuePin);
     const sendData = {
       pin: inputValuePin,
     };
     axios
-      .patch(`${process.env.REACT_APP_BACKEND_API}/${idUser}`, sendData, {
+      .patch(`${process.env.REACT_APP_BACKEND_API}/users/${idUser}`, sendData, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       })
       .then(() => {
+        dispatch({ type: dispatchTypes.updatePinUser, payload: sendData });
         return toastify('Success Change Pin', 'success');
       })
       .catch((err) => {
@@ -35,7 +37,7 @@ const ChangePinPage = () => {
   };
 
   useEffect(() => {
-    document.title = username | 'Add phone number';
+    document.title = username + ' | Add phone number';
   });
   // console.log(handleDisabledButton);
 

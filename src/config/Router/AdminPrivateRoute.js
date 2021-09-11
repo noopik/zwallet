@@ -15,18 +15,18 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
   // START = LOGIC FOR ASIDE MENU ACTIVE
   const pathNow = location.pathname;
   const listMenu = {
-    [`/${username}/dashboard`]: 'dashboard',
-    [`/${username}/history`]: 'dashboard',
-    [`/${username}/search-receiver`]: 'transfer',
-    [`/${username}/search-receiver/to-username`]: 'transfer',
-    [`/${username}/status-transfer`]: 'transfer',
-    [`/${username}/search-receiver/to-username/confirmation`]: 'transfer',
-    [`/${username}/topup`]: 'topup',
-    [`/${username}/profile`]: 'profile',
-    [`/${username}/profile/info`]: 'profile',
-    [`/${username}/profile/password`]: 'profile',
-    [`/${username}/profile/change-pin`]: 'profile',
-    [`/${username}/profile/add-phone-number`]: 'profile',
+    [`/admin/dashboard`]: "dashboard",
+    [`/admin/history`]: "dashboard",
+    // [`/admin/search-receiver`]: "transfer",
+    // [`/admin/search-receiver/to-username`]: "transfer",
+    // [`/admin/status-transfer`]: "transfer",
+    // [`/admin/search-receiver/to-username/confirmation`]: "transfer",
+    // [`/admin/topup`]: "topup",
+    [`/admin/profile`]: "profile",
+    [`/admin/profile/info`]: "profile",
+    [`/admin/profile/password`]: "profile",
+    [`/admin/profile/change-pin`]: "profile",
+    [`/admin/profile/add-phone-number`]: "profile",
   };
   // console.log(listMenu);
   // END = LOGIC FOR ASIDE MENU ACTIVE
@@ -36,19 +36,7 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
       {...rest}
       render={(props) => {
         if (isAuth === 'true' && role === 'MEMBER') {
-          return (
-            <>
-              <Navbar />
-              <StylingMainContent>
-                <MenuAsideLeft active={listMenu[pathNow]} username={username} />
-                {/* Styling for this element (Main, Header-setion) inside StylingMainContent component */}
-                <div className="main">
-                  <Component {...props} />
-                </div>
-              </StylingMainContent>
-              <Footer />
-            </>
-          );
+         return <Redirect to="/dashboard" />;
         } else if (isAuth === 'true' && role === 'ADMIN') {
           return (
             <>

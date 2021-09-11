@@ -1,34 +1,24 @@
 import axios from 'axios';
+import { Form, Formik } from 'formik';
 import React, { useEffect, useState } from 'react';
-import { useForm } from 'react-hook-form';
 import PinInput from 'react-pin-input';
+import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
 import { Button, ModalBank, SidebarAuth } from '../../components';
 import { customMedia } from '../../components/Layouting/BreakPoints';
+import { dispatchTypes } from '../../utils/dispatchType';
 
 const CreatePinPage = () => {
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
+  const userState = useSelector((state) => state.userReducer.data);
+  const { id } = userState;
+
   const history = useHistory();
   const [handleDisabledButton, setHandleDisabledButton] = useState(true);
   const [inputValuePin, setInputValuePin] = useState();
   const [isShowModal, setIsShowModal] = useState(false);
   const token = localStorage.getItem('token');
-  const username = localStorage.getItem('username');
-  const id = localStorage.getItem('id');
-  // START = HANDLE FORM
-  const { handleSubmit, register } = useForm();
-  // const data = { pin: inputValuePin };
-
-  // const onSubmit = () => {
-  //   // console.log(data);
-  //   dispatch(setPinUser(data, history));
-  //   setIsShowModal(true);
-
-  //   // history.push('/createpin');
-  //   return;
-  // };
-  // END = HANDLE FORM
 
   useEffect(() => {
     document.title = 'Zwallet | Create Pin';
@@ -46,17 +36,19 @@ const CreatePinPage = () => {
         },
       })
       .then((res) => {
+        dispatch({ type: dispatchTypes.updatePinUser, payload: data });
         setIsShowModal(true);
       })
       .catch((err) => {
-        console.log('NO');
+        // console.log('NO');
       });
   };
   // END = SEND ACTION PIN
   // START = SEND ACTION PIN
-  const actionChooseBank = (data) => {
+  const actionChooseBank = (bankName) => {
+    // console.log('bankName', bankName);
     const sendBank = {
-      codeBank: data.bank,
+      codeBank: bankName,
     };
     axios
       .post(
@@ -71,10 +63,10 @@ const CreatePinPage = () => {
       .then((res) => {
         // console.log(res);
         // return;
-        history.push(`/${username}/dashboard`);
+        history.push(`/dashboard`);
       })
       .catch((err) => {
-        history.push(`/${username}/dashboard`);
+        history.push(`/dashboard`);
         console.log(err.response);
       });
   };
@@ -136,28 +128,44 @@ const CreatePinPage = () => {
         showModal={isShowModal}
         closeModal={() => setIsShowModal(false)}
       >
-        <form onSubmit={handleSubmit(actionChooseBank)}>
-          <div className="bank-choice">
-            <select
-              className="custom-select"
-              name=""
-              id="inputGroupSelect01"
-              {...register('bank')}
-            >
-              <option selected>Choose your bank</option>
-              <option value="MANDIRI">MANDIRI</option>
-              <option value="BNI">BNI</option>
-              <option value="BRI">BRI</option>
-              <option value="PERMATA">PERMATA</option>
-              <option value="BCA">BCA</option>
-            </select>
-          </div>
-          <div className="btn-wrapper">
-            <Button primary className="btn-action">
-              Continue
-            </Button>
-          </div>
-        </form>
+        <Formik
+          initialValues={{
+            bank: '',
+          }}
+          onSubmit={(values, { resetForm }) => {
+            // const bankName = values.bank;
+            actionChooseBank(values.bank);
+            // console.log(bankName);
+            resetForm();
+          }}
+        >
+          {({ values, handleChange, handleBlur, handleSubmit, isValid }) => (
+            <Form onSubmit={handleSubmit}>
+              <div className="bank-choice">
+                <select
+                  className="custom-select"
+                  name=""
+                  id="bank"
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  value={values.bank}
+                >
+                  <option selected>Choose your bank</option>
+                  <option value="MANDIRI">MANDIRI</option>
+                  <option value="BNI">BNI</option>
+                  <option value="BRI">BRI</option>
+                  <option value="PERMATA">PERMATA</option>
+                  <option value="BCA">BCA</option>
+                </select>
+              </div>
+              <div className="btn-wrapper">
+                <Button primary className="btn-action">
+                  Continue
+                </Button>
+              </div>
+            </Form>
+          )}
+        </Formik>
       </ModalBank>
     </Styles>
   );

@@ -9,21 +9,25 @@ export const registerUser = (data, history) => (dispatch) => {
   axios
     .post(`${process.env.REACT_APP_BACKEND_API}/auth/register`, data)
     .then((result) => {
+      // const username = result.data.data.username;
+      // console.log(result);
       toastify(
         'Succes Register. Please login and check email to verification account',
         'info'
       );
-      const dataUser = {
-        data: result.data.data,
-        error: result.data.error,
-        message: result.data.message,
-        status: result.data.status,
-      };
-      dispatch({ type: dispatchTypes.postRegisterUser, payload: dataUser });
+      // const dataUser = {
+      //   data: result.data.data,
+      //   error: result.data.error,
+      //   message: result.data.message,
+      //   status: result.data.status,
+      // };
+      // localStorage.setItem("username", username);
+      // dispatch({ type: dispatchTypes.postRegisterUser, payload: dataUser });
       dispatch(showLoading(false));
       history.push(`/login`);
     })
     .catch((error) => {
+      // console.log(error);
       dispatch(showLoading(false));
       if (error.response.data.status === 404) {
         return toastify('Email alredy exists', 'error');
@@ -33,76 +37,68 @@ export const registerUser = (data, history) => (dispatch) => {
 };
 
 export const loginUser = (data, history) => (dispatch) => {
-  // console.log(data);
+  // console.log('data masuk', data);
   dispatch(showLoading(true));
   axios
     .post(`${process.env.REACT_APP_BACKEND_API}/auth/login`, data)
     .then((result) => {
+      // console.log(result);
       dispatch(showLoading(false));
       const token = result.data.data.token;
       const id = result.data.data.id;
       const role = result.data.data.role;
-      const username = result.data.data.username;
-      const avatar = result.data.data.avatar;
-      // console.log('TEST AVATAR', avatar);
       const pin = result.data.data.pin;
-      const phone = result.data.data.phone;
-      const amount = result.data.data.amount;
-      const email = result.data.data.email;
       const isAuth = true;
       const dataUser = {
         data: result.data.data,
         error: result.data.error,
         message: result.data.message,
         status: result.data.status,
-        //   isAuth: result.data.isAuth,
       };
       // console.log('CEK RESULT: ', typeof pin);
       dispatch({ type: dispatchTypes.postLoginUser, payload: dataUser });
       localStorage.setItem('token', token);
-      localStorage.setItem('id', id);
       localStorage.setItem('role', role);
-      localStorage.setItem('username', username);
-      localStorage.setItem('avatar', avatar);
-      localStorage.setItem('pin', pin);
-      localStorage.setItem('phone', phone);
       localStorage.setItem('isAuth', isAuth);
-      localStorage.setItem('amount', amount);
-      localStorage.setItem('email', email);
-      // console.log(typeof pin);
       if (!pin) {
         history.push(`/create-pin/${id}`);
       } else {
-        history.push(`/${username}/dashboard`);
+        if (role === 'ADMIN') {
+          history.push(`/admin/dashboard`);
+        } else if (role === 'MEMBER') {
+          history.push(`/dashboard`);
+        }
       }
     })
     .catch((error) => {
+      console.log(error);
       dispatch(showLoading(false));
       toastify(error.response.data.message, 'error');
     });
 };
 
-export const setPinUser = (data, history) => (dispatch) => {
-  const id = localStorage.getItem('id');
-  axios
-    .post(`${process.env.REACT_APP_BACKEND_API}/auth/setpin/${id}`, data)
-    .then((result) => {
-      const dataUser = {
-        data: result.data.data,
-        error: result.data.error,
-        message: result.data.message,
-        status: result.data.status,
-      };
-      localStorage.setItem('pin', data.pin);
-      dispatch({ type: dispatchTypes.postSetPinUser, payload: dataUser });
-      history.push(`/success-pin`);
-    })
-    .catch((error) => {
-      alert(error.response.data.message);
-    });
-};
+// export const setPinUser = (data, history) => (dispatch) => {
+//   // const id = localStorage.getItem('id');
+//   axios
+//     .post(`${process.env.REACT_APP_BACKEND_API}/auth/setpin/${id}`, data)
+//     .then((result) => {
+//       const dataUser = {
+//         data: result.data.data,
+//         error: result.data.error,
+//         message: result.data.message,
+//         status: result.data.status,
+//       };
+//       // localStorage.setItem('pin', data.pin);
+//       dispatch({ type: dispatchTypes.postSetPinUser, payload: dataUser });
+//       history.push(`/success-pin`);
+//     })
+//     .catch((error) => {
+//       toastify(error.response.data.message, 'error');
+//     });
+// };
 
 export const forgotPasswordUser = (data) => (dispatch) => {
+  // console.log('send email', data);
   axios
     .post(`${process.env.REACT_APP_BACKEND_API}/auth/forgotpassword`, data)
     .then((result) => {
@@ -117,14 +113,15 @@ export const forgotPasswordUser = (data) => (dispatch) => {
         payload: dataUser,
       });
       //   history.push(`/new-password`);
-      alert('success sent reset password email');
+      toastify('success sent reset password email', 'info');
     })
     .catch((error) => {
-      alert(error.response.data.message);
+      // console.log('error', error.response);
+      toastify(error.response.data.message, 'error');
     });
 };
 export const resetPasswordUser = (data, token, history) => (dispatch) => {
-  // console.log(data);
+  // console.log('data masuk', data);
   axios
     .post(
       `${process.env.REACT_APP_BACKEND_API}/auth/resetPassword/${token}`,
@@ -142,15 +139,16 @@ export const resetPasswordUser = (data, token, history) => (dispatch) => {
         payload: dataUser,
       });
       //   history.push(`/new-password`);
-      alert('success reset password');
+      toastify('success reset password', 'info');
       history.push(`/login`);
     })
     .catch((error) => {
-      alert(error.response.data.message);
+      // console.log('error', error);
+      toastify(error.response.data.message, 'error');
     });
 };
 
-export const updatePhoneNumber = (idUser, data, token) => {
+export const updatePhoneNumber = (idUser, data, token, history, role) => {
   axios
     .patch(`${process.env.REACT_APP_BACKEND_API}/users/${idUser}`, data, {
       headers: {
@@ -160,7 +158,13 @@ export const updatePhoneNumber = (idUser, data, token) => {
     .then((result) => {
       // console.log(result);
       localStorage.setItem('phone', data.phone);
-      return toastify('Success updated password', 'info');
+      if (role === 'ADMIN') {
+        history.push(`admin/profile/info`);
+        return toastify('Success updated password', 'info');
+      } else {
+        history.push(`/profile/info`);
+        return toastify('Success updated password', 'info');
+      }
     })
     .catch((err) => {
       console.log(err.response);

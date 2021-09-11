@@ -1,28 +1,41 @@
 import axios from 'axios';
+import { Form, Formik } from 'formik';
 import React, { useEffect, useState } from 'react';
-import { useForm } from 'react-hook-form';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
+import * as Yup from 'yup';
 import { AVAUserDefault } from '../../assets';
 import { AlertValidationForm, Cardwrapper, Input } from '../../components';
 import Button from '../../components/atoms/Button';
 import { customMedia } from '../../components/Layouting/BreakPoints';
-import { patternNumber, toastify } from '../../utils';
+import { toastify } from '../../utils';
 import { dispatchTypes } from '../../utils/dispatchType';
 
 const UserReceiverPage = () => {
+  const userState = useSelector((state) => state.userReducer.data);
+  const { amount: saldo } = userState;
   const location = useLocation();
-  const getIdUserReceiver = location.pathname.split('/')[3];
+  const getIdUserReceiver = location.pathname.split('/')[2];
+  // console.log('getIdUserReceiver', getIdUserReceiver);
   const token = localStorage.getItem('token');
   const idSender = localStorage.getItem('id');
   const [userReceiver, setUserReceiver] = useState({});
-  const [amountTransfer, setAmountTransfer] = useState(0.0);
   // const [amountAvailable, setAmountAvailable] = useState(false);
-  const username = localStorage.getItem('username');
+  // const username = localStorage.getItem('username');
   const dispatch = useDispatch();
   const history = useHistory();
-
+  const validate = Yup.object({
+    amount: Yup.number()
+      .required('The number is required!')
+      .test(
+        'Is positive?',
+        'The number must be greater than 1000  IDR!',
+        (value) => value > 1000
+      )
+      .nullable(),
+    notes: Yup.string().required('Notes Required').nullable(),
+  });
   useEffect(() => {
     document.title = 'Tranfer';
   });
@@ -36,29 +49,21 @@ const UserReceiverPage = () => {
         },
       })
       .then((res) => {
-        // console.log(res);
+        // console.log('USER RECEIVER:', res);
         setUserReceiver(res.data.data[0]);
       })
       .catch((err) => {
         console.log(err.response);
       });
-  });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   // END = GET USER RECEIVER
 
   // START = HANDLE FORM
-  const {
-    register,
-    handleSubmit,
-    watch,
-    getValues,
-    formState: { errors },
-  } = useForm();
 
-  const valueAmount = getValues('amount');
-  const onSubmit = (data) => {
-    const amount = localStorage.getItem('amount');
-    const valueAmountRequest = valueAmount;
-    if (parseInt(valueAmountRequest) > parseInt(amount)) {
+  const actionSubmitForm = (data) => {
+    const valueAmountRequest = data.amount;
+    if (parseInt(valueAmountRequest) > parseInt(saldo)) {
       return toastify('Upps, saldo tidak mencukupi', 'error');
     }
     let today = new Date();
@@ -70,25 +75,14 @@ const UserReceiverPage = () => {
       sender: idSender,
       receiver: getIdUserReceiver,
       amount: data.amount,
-      balanceLeft: amount - valueAmountRequest,
+      balanceLeft: saldo - valueAmountRequest,
       date: today,
       notes: data.notes,
     };
     dispatch({ type: dispatchTypes.setTransfer, payload: dataSend });
     // console.log(data);
-    history.push(
-      `/${username}/search-receiver/${getIdUserReceiver}/confirmation`
-    );
+    history.push(`/search-receiver/${getIdUserReceiver}/confirmation`);
   };
-
-  useEffect(() => {
-    if (watch('amount')) {
-      setAmountTransfer(valueAmount);
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [watch('amount')]);
-
-  // END = HANDLE FORM
 
   if (!userReceiver) {
     return null;
@@ -117,40 +111,92 @@ const UserReceiverPage = () => {
           </div>
         </Cardwrapper>
         <div className="body-section">
-          <form onSubmit={handleSubmit(onSubmit)}>
-            <p className="text-regular">
-              Type the amount you want to transfer and then press continue to
-              the next steps.
-            </p>
-            <div className="input-wrapper">
-              <input
-                className="amount"
-                type="text"
-                placeholder="0.00"
-                {...register('amount', {
-                  required: true,
-                  pattern: patternNumber,
-                })}
-              />
-              {errors.amount && <AlertValidationForm message="Only numbers" />}
-            </div>
-            <p className="text-heading summary">
-              Rp. {amountTransfer} Available
-            </p>
-            <div className="notes-wrapper">
-              <Input
-                icon="pen"
-                className="input"
-                placeholder="Add some notes"
-                {...register('notes', {})}
-              />
-            </div>
-            <div className="btn-wrapper">
-              <Button type="submit" primary className="btn-action">
-                Continue
-              </Button>
-            </div>
-          </form>
+          <Formik
+            initialValues={{
+              amount: 0,
+              notes: '',
+            }}
+            validationSchema={validate}
+            onSubmit={(values, { resetForm }) => {
+              // console.log(values);
+              actionSubmitForm(values);
+              resetForm();
+            }}
+          >
+            {({
+              values,
+              errors,
+              touched,
+              handleChange,
+              handleBlur,
+              handleSubmit,
+              isValid,
+            }) => (
+              <Form onSubmit={handleSubmit}>
+                <p className="text-regular">
+                  Type the amount you want to transfer and then press continue
+                  to the next steps.
+                </p>
+                <div className="input-wrapper">
+                  <input
+                    className="amount"
+                    type="text"
+                    placeholder="0.00"
+                    name="amount"
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    value={values.amount}
+                  />
+                  {errors.amount && touched.amount && errors.amount && (
+                    <AlertValidationForm message={errors.amount} />
+                  )}
+                </div>
+                <p
+                  className={`text-heading summary ${
+                    errors.amount && touched.amount && errors.amount
+                      ? 'error'
+                      : ''
+                  }`}
+                >
+                  Rp. {values.amount}{' '}
+                  {errors.amount && touched.amount && errors.amount
+                    ? 'Not Available'
+                    : 'Available'}
+                </p>
+                <div className="notes-wrapper">
+                  <Input
+                    icon="pen"
+                    className="input"
+                    placeholder="Add some notes"
+                    name="notes"
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    value={values.notes}
+                  />
+                  {errors.notes && touched.notes && errors.notes && (
+                    <AlertValidationForm
+                      className="error"
+                      message={errors.notes}
+                    />
+                  )}
+                </div>
+                <div className="btn-wrapper">
+                  <Button
+                    type="submit"
+                    disabled={
+                      !isValid ||
+                      (Object.keys(touched).length === 0 &&
+                        touched.constructor === Object)
+                    }
+                    primary
+                    className="btn-action"
+                  >
+                    Continue
+                  </Button>
+                </div>
+              </Form>
+            )}
+          </Formik>
         </div>
       </StyledUserReceiverPage>
       ;
@@ -223,11 +269,21 @@ const StyledUserReceiverPage = styled.div`
       p.summary {
         text-align: center;
         margin-bottom: 60px;
+        &.error {
+          color: red;
+        }
       }
       .notes-wrapper {
+        /* background-color: yellow; */
         display: flex;
+        flex-direction: column;
         justify-content: center;
+        align-items: center;
+        .error {
+          width: max-content;
+        }
         .input {
+          /* background-color: pink; */
           width: 30%;
         }
       }
