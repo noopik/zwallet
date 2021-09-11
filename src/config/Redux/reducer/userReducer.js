@@ -83,6 +83,11 @@ export const userReducer = (state = initialData, action) => {
           amount: action.payload,
         },
       };
+    case dispatchTypes.getUser:
+      return {
+        ...state,
+        data: action.payload
+      }
     default:
       return state;
   }

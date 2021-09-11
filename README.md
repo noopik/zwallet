@@ -1,70 +1,69 @@
-# Getting Started with Create React App
+# Readme Front End
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+![https://i.postimg.cc/WpmxhFCx/zwallet6.png](https://i.postimg.cc/WpmxhFCx/zwallet6.png)
 
-## Available Scripts
+---
 
-In the project directory, you can run::::
+## About
 
-### `yarn start`
+Zwallet is a digital wallet apps that will really helps you to manage your e-money. Using Zwallet you’ll be allowed to do some transaction with only a few taps on your screen. In other words, with this apps you can easily save money, transfer it to other, and also top up some moneys and add them to your Zwallet’s balance.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Build With
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+- JavaScript
+- React Js
+- Redux
+- Styled Components
 
-### `yarn test`
+### Packages (Frontend)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```
+"axios": "^0.21.1",
+"bootstrap": "^5.0.2",
+"chart.js": "^3.5.0",
+"jspdf": "^2.3.1",
+"prop-types": "^15.7.2",
+"react": "^17.0.2",
+"react-bootstrap": "^2.0.0-beta.4",
+"react-chartjs-2": "^3.0.4",
+"react-dom": "^17.0.2",
+"react-hook-form": "^7.12.2",
+"react-pin-input": "^1.0.1",
+"react-redux": "^7.2.4",
+"react-router-dom": "^5.2.0",
+"react-scripts": "4.0.3",
+"react-toastify": "^7.0.4",
+"redux-logger": "^3.0.6",
+"redux-thunk": "^2.3.0",
+"styled-components": "^5.3.0",
+"styled-media-query": "^2.1.2",
+"web-vitals": "^1.0.1"
+```
 
-### `yarn build`
+## How To Install?
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+1. Clone These 2 Repos (Backend and Frontend)
+`git clone https://github.com/dwinovic/zwallet`
+2. Go To Folder Repo
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+    `cd zwallet-frontend`
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+3. Install Module
 
-### `yarn eject`
+    `npm install`
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+4. Start website
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+    `npm start`
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## Screenshots
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+![https://i.postimg.cc/9f9d8Tjp/zwallet1.png](https://i.postimg.cc/9f9d8Tjp/zwallet1.png)
 
-## Learn More
+![https://i.postimg.cc/d3TMx441/zwallet2.png](https://i.postimg.cc/d3TMx441/zwallet2.png)
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+![https://i.postimg.cc/tCQCHxPf/zwallet3.png](https://i.postimg.cc/tCQCHxPf/zwallet3.png)
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+![https://i.postimg.cc/prDvds8S/zwallet4.png](https://i.postimg.cc/prDvds8S/zwallet4.png)
 
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+![https://i.postimg.cc/mrtG9LCC/zwallet5.png](https://i.postimg.cc/mrtG9LCC/zwallet5.png)

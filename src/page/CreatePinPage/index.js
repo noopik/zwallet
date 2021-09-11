@@ -49,6 +49,7 @@ const CreatePinPage = () => {
     // console.log('bankName', bankName);
     const sendBank = {
       codeBank: bankName,
+      userId: id
     };
     axios
       .post(
@@ -61,8 +62,6 @@ const CreatePinPage = () => {
         }
       )
       .then((res) => {
-        // console.log(res);
-        // return;
         history.push(`/dashboard`);
       })
       .catch((err) => {
