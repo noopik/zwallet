@@ -10,6 +10,7 @@ import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
 import { dispatchTypes } from '../../utils/dispatchType';
 import { moneyFormatter } from '../../utils';
+import { getUser } from '../../config/Redux/actions/userActions';
 
 const Homepage = () => {
   const userState = useSelector((state) => state.userReducer.data);
@@ -68,7 +69,8 @@ const Homepage = () => {
 
   useEffect(() => {
     chart();
-  }, []);
+    dispatch(getUser(id, token))
+  }, [dispatch, id, token]);
 
   // START = HISTORY TRANSACTION
   const [resultHistory, setResultHistory] = useState([]);

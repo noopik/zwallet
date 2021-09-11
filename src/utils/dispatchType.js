@@ -15,7 +15,11 @@ export const dispatchTypes = {
   setStatusTransfer: 'SET_STATUS_TRANSFER',
   setAllHistory: 'SET_ALL_TRANSACTIONS',
   setUserLogout: 'SET_USER_LOGOUT',
+  getUser: 'GET_USER',
 
   // ADMIN
   getAllActivity: 'GET_ALL_ACTIVITY',
+
+  // VA
+  getVAUser: 'GET_VA_USER',
 };
