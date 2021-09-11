@@ -1,14 +1,92 @@
-import React, { useEffect } from 'react';
+import axios from 'axios';
+import { Form, Formik } from 'formik';
+import React, { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { useHistory, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
-import { AVAJessicaMera } from '../../assets';
-import { Cardwrapper, Input } from '../../components';
+import * as Yup from 'yup';
+import { AVAUserDefault } from '../../assets';
+import { AlertValidationForm, Cardwrapper, Input } from '../../components';
 import Button from '../../components/atoms/Button';
 import { customMedia } from '../../components/Layouting/BreakPoints';
+import { toastify } from '../../utils';
+import { dispatchTypes } from '../../utils/dispatchType';
 
 const UserReceiverPage = () => {
-  useEffect(() => {
-    document.title = 'Tranfer to Samuel Suhu';
+  const location = useLocation();
+  const getIdUserReceiver = location.pathname.split('/')[2];
+  console.log('getIdUserReceiver', getIdUserReceiver);
+  const token = localStorage.getItem('token');
+  const idSender = localStorage.getItem('id');
+  const [userReceiver, setUserReceiver] = useState({});
+  // const [amountAvailable, setAmountAvailable] = useState(false);
+  // const username = localStorage.getItem('username');
+  const dispatch = useDispatch();
+  const history = useHistory();
+  const validate = Yup.object({
+    amount: Yup.number()
+      .required('The number is required!')
+      .test(
+        'Is positive?',
+        'The number must be greater than 1000  IDR!',
+        (value) => value > 1000
+      )
+      .nullable(),
+    notes: Yup.string().nullable(),
   });
+  useEffect(() => {
+    document.title = 'Tranfer';
+  });
+
+  // START = GET USER RECEIVER
+  useEffect(() => {
+    axios
+      .get(`${process.env.REACT_APP_BACKEND_API}/users/${getIdUserReceiver}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((res) => {
+        console.log('USER RECEIVER:', res);
+        setUserReceiver(res.data.data[0]);
+      })
+      .catch((err) => {
+        console.log(err.response);
+      });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+  // END = GET USER RECEIVER
+
+  // START = HANDLE FORM
+
+  const actionSubmitForm = (data) => {
+    const amount = localStorage.getItem('amount');
+    const valueAmountRequest = data.amount;
+    if (parseInt(valueAmountRequest) > parseInt(amount)) {
+      return toastify('Upps, saldo tidak mencukupi', 'error');
+    }
+    let today = new Date();
+    const dd = String(today.getDate()).padStart(2, '0');
+    const mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+    const yyyy = today.getFullYear();
+    today = mm + '/' + dd + '/' + yyyy;
+    const dataSend = {
+      sender: idSender,
+      receiver: getIdUserReceiver,
+      amount: data.amount,
+      balanceLeft: amount - valueAmountRequest,
+      date: today,
+      notes: data.notes,
+    };
+    dispatch({ type: dispatchTypes.setTransfer, payload: dataSend });
+    // console.log(data);
+    history.push(`/search-receiver/${getIdUserReceiver}/confirmation`);
+  };
+
+  if (!userReceiver) {
+    return null;
+  }
+
   return (
     <Cardwrapper>
       <StyledUserReceiverPage>
@@ -18,37 +96,103 @@ const UserReceiverPage = () => {
         <Cardwrapper>
           <div className="user-profile-receiver">
             <div className="avatar">
-              <img src={AVAJessicaMera} alt="username" />
+              <img
+                src={
+                  userReceiver?.avatar ? userReceiver?.avatar : AVAUserDefault
+                }
+                alt="username"
+              />
             </div>
             <div className="description">
-              <h2 className="text-heading">Samuel Suhu</h2>
-              <p className="text-regular">+62 897 897 88</p>
+              <h2 className="text-heading">{userReceiver.username}</h2>
+              <p className="text-regular">{userReceiver.phone}</p>
             </div>
           </div>
         </Cardwrapper>
         <div className="body-section">
-          <form>
-            <p className="text-regular">
-              Type the amount you want to transfer and then press continue to
-              the next steps.
-            </p>
-            <div className="input-wrapper">
-              <input className="amount" type="text" placeholder="0.00" />
-            </div>
-            <p className="text-heading summary">Rp. 120.000 Available</p>
-            <div className="notes-wrapper">
-              <Input
-                icon="pen"
-                className="input"
-                placeholder="Add some notes"
-              />
-            </div>
-            <div className="btn-wrapper">
-              <Button primary className="btn-action">
-                Continue
-              </Button>
-            </div>
-          </form>
+          <Formik
+            initialValues={{
+              amount: 0,
+              notes: '',
+            }}
+            validationSchema={validate}
+            onSubmit={(values, { resetForm }) => {
+              // console.log(values);
+              actionSubmitForm(values);
+              resetForm();
+            }}
+          >
+            {({
+              values,
+              errors,
+              touched,
+              handleChange,
+              handleBlur,
+              handleSubmit,
+              isValid,
+            }) => (
+              <Form onSubmit={handleSubmit}>
+                <p className="text-regular">
+                  Type the amount you want to transfer and then press continue
+                  to the next steps.
+                </p>
+                <div className="input-wrapper">
+                  <input
+                    className="amount"
+                    type="text"
+                    placeholder="0.00"
+                    name="amount"
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    value={values.amount}
+                  />
+                  {errors.amount && touched.amount && errors.amount && (
+                    <AlertValidationForm message={errors.amount} />
+                  )}
+                </div>
+                <p
+                  className={`text-heading summary ${
+                    errors.amount && touched.amount && errors.amount
+                      ? 'error'
+                      : ''
+                  }`}
+                >
+                  Rp. {values.amount}{' '}
+                  {errors.amount && touched.amount && errors.amount
+                    ? 'Not Available'
+                    : 'Available'}
+                </p>
+                <div className="notes-wrapper">
+                  <Input
+                    icon="pen"
+                    className="input"
+                    placeholder="Add some notes"
+                    name="notes"
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    value={values.notes}
+                  />
+                  {errors.notes && touched.notes && errors.notes && (
+                    <AlertValidationForm message={errors.notes} />
+                  )}
+                </div>
+                <div className="btn-wrapper">
+                  <Button
+                    type="submit"
+                    disabled={
+                      !isValid ||
+                      (Object.keys(touched).length === 0 &&
+                        touched.constructor === Object)
+                    }
+                    primary
+                    className="btn-action"
+                  >
+                    Continue
+                  </Button>
+                </div>
+              </Form>
+            )}
+          </Formik>
         </div>
       </StyledUserReceiverPage>
       ;
@@ -121,11 +265,16 @@ const StyledUserReceiverPage = styled.div`
       p.summary {
         text-align: center;
         margin-bottom: 60px;
+        &.error {
+          color: red;
+        }
       }
       .notes-wrapper {
+        /* background-color: yellow; */
         display: flex;
         justify-content: center;
         .input {
+          /* background-color: pink; */
           width: 30%;
         }
       }

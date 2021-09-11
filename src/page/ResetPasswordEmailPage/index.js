@@ -1,50 +1,29 @@
-import React, { useEffect, useState } from 'react';
-import { useForm } from 'react-hook-form';
+import { Form, Formik } from 'formik';
+import React, { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
+import * as Yup from 'yup';
 import {
   AlertValidationForm,
   Button,
   Input,
   SidebarAuth,
 } from '../../components';
-import { patternEmail } from '../../utils';
-import { customMedia } from "../../components/Layouting/BreakPoints";
-import { forgotPasswordUser } from "../../config/Redux/actions/userActions";
-import { useDispatch } from "react-redux";
-import { useHistory } from "react-router-dom";
+import { customMedia } from '../../components/Layouting/BreakPoints';
+import { forgotPasswordUser } from '../../config/Redux/actions/userActions';
 
 const ResetPasswordEmailPage = () => {
-      const dispatch = useDispatch();
-      const history = useHistory();
-  const [handleDisabledButton, setHandleDisabledButton] = useState(true);
-  const {
-    register,
-    handleSubmit,
-    watch,
-    getValues,
-    formState: { errors },
-  } = useForm();
-
-  useEffect(() => {
-    document.title = 'Zwallet | Reset Password';
+  const dispatch = useDispatch();
+  const history = useHistory();
+  const validate = Yup.object({
+    email: Yup.string().email('Email is invalid').required('Email is required'),
   });
 
   useEffect(() => {
-    const value = getValues();
-    if (value.email) {
-      setHandleDisabledButton(false);
-    } else {
-      setHandleDisabledButton(true);
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [watch('email')]);
+    document.title = `Zwallet | Reset Password`;
+  });
 
-  //   BUTTON ACTION HANDLING
-  const onSubmit = (data) => {
-     dispatch(forgotPasswordUser(data, history));
-    // history.push('/createpin');
-    return;
-  };
   return (
     <Styles>
       <div className="row-side">
@@ -62,29 +41,47 @@ const ResetPasswordEmailPage = () => {
             will send a link to your email <br />
             and you will be directed to the reset password screens. <br />
           </h6>
-          <form onSubmit={handleSubmit(onSubmit)}>
-            <div className="form-input">
-              <Input
-                icon="mail"
-                type="text"
-                id="mail"
-                name="email"
-                placeholder="Enter your e-mail"
-                {...register('email', {
-                  required: true,
-                  pattern: patternEmail,
-                })}
-              />
-              {errors.email && <AlertValidationForm message="Email invalid" />}
-            </div>
-            <Button
-              primary
-              disabled={handleDisabledButton}
-              className="button-login"
-            >
-              Confirm
-            </Button>
-          </form>
+          <Formik
+            initialValues={{
+              email: '',
+            }}
+            validationSchema={validate}
+            onSubmit={(values, { resetForm }) => {
+              // console.log(values);
+              dispatch(forgotPasswordUser(values, history));
+              resetForm();
+            }}
+          >
+            {({
+              values,
+              errors,
+              touched,
+              handleChange,
+              handleBlur,
+              handleSubmit,
+            }) => (
+              <Form onSubmit={handleSubmit}>
+                <div className="form-input">
+                  <Input
+                    icon="mail"
+                    type="text"
+                    name="email"
+                    label="email"
+                    placeholder="Enter your e-mail"
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    value={values.email}
+                  />
+                  {errors.email && touched.email && (
+                    <AlertValidationForm message={errors.email} />
+                  )}
+                </div>
+                <Button primary className="button-login">
+                  Confirm
+                </Button>
+              </Form>
+            )}
+          </Formik>
         </div>
       </div>
     </Styles>
@@ -95,12 +92,12 @@ export default ResetPasswordEmailPage;
 const Styles = styled.div`
   height: 100vh;
   display: flex;
-  ${customMedia.lessThan("tablet")`
+  ${customMedia.lessThan('tablet')`
   flex-direction: column
   `}
   .row-side {
     width: 55%;
-    ${customMedia.lessThan("tablet")`
+    ${customMedia.lessThan('tablet')`
  width: 100%;
   `}
   }
@@ -113,7 +110,7 @@ const Styles = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    ${customMedia.lessThan("tablet")`
+    ${customMedia.lessThan('tablet')`
  width: 100%;
   `}
     .content {

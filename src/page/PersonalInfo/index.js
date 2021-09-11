@@ -1,9 +1,19 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { useHistory } from "react-router-dom";
 import { Cardwrapper, HeadingContent, SmallCard } from '../../components';
 import { Styledpersonal } from './Styledpersonal';
 
 const PersonalInfo = () => {
+    const history = useHistory();
+  const username = localStorage.getItem('username');
+  const email = localStorage.getItem('email');
+  const phone = localStorage.getItem('phone');
+    const role = localStorage.getItem("role");
+  const onPhone = () =>{ if (role === "ADMIN") {
+    history.push(`/admin/profile/add-phone-number`);
+  } else if (role === "MEMBER") {
+    history.push(`/profile/add-phone-number`);
+  }}
   return (
     <Cardwrapper>
       <Styledpersonal>
@@ -17,29 +27,24 @@ const PersonalInfo = () => {
         </div>
 
         <SmallCard className="card-section-first">
-          <p className="title">First Name</p>
-          <h4 className="content">Robert</h4>
-        </SmallCard>
-
-        <SmallCard className="card-section">
-          <p className="title">Last Name</p>
-          <h4 className="content">Chandler</h4>
+          <p className="title">Name</p>
+          <h4 className="content">{username}</h4>
         </SmallCard>
 
         <SmallCard className="card-section">
           <p className="title">Verified e-mail</p>
-          <h4 className="content">pewdiepie1@gmail.com</h4>
+          <h4 className="content">{email}</h4>
         </SmallCard>
 
         <SmallCard className="card-section contact">
           <div className="contact-wrapper">
             <p className="title">Phone number</p>
-            <h4 className="content">+62 813 9387 7946</h4>
+            <h4 className="content">{phone}</h4>
           </div>
           <div className="text-right">
-            <Link to="" style={{ textDecoration: 'none' }}>
-              <p className="manage">Manage</p>
-            </Link>
+           
+              <p className="manage"onClick={()=>onPhone()}>Manage</p>
+  
           </div>
         </SmallCard>
       </Styledpersonal>

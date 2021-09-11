@@ -36,4 +36,19 @@ export const StyledPhone = styled.div`
       width: 250px;
     }
   }
+  .manage-phone-exist {
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    p {
+      margin: 0;
+    }
+    .icon-wrappper {
+      &:hover {
+        opacity: 0.5;
+        cursor: pointer;
+      }
+    }
+  }
 `;

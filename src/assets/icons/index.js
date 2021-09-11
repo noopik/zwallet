@@ -7,6 +7,7 @@ import ICUser from './user.svg';
 import ICLogout from './log-out.svg';
 import ICDownGreen from './arrow-down-green.png';
 import ICUpRed from './arrow-up-red.png';
+import ICTrash from './trash.png';
 
 import ICPen from './search.svg';
 import ICArrowLeft from './arrow-left.svg';
@@ -22,7 +23,7 @@ import ShareIcon from './share.png';
 import DownloadIcon from './download.png';
 import Failed from './Fail.png';
 import TrashIcon from './trash.png';
-import SuccessLogo from './Success Image.png'
+import SuccessLogo from './Success Image.png';
 // END = NISA
 export {
   ICArrowLeft,
@@ -43,5 +44,6 @@ export {
   ICEyeClose,
   ICEyeOpen,
   TrashIcon,
-  SuccessLogo
+  SuccessLogo,
+  ICTrash,
 };

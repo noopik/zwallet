@@ -1,108 +1,92 @@
-import React from 'react'
-import { Cardwrapper, SmallCard, HeadingContent } from '../../components'
-import { StyledAdmin } from './StyledAdmin'
-import { AVAJessicaMera } from '../../assets';
-
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { Cardwrapper, HeadingContent, SmallCard } from '../../components';
+import { getAllActivity } from '../../config/Redux/actions/dataAdminActions';
+import { StyledAdmin } from './StyledAdmin';
 
 const AdminHomePage = () => {
-    return (
-        <StyledAdmin>
-    
-            <div className="card-header">
-                <div className="status-transaction">
-                        <p className="text-section">
-                            Total Transaction<br />
-                            Update: 03.03, 30-xx-2xxx 
-                            <h4 className="balance-amount">130</h4>
-                        Successfully transaction</p>
+  const dispatch = useDispatch();
 
+  useEffect(() => {
+    dispatch(getAllActivity());
+  }, [dispatch]);
+
+  const { allData, meta } = useSelector((state) => state.dataAdminReducer);
+
+  let date = new Date();
+  date =
+    date.getDate() +
+    '/' +
+    (date.getMonth() + 1) +
+    '/' +
+    date.getFullYear() +
+    ' ' +
+    date.getHours() +
+    ':' +
+    date.getMinutes() +
+    ':' +
+    date.getSeconds();
+
+  return (
+    <StyledAdmin>
+      <div className="card-header">
+        <div className="status-transaction">
+          <p className="text-section">
+            Total Transaction
+            <br />
+            Update: {date}
+            <h4 className="balance-amount">{meta ? meta.allData : 0}</h4>
+            Successfully transaction
+          </p>
+        </div>
+        <div className="amount-transaction">
+          <p className="text-section">
+            Amount Total Transaction <br />
+            Update: {date}
+            <h4 className="balance-amount">
+              Rp. {meta ? meta.totalAmount : 0}
+            </h4>
+            Rp {meta ? meta.totalAmount : 0}
+          </p>
+        </div>
+        <div className="user-verified">
+          <p className="text-section">
+            User Verified <br />
+            1K
+            <h4 className="balance-amount">1K</h4>
+            Total user Verified
+          </p>
+        </div>
+      </div>
+      <Cardwrapper className="content-wrapper">
+        <div className="text-wrapper">
+          <HeadingContent>Total Transaction History</HeadingContent>
+        </div>
+        {allData &&
+          allData.map((item) => (
+            <SmallCard className="card-profile account">
+              <div className="wrapper-profile">
+                <div className="image-wrapper">
+                  <img src={item.avatar} alt="" />
                 </div>
-                <div className="amount-transaction">
-                        <p className="text-section">
-                            Amount Total Transaction <br />
-                            Update: 03.03, 30-xx-2xxx 
-                            <h4 className="balance-amount">Rp. 390m</h4>
-                            Rp 39.000.000.000.000
-                        </p>
-
+                <div className="detail-profile-wrap">
+                  <h5 className="text-name">{item.usernameTransfer}</h5>
+                  <p className="detail">
+                    Transfer to <b>Rp. {item.amount}</b> to {item.username} at{' '}
+                    {item.updatedAt}{' '}
+                  </p>
                 </div>
-                <div className="user-verified">
-                        <p className="text-section">
-                            User Verified <br />
-                            1K
-                            <h4 className="balance-amount">Rp. 390m</h4>
-                            Total user Verified
-                        </p>
+                <div className="status-transfer">
+                  <mark>
+                    {item.status === 'success' ? 'Success' : 'Failed'}
+                  </mark>
                 </div>
+              </div>
+            </SmallCard>
+          ))}
+      </Cardwrapper>
+    </StyledAdmin>
+  );
+};
 
-            </div>
-            <Cardwrapper className="content-wrapper">
-            <div className="text-wrapper">
-
-                <HeadingContent>Total Transaction History</HeadingContent>
-
-            </div>
-                <SmallCard className="card-profile account">
-                    <div className="wrapper-profile">
-                        <div className="image-wrapper">
-                            <img src={AVAJessicaMera} alt="" />
-                        </div>
-                        <div className="detail-profile-wrap">
-                            <h5 className="text-name">Samuel Suhi</h5>
-                            <p className="detail">Transfer to <b>Rp. 50.000</b> to Nisa at July 20, 2021 : 05.03 </p>
-                        </div>
-                        <div className="status-transfer">
-                            <mark>Success</mark>
-                        </div>
-                    </div>
-                </SmallCard>
-                <SmallCard className="card-profile account">
-                    <div className="wrapper-profile">
-                        <div className="image-wrapper">
-                            <img src={AVAJessicaMera} alt="" />
-                        </div>
-                        <div className="detail-profile-wrap">
-                            <h5 className="text-name">Samuel Suhi</h5>
-                            <p className="detail">Transfer to <b>Rp. 50.000</b> to Nisa at July 20, 2021 : 05.03 </p>
-                        </div>
-                        <div className="status-transfer failed">
-                            <mark>Failed</mark>
-                        </div>
-                    </div>
-                </SmallCard>
-                <SmallCard className="card-profile account">
-                    <div className="wrapper-profile">
-                        <div className="image-wrapper">
-                            <img src={AVAJessicaMera} alt="" />
-                        </div>
-                        <div className="detail-profile-wrap">
-                            <h5 className="text-name">Samuel Suhi</h5>
-                            <p className="detail">Transfer to <b>Rp. 50.000</b> to Nisa at July 20, 2021 : 05.03 </p>
-                        </div>
-                        <div className="status-transfer">
-                            <mark>Success</mark>
-                        </div>
-                    </div>
-                </SmallCard>
-                <SmallCard className="card-profile account">
-                    <div className="wrapper-profile">
-                        <div className="image-wrapper">
-                            <img src={AVAJessicaMera} alt="" />
-                        </div>
-                        <div className="detail-profile-wrap">
-                            <h5 className="text-name">Samuel Suhi</h5>
-                            <p className="detail">Transfer to <b>Rp. 50.000</b> to Nisa at July 20, 2021 : 05.03 </p>
-                        </div>
-                        <div className="status-transfer pending">
-                            <mark>Pending</mark>
-                        </div>
-                    </div>
-                </SmallCard>
-            
-            </Cardwrapper>
-         
-        </StyledAdmin>
-    )
-}
-
-export default AdminHomePage
+export default AdminHomePage;

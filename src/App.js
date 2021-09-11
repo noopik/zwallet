@@ -1,8 +1,10 @@
 import { Provider } from 'react-redux';
-import './App.css';
-import Routes from './config/Router';
+import { ToastContainer } from 'react-toastify';
 import store from '../src/config/Redux/store';
+import './App.css';
 import { LoadingProgress } from './components';
+import Routes from './config/Router';
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
   return (
@@ -11,6 +13,7 @@ function App() {
         <Routes />
         <LoadingProgress />
       </Provider>
+      <ToastContainer />
     </>
   );
 }

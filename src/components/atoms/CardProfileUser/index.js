@@ -1,8 +1,8 @@
-import React from 'react';
-import styled from 'styled-components';
-import { AVAJessicaMera } from '../../../assets';
 import PropTypes from 'prop-types';
+import React from 'react';
 import { useHistory } from 'react-router-dom';
+import styled from 'styled-components';
+import { AVAUserDefault } from '../../../assets';
 
 const CardProfileUser = ({
   avatar,
@@ -32,7 +32,7 @@ const CardProfileUser = ({
       </div>
       {amount && (
         <div className="amount-wrapper">
-          <h4 className="text-heading text-green">{amount}</h4>
+          <h4 className="text-heading text-red">Rp. {amount}</h4>
         </div>
       )}
     </StyledHistoryItem>
@@ -48,9 +48,10 @@ CardProfileUser.propTypes = {
 };
 
 CardProfileUser.defaultProps = {
-  avatar: AVAJessicaMera,
-  username: 'Samuel Eto',
-  typeTransaction: 'Transfer',
+  avatar: AVAUserDefault,
+  username: '...',
+  typeTransaction: '...',
+  amount: '50000',
 };
 
 export default CardProfileUser;
@@ -91,5 +92,6 @@ const StyledHistoryItem = styled.div`
   .amount-wrapper {
     display: flex;
     align-items: center;
+    width: 250px;
   }
 `;

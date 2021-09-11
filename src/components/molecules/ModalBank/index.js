@@ -1,18 +1,14 @@
-import PropTypes from 'prop-types';
 import React from 'react';
 import styled from 'styled-components';
 import { Cardwrapper } from '../../atoms';
 
-const Modal = ({ children, showModal, closeModal }) => {
-  // const [isShow, setIsShow] = useState(false);
-
+const ModalBank = ({ children, showModal, closeModal }) => {
   if (!showModal) return null;
-
   return (
-    <StyledModal>
+    <Styles>
       <Cardwrapper className="content-wrapper">
         <div className="header">
-          <h3 className="text-heading">Enter PIN to Transfer</h3>
+          <h3 className="text-heading">Select Bank Payment</h3>
           <svg
             onClick={closeModal}
             className="icon"
@@ -39,28 +35,22 @@ const Modal = ({ children, showModal, closeModal }) => {
           </svg>
         </div>
         <p className="modal-description">
-          Enter your 6 digits PIN for confirmation to continue transferring
-          money.
+          Select your preferred bank for your <br /> payment method
         </p>
         <div className="body">{children}</div>
       </Cardwrapper>
       <div className="bg-layer" onClick={closeModal}></div>
-    </StyledModal>
+    </Styles>
   );
 };
 
-Modal.propTypes = {
-  children: PropTypes.element.isRequired,
-};
-
-export default Modal;
-
-const StyledModal = styled.div`
+export default ModalBank;
+const Styles = styled.div`
   width: 100vw;
   height: 100vh;
   position: fixed;
   z-index: 1;
-  top: 150px;
+  top: 0;
   left: 0;
   display: flex;
   align-items: flex-start;
