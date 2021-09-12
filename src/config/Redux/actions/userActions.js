@@ -180,16 +180,16 @@ export const getUser = (idUser, token) => (dispatch) => {
       },
     })
     .then((result) => {
-      const data = result.data.data[0]
-      console.log(data)
+      const data = result.data.data[0];
+      // console.log(data)
 
       dispatch({
         type: dispatchTypes.getUser,
         payload: data,
-      })
+      });
     })
     .catch((err) => {
       console.log(err.response);
       return toastify(err.response.data.message, 'error');
     });
-}
+};
