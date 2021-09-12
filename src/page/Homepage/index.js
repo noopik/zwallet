@@ -9,7 +9,7 @@ import { Bar } from 'react-chartjs-2';
 import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
 import { dispatchTypes } from '../../utils/dispatchType';
-import { moneyFormatter } from '../../utils';
+import { moneyFormatter, toastify } from '../../utils';
 import { getUser } from '../../config/Redux/actions/userActions';
 
 const Homepage = () => {
@@ -69,7 +69,7 @@ const Homepage = () => {
 
   useEffect(() => {
     chart();
-    dispatch(getUser(id, token))
+    dispatch(getUser(id, token));
   }, [dispatch, id, token]);
 
   // START = HISTORY TRANSACTION
@@ -135,7 +135,11 @@ const Homepage = () => {
             primary
             icon="top-up"
             onClick={() => {
-              return history.push(`/${username}/topup`);
+              return toastify(
+                'Sorry this feature is under development :D',
+                'warning'
+              );
+              // return history.push(`/${username}/topup`);
             }}
           >
             Top Up

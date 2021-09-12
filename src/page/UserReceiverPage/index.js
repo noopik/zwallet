@@ -64,7 +64,10 @@ const UserReceiverPage = () => {
   const actionSubmitForm = (data) => {
     const valueAmountRequest = data.amount;
     if (parseInt(valueAmountRequest) > parseInt(saldo)) {
-      return toastify('Upps, saldo tidak mencukupi', 'error');
+      return toastify(
+        'Upps, your balance is not enough to make a transaction',
+        'error'
+      );
     }
     let today = new Date();
     const dd = String(today.getDate()).padStart(2, '0');
