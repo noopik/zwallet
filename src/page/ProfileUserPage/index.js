@@ -17,15 +17,12 @@ const ProfileUserPage = () => {
   const token = localStorage.getItem('token');
   const role = localStorage.getItem('role');
   const dispatch = useDispatch();
-  const [avatarLocalState, setAvatarLocalState] = useState(AVAUserDefault);
   const [updateAvatar, setUpdateAvatar] = useState();
 
   useEffect(() => {
     document.title = `Zwallet | ${username}`;
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    setAvatarLocalState(avatar);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [avatar]);
+  }, []);
 
   // START = LOGOUT ACTION
   const logoutAction = () => {
@@ -68,7 +65,6 @@ const ProfileUserPage = () => {
             const sendData = {
               data: dataResponse,
             };
-            setAvatarLocalState(dataResponse.avatar);
             dispatch({ type: dispatchTypes.setUserProfile, payload: sendData });
           })
           .catch((err) => {
@@ -83,6 +79,23 @@ const ProfileUserPage = () => {
         return toastify(err.response.data.message, 'error');
       });
   };
+  const actionPreviewAvatar = (e) => {
+    if (
+      e.target.files[0].type === 'image/jpeg' ||
+      e.target.files[0].type === 'image/jpg' ||
+      e.target.files[0].type === 'image/png' ||
+      e.target.files[0].type === 'image/gif'
+    ) {
+      if (e.target.files[0].size > 1048576 * 2) {
+        toastify('max size file is 2mb', 'error');
+      } else {
+        setUpdateAvatar(e.target.files[0]);
+      }
+    } else {
+      toastify('Only image is allowed', 'error');
+    }
+    // (e) => setUpdateAvatar(e.target.files[0])
+  };
   // END = LOGIC UPLOAD PHOTO
   return (
     <Cardwrapper>
@@ -91,7 +104,12 @@ const ProfileUserPage = () => {
           <div className="header-avatar">
             <div className="edit-wrapper">
               <div className="avatar-wrapper">
-                <img src={avatarLocalState} alt={username} />
+                {!updateAvatar && (
+                  <img src={avatar ? avatar : AVAUserDefault} alt={username} />
+                )}
+                {updateAvatar && (
+                  <img src={URL.createObjectURL(updateAvatar)} alt="images" />
+                )}
               </div>
             </div>
             <div className="edit-wrapper">
@@ -120,7 +138,7 @@ const ProfileUserPage = () => {
                   <input
                     type="file"
                     name="avatar"
-                    onChange={(e) => setUpdateAvatar(e.target.files[0])}
+                    onChange={(e) => actionPreviewAvatar(e)}
                   />
                   <div className="custom-row">
                     <AttachFileIcon />

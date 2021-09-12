@@ -1,13 +1,30 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import { Cardwrapper, HeadingContent } from '../../components';
+import { getVAUser } from '../../config/Redux/actions/VAUserActions';
 
 const TopupPage = () => {
+  const dispatch = useDispatch()
+  const userState = useSelector((state) => state.userReducer.data);
+  const { id } = userState;
+
+  useEffect(() => {
+    dispatch(getVAUser(id))
+  }, [dispatch, id])
+
+  const { data } = useSelector(state => state.VAUserReducer)
+
   return (
     <Cardwrapper>
       <StyledTopupPage>
         <HeadingContent>How To Top Up</HeadingContent>
         <div className="body-content">
+          <Cardwrapper className="item">
+            <p className="text-regular">
+              Your virtual account : {data ? data : ''}
+            </p>
+          </Cardwrapper>
           <Cardwrapper className="item">
             <p className="number">1</p>
             <p className="text-regular">
