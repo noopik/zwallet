@@ -15,9 +15,9 @@
     <br />
     <a href="https://zwallet-matrix.vercel.app/">View Demo</a>
     ·
-    <a href="https://github.com/dwinovic/Blanja-ReactJS">Report Bug</a>
+    <a href="https://github.com/dwinovic/zwallet">Report Bug</a>
     ·
-    <a href="https://github.com/dwinovic/Blanja-ReactJS">Request Feature</a>
+    <a href="https://github.com/dwinovic/zwallet">Request Feature</a>
   </p>
 </p>
 
