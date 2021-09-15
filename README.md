@@ -43,7 +43,7 @@
           <a href="#prerequisites">Prerequisites</a>
         </li>
         <li>
-          <a href="related-project">Related Project</a>
+          <a href="#related-project">Related Project</a>
         </li>
       </ol>
     </li>
