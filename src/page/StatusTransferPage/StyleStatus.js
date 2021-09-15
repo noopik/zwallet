@@ -105,6 +105,9 @@ export const StyleStatus = styled.div`
   }
   .image-wrapper img {
     width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 15px;
   }
   .detail-profile-wrap {
     padding-top: 10px;

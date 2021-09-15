@@ -9,7 +9,7 @@ import { AVAUserDefault } from '../../assets';
 import { AlertValidationForm, Cardwrapper, Input } from '../../components';
 import Button from '../../components/atoms/Button';
 import { customMedia } from '../../components/Layouting/BreakPoints';
-import { toastify } from '../../utils';
+import { toastify, moneyFormatter } from '../../utils';
 import { dispatchTypes } from '../../utils/dispatchType';
 
 const UserReceiverPage = () => {
@@ -161,7 +161,7 @@ const UserReceiverPage = () => {
                       : ''
                   }`}
                 >
-                  Rp. {values.amount}{' '}
+                  Rp. {moneyFormatter.format(values.amount)}{' '}
                   {errors.amount && touched.amount && errors.amount
                     ? 'Not Available'
                     : 'Available'}

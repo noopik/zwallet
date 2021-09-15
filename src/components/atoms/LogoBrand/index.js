@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 const index = ({ primary, light }) => {
   return (
     <Styles primary={primary} light={light}>
-      <Link className="anchor" to="/">
+      <Link className="anchor" to="/dashboard">
         <h1>Zwallet</h1>
       </Link>
     </Styles>

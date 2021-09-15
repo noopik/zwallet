@@ -17,11 +17,12 @@ import { StyleStatus } from './StyleStatus';
 
 const StatusTransferPage = () => {
   const history = useHistory();
+  const [receiverData, setReceiverData] = useState();
   const transferState = useSelector((state) => state.transferReducer);
-  const username = localStorage.getItem('username');
+  // const username = localStorage.getItem('username');
   const token = localStorage.getItem('token');
-  const avatar = localStorage.getItem('avatar');
-  const phone = localStorage.getItem('phone');
+  // const avatar = localStorage.getItem('avatar');
+  // const phone = localStorage.getItem('phone');
   const idReceiver = transferState?.receiver;
   const idSender = transferState?.sender;
   const [dataReceiverPDF, setDataReceiverPDF] = useState({
@@ -42,6 +43,7 @@ const StatusTransferPage = () => {
         // console.log(res);
         const result = res.data.data[0];
         const { username, phone } = result;
+        setReceiverData(result);
         // GET HISTORY
         axios
           .get(
@@ -178,7 +180,7 @@ const StatusTransferPage = () => {
     doc.save(`${transferState.date}-${dataReceiverPDF.idTransaction}.pdf`);
   };
   // const [statusTransfer, setStatusTransfer] = useState(true);
-
+  console.log('transferState', transferState);
   return (
     <Cardwrapper>
       <StyleStatus>
@@ -228,11 +230,16 @@ const StatusTransferPage = () => {
         <SmallCard className="card-profile">
           <div className="wrapper-profile">
             <div className="image-wrapper">
-              <img src={avatar ? avatar : AVAUserDefault} alt="" />
+              <img
+                src={
+                  receiverData?.avatar ? receiverData?.avatar : AVAUserDefault
+                }
+                alt=""
+              />
             </div>
             <div className="detail-profile-wrap">
-              <h5 className="text-name">{username}</h5>
-              <p>{phone}</p>
+              <h5 className="text-name">{receiverData?.username}</h5>
+              <p>{receiverData?.phone}</p>
             </div>
           </div>
         </SmallCard>
