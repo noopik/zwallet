@@ -10,7 +10,7 @@
   <p align="center">
     Really helps you to manage your e-money. <br/> Using Zwallet you’ll be allowed to do some transaction with only a few taps on your screen. 
     <br />
-    <a href="https://github.com/dwinovic/Blanja-ReactJS"><strong>Explore the docs »</strong></a>
+    <a href="https://github.com/dwinovic/zwallet"><strong>Explore the docs »</strong></a>
     <br />
     <br />
     <a href="https://zwallet-matrix.vercel.app/">View Demo</a>
