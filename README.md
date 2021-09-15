@@ -1,69 +1,144 @@
-# Readme Front End
+<!-- PROJECT LOGO -->
+<br />
+<p align="center">
+  <a href="https://github.com/dwinovic/zwallet">
+    <img src="https://res.cloudinary.com/dnv-images/image/upload/v1631717683/Zwallet/ewallet_1_tzfymc.svg" alt="Logo" width="180" height="180">
+  </a>
 
-![https://i.postimg.cc/WpmxhFCx/zwallet6.png](https://i.postimg.cc/WpmxhFCx/zwallet6.png)
+  <h3 align="center">Zwallet: Digital wallet</h3>
 
----
+  <p align="center">
+    Really helps you to manage your e-money. <br/> Using Zwallet you’ll be allowed to do some transaction with only a few taps on your screen. 
+    <br />
+    <a href="https://github.com/dwinovic/Blanja-ReactJS"><strong>Explore the docs »</strong></a>
+    <br />
+    <br />
+    <a href="https://zwallet-matrix.vercel.app/">View Demo</a>
+    ·
+    <a href="https://github.com/dwinovic/Blanja-ReactJS">Report Bug</a>
+    ·
+    <a href="https://github.com/dwinovic/Blanja-ReactJS">Request Feature</a>
+  </p>
+</p>
 
-## About
+<!-- TABLE OF CONTENTS -->
+<details open="open">
+  <summary>Table of Contents</summary>
+  <ol>
+    <li>
+      <a href="#about-the-project">About The Project</a>
+        <ol>
+            <li>
+                <a href="#build-with">Build With</a>
+            </li>
+        </ol>
+    </li>
+    <li><a href="#usage">Usage</a></li>
+    <li><a href="#roadmap">Roadmap</a></li>
+    <li><a href="#contributing">Contributing</a></li>
+    <li><a href="#license">License</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="#acknowledgements">Acknowledgements</a></li>
+  </ol>
+</details>
 
-Zwallet is a digital wallet apps that will really helps you to manage your e-money. Using Zwallet you’ll be allowed to do some transaction with only a few taps on your screen. In other words, with this apps you can easily save money, transfer it to other, and also top up some moneys and add them to your Zwallet’s balance.
+## About The Project
 
-## Build With
+<b>Zwallet</b> is a digital wallet apps that will really helps you to manage your e-money. Using Zwallet you’ll be allowed to do some transaction with only a few taps on your screen. In other words, with this apps you can easily save money, transfer it to other, and also top up some moneys and add them to your Zwallet’s balance.
 
-- JavaScript
-- React Js
-- Redux
-- Styled Components
+### Build With
+* [JavaScript](https://www.javascript.com/)
+* [React Js](https://reactjs.org/)
+* [Redux](https://redux.js.org/)
+* [Styled Components](https://styled-components.com/)
+* [Formik](https://formik.org/)
+* [React Bootstrap](https://react-bootstrap.github.io/)
 
-### Packages (Frontend)
 
-```
-"axios": "^0.21.1",
-"bootstrap": "^5.0.2",
-"chart.js": "^3.5.0",
-"jspdf": "^2.3.1",
-"prop-types": "^15.7.2",
-"react": "^17.0.2",
-"react-bootstrap": "^2.0.0-beta.4",
-"react-chartjs-2": "^3.0.4",
-"react-dom": "^17.0.2",
-"react-hook-form": "^7.12.2",
-"react-pin-input": "^1.0.1",
-"react-redux": "^7.2.4",
-"react-router-dom": "^5.2.0",
-"react-scripts": "4.0.3",
-"react-toastify": "^7.0.4",
-"redux-logger": "^3.0.6",
-"redux-thunk": "^2.3.0",
-"styled-components": "^5.3.0",
-"styled-media-query": "^2.1.2",
-"web-vitals": "^1.0.1"
-```
+## Getting Started
 
-## How To Install?
+### Prerequisites
+
+This is an example of how to list things you need to use the software and how to install them.
+* [Node Js](https://nodejs.org/en/download/)
+
+### Installation
 
 1. Clone These 2 Repos (Backend and Frontend)
-`git clone https://github.com/dwinovic/zwallet`
+```sh
+git clone https://github.com/dwinovic/zwallet
+```
 2. Go To Folder Repo
-
-    `cd zwallet-frontend`
-
+```sh
+cd zwallet-frontend
+```
 3. Install Module
+```sh
+npm install
+```
+4. Add .env file at root folder project, and add following
+```sh
+REACT_APP_BACKEND_API=[BACKEND_API]
+```
+5. Start website
+```sh
+npm start
+```
 
-    `npm install`
-
-4. Start website
-
-    `npm start`
+### Related Project
+* [`Frontend-Zwallet`](https://github.com/dwinovic/zwallet)
+* [`Backend-Zwallet`](https://github.com/dwinovic/Backend-mWallet)
 
 ## Screenshots
 
-![https://i.postimg.cc/9f9d8Tjp/zwallet1.png](https://i.postimg.cc/9f9d8Tjp/zwallet1.png)
+<div align="center">
+    <img width="350" src="https://i.postimg.cc/9f9d8Tjp/zwallet1.png">   
+    <img width="350" src="https://i.postimg.cc/d3TMx441/zwallet2.png">
+</div>
+<div align="center">
+    <img width="350" src="https://i.postimg.cc/tCQCHxPf/zwallet3.png">   
+    <img width="350" src="https://i.postimg.cc/prDvds8S/zwallet4.png">
+</div>
 
-![https://i.postimg.cc/d3TMx441/zwallet2.png](https://i.postimg.cc/d3TMx441/zwallet2.png)
+## Contributors
 
-![https://i.postimg.cc/tCQCHxPf/zwallet3.png](https://i.postimg.cc/tCQCHxPf/zwallet3.png)
+<center>
+  <table>
+    <tr>
+      <td align="center">
+        <a href="https://github.com/dwinovic">
+          <img width="100" src="https://avatars.githubusercontent.com/u/59456940?v=4" alt="Novi Dwi Cahya"><br/>
+          <sub><b>Novi Dwi Cahya</b></sub> <br/>
+            <sub>Leader | Front End Developer</sub>
+        </a>
+      </td>
+      <td align="center">
+        <a href="https://github.com/farrelvarian">
+          <img width="100" src="https://avatars.githubusercontent.com/u/42968960?v=4" alt="Farrel Varian Eka Putra"><br/>
+          <sub><b>Farrel Varian Eka Putra</b></sub>
+          <sub>Full Stack Web Developer</sub>
+        </a>
+      </td>
+      <td align="center">
+        <a href="https://github.com/19damah23">
+          <img width="100" src="https://avatars1.githubusercontent.com/u/39041267?s=460&v=4" alt="Muchamad Agus Hermawan"><br/>
+          <sub><b>Muchamad Agus Hermawan</b></sub>
+          <sub>Back End Developer</sub>
+        </a>
+      </td>
+      <td align="center">
+        <a href="https://github.com/alfatahh54">
+          <img width="100" src="https://avatars2.githubusercontent.com/u/55615664?s=460&v=4" alt="Alfatah Hidayat"><br/>
+          <sub><b>Alfatah Hidayat</b></sub>
+        </a>
+      </td>
+      <td align="center">
+        <a href="https://github.com/VikaVP">
+          <img width="100" src="https://avatars3.githubusercontent.com/u/52590370?s=460&v=4" alt="Vika Vitaloka P"><br/>
+          <sub><b>Vika Vitaloka P</b></sub>
+        </a>
+      </td>
+    </tr>
+  </table>
+</center>
 
-![https://i.postimg.cc/prDvds8S/zwallet4.png](https://i.postimg.cc/prDvds8S/zwallet4.png)
-
-![https://i.postimg.cc/mrtG9LCC/zwallet5.png](https://i.postimg.cc/mrtG9LCC/zwallet5.png)
