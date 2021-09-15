@@ -33,12 +33,23 @@
             </li>
         </ol>
     </li>
-    <li><a href="#usage">Usage</a></li>
-    <li><a href="#roadmap">Roadmap</a></li>
-    <li><a href="#contributing">Contributing</a></li>
-    <li><a href="#license">License</a></li>
+    <li>
+      <a href="#getting-started">Getting Started</a>
+      <ol>
+        <li>
+          <a href="#installation">Installation</a>
+        </li>
+        <li>
+          <a href="#prerequisites">Prerequisites</a>
+        </li>
+        <li>
+          <a href="related-project">Related Project</a>
+        </li>
+      </ol>
+    </li>
+    <li><a href="#screenshots">Screenshots</a></li>
+    <li><a href="#our-team">Our Team</a></li>
     <li><a href="#contact">Contact</a></li>
-    <li><a href="#acknowledgements">Acknowledgements</a></li>
   </ol>
 </details>
 
@@ -92,15 +103,27 @@ npm start
 ## Screenshots
 
 <div align="center">
-    <img width="350" src="https://i.postimg.cc/9f9d8Tjp/zwallet1.png">   
-    <img width="350" src="https://i.postimg.cc/d3TMx441/zwallet2.png">
+    <img width="350" src="https://res.cloudinary.com/dnv-images/image/upload/v1631723286/Zwallet/Zwallet-01_nxai3l.png">   
+    <img width="350" src="https://res.cloudinary.com/dnv-images/image/upload/v1631723284/Zwallet/Zwallet-02_ulfakj.png">
 </div>
 <div align="center">
-    <img width="350" src="https://i.postimg.cc/tCQCHxPf/zwallet3.png">   
-    <img width="350" src="https://i.postimg.cc/prDvds8S/zwallet4.png">
+    <img width="350" src="https://res.cloudinary.com/dnv-images/image/upload/v1631723284/Zwallet/Zwallet-03_ecadci.png">   
+    <img width="350" src="https://res.cloudinary.com/dnv-images/image/upload/v1631723283/Zwallet/Zwallet-04_dcgepp.png">
+</div>
+<div align="center">
+    <img width="350" src="https://res.cloudinary.com/dnv-images/image/upload/v1631723283/Zwallet/Zwallet-05_xo6ely.png">   
+    <img width="350" src="https://res.cloudinary.com/dnv-images/image/upload/v1631723283/Zwallet/Zwallet-06_smtqqf.png">
+</div>
+<div align="center">
+    <img width="350" src="https://res.cloudinary.com/dnv-images/image/upload/v1631723284/Zwallet/Zwallet-07_vp5cer.png">   
+    <img width="350" src="https://res.cloudinary.com/dnv-images/image/upload/v1631723284/Zwallet/Zwallet-08_kjsjia.png">
+</div>
+<div align="center">
+    <img width="350" src="https://res.cloudinary.com/dnv-images/image/upload/v1631723285/Zwallet/Zwallet-09_l1helx.png">   
+    <img width="350" src="https://res.cloudinary.com/dnv-images/image/upload/v1631723285/Zwallet/Zwallet-10_nnfygx.png">
 </div>
 
-## Contributors
+## Our Team
 
 <center>
   <table>
@@ -115,30 +138,30 @@ npm start
       <td align="center">
         <a href="https://github.com/farrelvarian">
           <img width="100" src="https://avatars.githubusercontent.com/u/42968960?v=4" alt="Farrel Varian Eka Putra"><br/>
-          <sub><b>Farrel Varian Eka Putra</b></sub>
+          <sub><b>Farrel Varian Eka Putra</b></sub> <br/>
           <sub>Full Stack Web Developer</sub>
         </a>
       </td>
       <td align="center">
         <a href="https://github.com/19damah23">
-          <img width="100" src="https://avatars1.githubusercontent.com/u/39041267?s=460&v=4" alt="Muchamad Agus Hermawan"><br/>
-          <sub><b>Muchamad Agus Hermawan</b></sub>
+          <img width="100" src="https://media-exp1.licdn.com/dms/image/C5603AQG98I3VT9Wc5g/profile-displayphoto-shrink_800_800/0/1630549889980?e=1637193600&v=beta&t=EL-sEsGitFv9TeZofjNhs7fVZa0RxLSwxhyqhF3Xt8A" alt="Muchamad Agus Hermawan"><br/>
+          <sub><b>Muchamad Agus Hermawan</b></sub> <br/>
           <sub>Back End Developer</sub>
         </a>
       </td>
       <td align="center">
-        <a href="https://github.com/alfatahh54">
-          <img width="100" src="https://avatars2.githubusercontent.com/u/55615664?s=460&v=4" alt="Alfatah Hidayat"><br/>
-          <sub><b>Alfatah Hidayat</b></sub>
-        </a>
-      </td>
-      <td align="center">
-        <a href="https://github.com/VikaVP">
-          <img width="100" src="https://avatars3.githubusercontent.com/u/52590370?s=460&v=4" alt="Vika Vitaloka P"><br/>
-          <sub><b>Vika Vitaloka P</b></sub>
+        <a href="https://github.com/Nisanisa7">
+          <img width="100" src="https://avatars.githubusercontent.com/u/43512824?v=4" alt="Alfatah Hidayat"><br/>
+          <sub><b>Nisa</b></sub> <br/>
+          <sub>Front End Developer</sub>
         </a>
       </td>
     </tr>
   </table>
 </center>
+
+## Contact
+My Email : novidwicahya19@gmail.com
+
+Project Link: [https://github.com/dwinovic/zwallet](https://github.com/dwinovic/zwallet)
 
