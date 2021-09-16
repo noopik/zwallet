@@ -156,6 +156,13 @@ npm start
           <sub>Front End Developer</sub>
         </a>
       </td>
+      <td align="center">
+        <a href="https://github.com/CandaMuammal">
+          <img width="100" src="https://avatars.githubusercontent.com/u/79079927?v=4" alt="Alfatah Hidayat"><br/>
+          <sub><b>Canda Muammal</b></sub> <br/>
+          <sub>Back End Developer</sub>
+        </a>
+      </td>
     </tr>
   </table>
 </center>
