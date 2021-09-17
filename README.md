@@ -103,7 +103,7 @@ npm start
 ## Screenshots
 
 <div align="center">
-    <img width="350" src="https://res.cloudinary.com/dnv-images/image/upload/v1631723286/Zwallet/Zwallet-01_nxai3l.png">   
+    <img width="350" src="https://github.com/19damah23/zwallet/blob/main/screenshots/1631775729085.png">   
     <img width="350" src="https://res.cloudinary.com/dnv-images/image/upload/v1631723284/Zwallet/Zwallet-02_ulfakj.png">
 </div>
 <div align="center">
