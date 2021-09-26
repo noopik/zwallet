@@ -1,16 +1,16 @@
+import axios from 'axios';
 import React, { useEffect, useState } from 'react';
+import { Bar } from 'react-chartjs-2';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link, useHistory } from 'react-router-dom';
 import { ICDownGreen, ICUpRed } from '../../assets';
 // import PropTypes from 'prop-types';
 import { CardProfileUser } from '../../components';
 import Button from '../../components/atoms/Button';
-import { StyledDashboard } from './styled';
-import { Bar } from 'react-chartjs-2';
-import axios from 'axios';
-import { useDispatch, useSelector } from 'react-redux';
-import { dispatchTypes } from '../../utils/dispatchType';
-import { moneyFormatter, toastify } from '../../utils';
 import { getUser } from '../../config/Redux/actions/userActions';
+import { moneyFormatter } from '../../utils';
+import { dispatchTypes } from '../../utils/dispatchType';
+import { StyledDashboard } from './styled';
 
 const Homepage = () => {
   const userState = useSelector((state) => state.userReducer.data);
@@ -99,7 +99,7 @@ const Homepage = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   // END = HISTORY TRANSACTION
-  // console.log('resultHistory:', resultHistory);
+  console.log('phone:', phone);
   return (
     <StyledDashboard>
       <div className="header-section">
@@ -109,7 +109,7 @@ const Homepage = () => {
             Rp. {moneyFormatter.format(amount)}
           </h1>
           <p className="text-section">
-            {phone === 'null' ? (
+            {!phone ? (
               <Link
                 to="/profile/add-phone-number"
                 className="add-phone-number anchor"
@@ -135,11 +135,11 @@ const Homepage = () => {
             primary
             icon="top-up"
             onClick={() => {
-              return toastify(
-                'Sorry this feature is under development :D',
-                'warning'
-              );
-              // return history.push(`/${username}/topup`);
+              // return toastify(
+              //   'Sorry this feature is under development :D',
+              //   'warning'
+              // );
+              return history.push(`/topup`);
             }}
           >
             Top Up
@@ -184,7 +184,7 @@ const Homepage = () => {
                     username={item.username}
                     avatar={item.avatar}
                     typeTransaction={item.type}
-                    amount={item.amount}
+                    amount={moneyFormatter.format(item.amount)}
                   />
                 );
               })}
