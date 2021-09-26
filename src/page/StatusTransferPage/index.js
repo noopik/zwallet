@@ -13,6 +13,7 @@ import {
   Success,
 } from '../../assets';
 import { Button, Cardwrapper, SmallCard } from '../../components';
+import { moneyFormatter } from '../../utils';
 import { StyleStatus } from './StyleStatus';
 
 const StatusTransferPage = () => {
@@ -208,11 +209,15 @@ const StatusTransferPage = () => {
         </div>
         <SmallCard className="card-section-first">
           <p className="title">Amount</p>
-          <h4 className="content">Rp{transferState.amount}</h4>
+          <h4 className="content">
+            Rp. {moneyFormatter.format(transferState.amount)}
+          </h4>
         </SmallCard>
         <SmallCard className="card-section">
           <p className="title">Balance left</p>
-          <h4 className="content">Rp{transferState.balanceLeft}</h4>
+          <h4 className="content">
+            Rp. {moneyFormatter.format(transferState.balanceLeft)}
+          </h4>
         </SmallCard>
         <SmallCard className="card-section">
           <p className="title">Date & time</p>
