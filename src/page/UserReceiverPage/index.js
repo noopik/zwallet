@@ -223,7 +223,7 @@ const StyledUserReceiverPage = styled.div`
       width: 70px;
       height: 70px;
       img {
-        object-fit: contain;
+        object-fit: cover;
         width: 100%;
         height: 100%;
         border-radius: 10px;
