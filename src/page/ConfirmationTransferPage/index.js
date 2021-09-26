@@ -13,7 +13,7 @@ import {
 } from '../../components';
 import ItemDetail from '../../components/atoms/ItemDetail';
 import { customMedia } from '../../components/Layouting/BreakPoints';
-import { colors, toastify } from '../../utils';
+import { colors, moneyFormatter, toastify } from '../../utils';
 import { dispatchTypes } from '../../utils/dispatchType';
 
 const ConfirmationTransferPage = () => {
@@ -118,11 +118,13 @@ const ConfirmationTransferPage = () => {
         <div className="detail-body">
           <ItemDetail
             title="Amount"
-            description={`Rp. ${transferReducer.amount}`}
+            description={`Rp. ${moneyFormatter.format(transferReducer.amount)}`}
           />
           <ItemDetail
             title="Balance Left"
-            description={`Rp. ${transferReducer.balanceLeft}`}
+            description={`Rp. ${moneyFormatter.format(
+              transferReducer.balanceLeft
+            )}`}
           />
           <ItemDetail
             title="Date & Time"
