@@ -1,69 +1,174 @@
-# Readme Front End
+<!-- PROJECT LOGO -->
+<br />
+<p align="center">
+  <a href="https://github.com/dwinovic/zwallet">
+    <img src="https://res.cloudinary.com/dnv-images/image/upload/v1631717683/Zwallet/ewallet_1_tzfymc.svg" alt="Logo" width="180" height="180">
+  </a>
 
-![https://i.postimg.cc/WpmxhFCx/zwallet6.png](https://i.postimg.cc/WpmxhFCx/zwallet6.png)
+  <h3 align="center">Zwallet: Digital wallet</h3>
 
----
+  <p align="center">
+    Really helps you to manage your e-money. <br/> Using Zwallet you’ll be allowed to do some transaction with only a few taps on your screen. 
+    <br />
+    <a href="https://github.com/dwinovic/zwallet"><strong>Explore the docs »</strong></a>
+    <br />
+    <br />
+    <a href="https://zwallet-matrix.vercel.app/">View Demo</a>
+    ·
+    <a href="https://github.com/dwinovic/zwallet">Report Bug</a>
+    ·
+    <a href="https://github.com/dwinovic/zwallet">Request Feature</a>
+  </p>
+</p>
 
-## About
+<!-- TABLE OF CONTENTS -->
+<details open="open">
+  <summary>Table of Contents</summary>
+  <ol>
+    <li>
+      <a href="#about-the-project">About The Project</a>
+        <ol>
+            <li>
+                <a href="#build-with">Build With</a>
+            </li>
+        </ol>
+    </li>
+    <li>
+      <a href="#getting-started">Getting Started</a>
+      <ol>
+        <li>
+          <a href="#installation">Installation</a>
+        </li>
+        <li>
+          <a href="#prerequisites">Prerequisites</a>
+        </li>
+        <li>
+          <a href="#related-project">Related Project</a>
+        </li>
+      </ol>
+    </li>
+    <li><a href="#screenshots">Screenshots</a></li>
+    <li><a href="#our-team">Our Team</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ol>
+</details>
 
-Zwallet is a digital wallet apps that will really helps you to manage your e-money. Using Zwallet you’ll be allowed to do some transaction with only a few taps on your screen. In other words, with this apps you can easily save money, transfer it to other, and also top up some moneys and add them to your Zwallet’s balance.
+## About The Project
 
-## Build With
+<b>Zwallet</b> is a digital wallet apps that will really helps you to manage your e-money. Using Zwallet you’ll be allowed to do some transaction with only a few taps on your screen. In other words, with this apps you can easily save money, transfer it to other, and also top up some moneys and add them to your Zwallet’s balance.
 
-- JavaScript
-- React Js
-- Redux
-- Styled Components
+### Build With
+* [JavaScript](https://www.javascript.com/)
+* [React Js](https://reactjs.org/)
+* [Redux](https://redux.js.org/)
+* [Styled Components](https://styled-components.com/)
+* [Formik](https://formik.org/)
+* [React Bootstrap](https://react-bootstrap.github.io/)
 
-### Packages (Frontend)
 
-```
-"axios": "^0.21.1",
-"bootstrap": "^5.0.2",
-"chart.js": "^3.5.0",
-"jspdf": "^2.3.1",
-"prop-types": "^15.7.2",
-"react": "^17.0.2",
-"react-bootstrap": "^2.0.0-beta.4",
-"react-chartjs-2": "^3.0.4",
-"react-dom": "^17.0.2",
-"react-hook-form": "^7.12.2",
-"react-pin-input": "^1.0.1",
-"react-redux": "^7.2.4",
-"react-router-dom": "^5.2.0",
-"react-scripts": "4.0.3",
-"react-toastify": "^7.0.4",
-"redux-logger": "^3.0.6",
-"redux-thunk": "^2.3.0",
-"styled-components": "^5.3.0",
-"styled-media-query": "^2.1.2",
-"web-vitals": "^1.0.1"
-```
+## Getting Started
 
-## How To Install?
+### Prerequisites
+
+This is an example of how to list things you need to use the software and how to install them.
+* [Node Js](https://nodejs.org/en/download/)
+
+### Installation
 
 1. Clone These 2 Repos (Backend and Frontend)
-`git clone https://github.com/dwinovic/zwallet`
+```sh
+git clone https://github.com/dwinovic/zwallet
+```
 2. Go To Folder Repo
-
-    `cd zwallet-frontend`
-
+```sh
+cd zwallet-frontend
+```
 3. Install Module
+```sh
+npm install
+```
+4. Add .env file at root folder project, and add following
+```sh
+REACT_APP_BACKEND_API=[BACKEND_API]
+```
+5. Start website
+```sh
+npm start
+```
 
-    `npm install`
-
-4. Start website
-
-    `npm start`
+### Related Project
+* [`Frontend-Zwallet`](https://github.com/dwinovic/zwallet)
+* [`Backend-Zwallet`](https://github.com/dwinovic/Backend-mWallet)
 
 ## Screenshots
 
-![https://i.postimg.cc/9f9d8Tjp/zwallet1.png](https://i.postimg.cc/9f9d8Tjp/zwallet1.png)
+<div align="center">
+    <img width="350" src="https://github.com/19damah23/zwallet/blob/main/screenshots/1631775729085.png">   
+    <img width="350" src="https://res.cloudinary.com/dnv-images/image/upload/v1631723284/Zwallet/Zwallet-02_ulfakj.png">
+</div>
+<div align="center">
+    <img width="350" src="https://res.cloudinary.com/dnv-images/image/upload/v1631723284/Zwallet/Zwallet-03_ecadci.png">   
+    <img width="350" src="https://res.cloudinary.com/dnv-images/image/upload/v1631723283/Zwallet/Zwallet-04_dcgepp.png">
+</div>
+<div align="center">
+    <img width="350" src="https://res.cloudinary.com/dnv-images/image/upload/v1631723283/Zwallet/Zwallet-05_xo6ely.png">   
+    <img width="350" src="https://res.cloudinary.com/dnv-images/image/upload/v1631723283/Zwallet/Zwallet-06_smtqqf.png">
+</div>
+<div align="center">
+    <img width="350" src="https://res.cloudinary.com/dnv-images/image/upload/v1631723284/Zwallet/Zwallet-07_vp5cer.png">   
+    <img width="350" src="https://res.cloudinary.com/dnv-images/image/upload/v1631723284/Zwallet/Zwallet-08_kjsjia.png">
+</div>
+<div align="center">
+    <img width="350" src="https://res.cloudinary.com/dnv-images/image/upload/v1631723285/Zwallet/Zwallet-09_l1helx.png">   
+    <img width="350" src="https://res.cloudinary.com/dnv-images/image/upload/v1631723285/Zwallet/Zwallet-10_nnfygx.png">
+</div>
 
-![https://i.postimg.cc/d3TMx441/zwallet2.png](https://i.postimg.cc/d3TMx441/zwallet2.png)
+## Our Team
 
-![https://i.postimg.cc/tCQCHxPf/zwallet3.png](https://i.postimg.cc/tCQCHxPf/zwallet3.png)
+<center>
+  <table>
+    <tr>
+      <td align="center">
+        <a href="https://github.com/dwinovic">
+          <img width="100" src="https://avatars.githubusercontent.com/u/59456940?v=4" alt="Novi Dwi Cahya"><br/>
+          <sub><b>Novi Dwi Cahya</b></sub> <br/>
+            <sub>Leader | Front End Developer</sub>
+        </a>
+      </td>
+      <td align="center">
+        <a href="https://github.com/farrelvarian">
+          <img width="100" src="https://avatars.githubusercontent.com/u/42968960?v=4" alt="Farrel Varian Eka Putra"><br/>
+          <sub><b>Farrel Varian Eka Putra</b></sub> <br/>
+          <sub>Full Stack Web Developer</sub>
+        </a>
+      </td>
+      <td align="center">
+        <a href="https://github.com/19damah23">
+          <img width="100" src="https://media-exp1.licdn.com/dms/image/C5603AQG98I3VT9Wc5g/profile-displayphoto-shrink_800_800/0/1630549889980?e=1637193600&v=beta&t=EL-sEsGitFv9TeZofjNhs7fVZa0RxLSwxhyqhF3Xt8A" alt="Muchamad Agus Hermawan"><br/>
+          <sub><b>Muchamad Agus Hermawan</b></sub> <br/>
+          <sub>Back End Developer</sub>
+        </a>
+      </td>
+      <td align="center">
+        <a href="https://github.com/Nisanisa7">
+          <img width="100" src="https://avatars.githubusercontent.com/u/43512824?v=4" alt="Alfatah Hidayat"><br/>
+          <sub><b>Nisa</b></sub> <br/>
+          <sub>Front End Developer</sub>
+        </a>
+      </td>
+      <td align="center">
+        <a href="https://github.com/CandaMuammal">
+          <img width="100" src="https://avatars.githubusercontent.com/u/79079927?v=4" alt="Alfatah Hidayat"><br/>
+          <sub><b>Canda Muammal</b></sub> <br/>
+          <sub>Back End Developer</sub>
+        </a>
+      </td>
+    </tr>
+  </table>
+</center>
 
-![https://i.postimg.cc/prDvds8S/zwallet4.png](https://i.postimg.cc/prDvds8S/zwallet4.png)
+## Contact
+My Email : novidwicahya19@gmail.com
 
-![https://i.postimg.cc/mrtG9LCC/zwallet5.png](https://i.postimg.cc/mrtG9LCC/zwallet5.png)
+Project Link: [https://github.com/dwinovic/zwallet](https://github.com/dwinovic/zwallet)
+
